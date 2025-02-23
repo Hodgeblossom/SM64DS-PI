@@ -1,15 +1,15 @@
 #pragma once
 
 #include "SM64DS_Common.h"
-#include "Formats/LVL_Overlay.h"
+#include "Formats/LevelOverlay.h"
 
 struct PathPtr
 {
-	const LVL_Overlay::PathObj* ptr;
+	const LevelOverlay::PathObj* ptr;
 
 	constexpr PathPtr() : ptr(nullptr) {}
-	constexpr PathPtr(const LVL_Overlay::PathObj* path) : ptr(path) {}
-	constexpr PathPtr(const LVL_Overlay::PathObj& path) : ptr(&path) {}
+	constexpr PathPtr(const LevelOverlay::PathObj* path) : ptr(path) {}
+	constexpr PathPtr(const LevelOverlay::PathObj& path) : ptr(&path) {}
 	explicit PathPtr(u32 pathID) { FromID(pathID); }
 	explicit PathPtr(s32 pathID) { FromID(pathID); }
 
@@ -30,15 +30,15 @@ struct PathPtr
 	[[gnu::always_inline, nodiscard]]
 	auto operator[](const std::integral auto& index) const { return GetNode(index); }
 
-	inline const LVL_Overlay::PathObj& operator* () const { return *ptr; }
-	inline const LVL_Overlay::PathObj* operator->() const { return ptr; }
+	inline const LevelOverlay::PathObj& operator* () const { return *ptr; }
+	inline const LevelOverlay::PathObj* operator->() const { return ptr; }
 
 	inline explicit operator bool() const { return ptr != nullptr; }
 
 	inline bool operator==(const PathPtr& other) const { return this->ptr == other.ptr; }
 
-	inline operator const LVL_Overlay::PathObj*      &()       { return ptr; }
-	inline operator const LVL_Overlay::PathObj* const&() const { return ptr; }
+	inline operator const LevelOverlay::PathObj*      &()       { return ptr; }
+	inline operator const LevelOverlay::PathObj* const&() const { return ptr; }
 };
 
 struct VanillaPathPtr : PathPtr

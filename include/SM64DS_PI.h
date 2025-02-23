@@ -405,8 +405,8 @@ extern "C"
 	Fix12i GetMinimapScale(s8 index);
 	s8 GetMinimapID(Actor& actor, s32 curMinimapID);
 
-	LVL_Overlay::TeleportDestObj& GetTeleportDestObj(s32 index);
-	LVL_Overlay::ViewObj& GetViewObj(s32 index);
+	LevelOverlay::TeleportDestObj& GetTeleportDestObj(s32 index);
+	LevelOverlay::ViewObj& GetViewObj(s32 index);
 
 	bool CopyTexPalFromLevelModel(ModelComponents& modelData);
 

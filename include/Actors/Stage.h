@@ -105,7 +105,7 @@ struct Stage : Scene
 
 	static void SetVramBanks();
 	static void ResetMeshColliders(); // identical function at 0x02039218
-	static void LoadClsnAndObjects(LVL_Overlay& lvlFile, u32 entranceID, MeshCollider& clsn);
+	static void LoadClsnAndObjects(LevelOverlay& lvlFile, u32 entranceID, MeshCollider& clsn);
 	static void LoadGraphics2D(bool vsMode, s32 levelID);
 
 	static u32 GetSkyboxID();
@@ -143,8 +143,8 @@ struct Stage : Scene
 
 static_assert(sizeof(Stage) == 0x9c8, "Size of Stage is incorrect.");
 
-extern LVL_Overlay* LEVEL_OVERLAY_PTR;
-extern LVL_Overlay LEVEL_OVERLAY;
+extern LevelOverlay* LEVEL_OVERLAY_PTR;
+extern LevelOverlay LEVEL_OVERLAY;
 
 extern ModelComponents* LEVEL_MODEL_DATA;
 
@@ -156,35 +156,35 @@ extern u8 NUM_FOG_OBJS;
 extern u8 MAP_TILE_ARR_SIZE;
 extern u8 NUM_MINIMAP_SCALE_OBJS;
 
-extern LVL_Overlay::EntranceObj* ENTRANCE_ARR_PTR;
-extern LVL_Overlay::PathNodeObj* PATH_NODE_ARR_PTR;
-extern LVL_Overlay::PathObj* PATH_ARR_PTR;
-extern LVL_Overlay::ViewObj* VIEW_ARR_PTR;
-extern LVL_Overlay::TeleportDestObj* TELEPORT_DEST_OBJS_PTR;
-extern LVL_Overlay::FogObj* FOG_OBJS_PTR;
-extern LVL_Overlay::MinimapScreenObj* MAP_TILE_ARR_PTR;
-extern LVL_Overlay::MinimapScaleObj* MINIMAP_SCALE_OBJS_PTR;
+extern LevelOverlay::EntranceObj* ENTRANCE_ARR_PTR;
+extern LevelOverlay::PathNodeObj* PATH_NODE_ARR_PTR;
+extern LevelOverlay::PathObj* PATH_ARR_PTR;
+extern LevelOverlay::ViewObj* VIEW_ARR_PTR;
+extern LevelOverlay::TeleportDestObj* TELEPORT_DEST_OBJS_PTR;
+extern LevelOverlay::FogObj* FOG_OBJS_PTR;
+extern LevelOverlay::MinimapScreenObj* MAP_TILE_ARR_PTR;
+extern LevelOverlay::MinimapScaleObj* MINIMAP_SCALE_OBJS_PTR;
 extern void* UNUSED_TYPE_13_OBJS_PTR;
 
 extern u32 STAR_CAMERA_SETTINGS;
 
-void LoadObjects(LVL_Overlay::ObjTable& objTable, s32 areaID, u32 entranceID);
+void LoadObjects(LevelOverlay::ObjTable& objTable, s32 areaID, u32 entranceID);
 
-void LoadStandardObjects(LVL_Overlay::ObjSubTable& objSubTable, s32 areaID, u32 entranceID);
-void LoadEntranceObjects(LVL_Overlay::ObjSubTable& objSubTable, s32 areaID, u32 entranceID);
-void LoadPathNodeObjects(LVL_Overlay::ObjSubTable& objSubTable, s32 areaID, u32 entranceID);
-void LoadPathObjects(LVL_Overlay::ObjSubTable& objSubTable, s32 areaID, u32 entranceID);
-void LoadViewObjects(LVL_Overlay::ObjSubTable& objSubTable, s32 areaID, u32 entranceID);
-void LoadSimpleObjects(LVL_Overlay::ObjSubTable& objSubTable, s32 areaID, u32 entranceID);
-void LoadTeleportSourceObjects(LVL_Overlay::ObjSubTable& objSubTable, s32 areaID, u32 entranceID);
-void LoadTeleportDestObjects(LVL_Overlay::ObjSubTable& objSubTable, s32 areaID, u32 entranceID);
-void LoadFogObjects(LVL_Overlay::ObjSubTable& objSubTable, s32 areaID, u32 entranceID);
-void LoadDoorObjects(LVL_Overlay::ObjSubTable& objSubTable, s32 areaID, u32 entranceID);
-void LoadExitObjects(LVL_Overlay::ObjSubTable& objSubTable, s32 areaID, u32 entranceID);
-void LoadMinimapTileObjects(LVL_Overlay::ObjSubTable& objSubTable, s32 areaID, u32 entranceID);
-void LoadMinimapScaleObjects(LVL_Overlay::ObjSubTable& objSubTable, s32 areaID, u32 entranceID);
-void LoadUnusedType13Objects(LVL_Overlay::ObjSubTable& objSubTable, s32 areaID, u32 entranceID);
-void LoadStarCameraObjects(LVL_Overlay::ObjSubTable& objSubTable, s32 areaID, u32 entranceID);
+void LoadStandardObjects(LevelOverlay::ObjSubTable& objSubTable, s32 areaID, u32 entranceID);
+void LoadEntranceObjects(LevelOverlay::ObjSubTable& objSubTable, s32 areaID, u32 entranceID);
+void LoadPathNodeObjects(LevelOverlay::ObjSubTable& objSubTable, s32 areaID, u32 entranceID);
+void LoadPathObjects(LevelOverlay::ObjSubTable& objSubTable, s32 areaID, u32 entranceID);
+void LoadViewObjects(LevelOverlay::ObjSubTable& objSubTable, s32 areaID, u32 entranceID);
+void LoadSimpleObjects(LevelOverlay::ObjSubTable& objSubTable, s32 areaID, u32 entranceID);
+void LoadTeleportSourceObjects(LevelOverlay::ObjSubTable& objSubTable, s32 areaID, u32 entranceID);
+void LoadTeleportDestObjects(LevelOverlay::ObjSubTable& objSubTable, s32 areaID, u32 entranceID);
+void LoadFogObjects(LevelOverlay::ObjSubTable& objSubTable, s32 areaID, u32 entranceID);
+void LoadDoorObjects(LevelOverlay::ObjSubTable& objSubTable, s32 areaID, u32 entranceID);
+void LoadExitObjects(LevelOverlay::ObjSubTable& objSubTable, s32 areaID, u32 entranceID);
+void LoadMinimapTileObjects(LevelOverlay::ObjSubTable& objSubTable, s32 areaID, u32 entranceID);
+void LoadMinimapScaleObjects(LevelOverlay::ObjSubTable& objSubTable, s32 areaID, u32 entranceID);
+void LoadUnusedType13Objects(LevelOverlay::ObjSubTable& objSubTable, s32 areaID, u32 entranceID);
+void LoadStarCameraObjects(LevelOverlay::ObjSubTable& objSubTable, s32 areaID, u32 entranceID);
 
 void LoadMinimapChangeObject(s32 areaID, Fix12i posY, u8 param1);
 

@@ -133,7 +133,7 @@ struct Camera : View // internal name: dCamera
 	State* currState;       // Pointer to the current setting behaviour, which in turn sets the CameraDef's
 	CameraDef* defaultCamDef;
 	CameraDef* currCamDef;
-	LVL_Overlay::ViewObj* currView;
+	LevelOverlay::ViewObj* currView;
 	Vector3* pausePos;
 	u32 unk14c;
 	u32 unk150;

@@ -4,7 +4,7 @@
 
 struct CLPS_Block;
 
-struct LVL_Overlay
+struct LevelOverlay
 {
 	struct ObjSubTable
 	{

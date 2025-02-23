@@ -2115,7 +2115,7 @@ _ZN5Stage22RenderModelTransparentEv                                             
 
 _ZN5Stage12SetVramBanksEv                                                         = 0x0202e73c;
 _ZN5Stage18ResetMeshCollidersEv                                                   = 0x020391f4;
-_ZN5Stage18LoadClsnAndObjectsER11LVL_OverlayjR12MeshCollider                      = 0x020fe190;
+_ZN5Stage18LoadClsnAndObjectsER12LevelOverlayjR12MeshCollider                     = 0x020fe190;
 _ZN5Stage14LoadGraphics2DEbi                                                      = 0x0202d690;
 
 _ZN5Stage11GetSkyboxIDEv                                                          = 0x0202a93c;
@@ -2173,23 +2173,23 @@ UNUSED_TYPE_13_OBJS_PTR                                                         
 	
 STAR_CAMERA_SETTINGS                                                              = 0x02092134;
 
-_Z11LoadObjectsRN11LVL_Overlay8ObjTableEij                                        = 0x020fe33c;
+_Z11LoadObjectsRN12LevelOverlay8ObjTableEij                                       = 0x020fe33c;
 
-_Z19LoadStandardObjectsRN11LVL_Overlay11ObjSubTableEij                            = 0x020fe8ac;
-_Z19LoadEntranceObjectsRN11LVL_Overlay11ObjSubTableEij                            = 0x020fe6c8;
-_Z19LoadPathNodeObjectsRN11LVL_Overlay11ObjSubTableEij                            = 0x020fe6b8;
-_Z15LoadPathObjectsRN11LVL_Overlay11ObjSubTableEij                                = 0x020fe6a4;
-_Z15LoadViewObjectsRN11LVL_Overlay11ObjSubTableEij                                = 0x020fe690;
-_Z17LoadSimpleObjectsRN11LVL_Overlay11ObjSubTableEij                              = 0x020fe960;
-_Z25LoadTeleportSourceObjectsRN11LVL_Overlay11ObjSubTableEij                      = 0x020fe5f4;
-_Z23LoadTeleportDestObjectsRN11LVL_Overlay11ObjSubTableEij                        = 0x020fe5e0;
-_Z14LoadFogObjectsRN11LVL_Overlay11ObjSubTableEij                                 = 0x020fe5cc;
-_Z15LoadDoorObjectsRN11LVL_Overlay11ObjSubTableEij                                = 0x020fe4f0;
-_Z15LoadExitObjectsRN11LVL_Overlay11ObjSubTableEij                                = 0x020fe420;
-_Z22LoadMinimapTileObjectsRN11LVL_Overlay11ObjSubTableEij                         = 0x020fe40c;
-_Z23LoadMinimapScaleObjectsRN11LVL_Overlay11ObjSubTableEij                        = 0x020fe3f8;
-_Z23LoadUnusedType13ObjectsRN11LVL_Overlay11ObjSubTableEij                        = 0x020fe3e4;
-_Z21LoadStarCameraObjectsRN11LVL_Overlay11ObjSubTableEij                          = 0x020fe3cc;
+_Z19LoadStandardObjectsRN12LevelOverlay11ObjSubTableEij                           = 0x020fe8ac;
+_Z19LoadEntranceObjectsRN12LevelOverlay11ObjSubTableEij                           = 0x020fe6c8;
+_Z19LoadPathNodeObjectsRN12LevelOverlay11ObjSubTableEij                           = 0x020fe6b8;
+_Z15LoadPathObjectsRN12LevelOverlay11ObjSubTableEij                               = 0x020fe6a4;
+_Z15LoadViewObjectsRN12LevelOverlay11ObjSubTableEij                               = 0x020fe690;
+_Z17LoadSimpleObjectsRN12LevelOverlay11ObjSubTableEij                             = 0x020fe960;
+_Z25LoadTeleportSourceObjectsRN12LevelOverlay11ObjSubTableEij                     = 0x020fe5f4;
+_Z23LoadTeleportDestObjectsRN12LevelOverlay11ObjSubTableEij                       = 0x020fe5e0;
+_Z14LoadFogObjectsRN12LevelOverlay11ObjSubTableEij                                = 0x020fe5cc;
+_Z15LoadDoorObjectsRN12LevelOverlay11ObjSubTableEij                               = 0x020fe4f0;
+_Z15LoadExitObjectsRN12LevelOverlay11ObjSubTableEij                               = 0x020fe420;
+_Z22LoadMinimapTileObjectsRN12LevelOverlay11ObjSubTableEij                        = 0x020fe40c;
+_Z23LoadMinimapScaleObjectsRN12LevelOverlay11ObjSubTableEij                       = 0x020fe3f8;
+_Z23LoadUnusedType13ObjectsRN12LevelOverlay11ObjSubTableEij                       = 0x020fe3e4;
+_Z21LoadStarCameraObjectsRN12LevelOverlay11ObjSubTableEij                         = 0x020fe3cc;
 
 _Z23LoadMinimapChangeObjecti5Fix12IiEh                                            = 0x0202a994;
 

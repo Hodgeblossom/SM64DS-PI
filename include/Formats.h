@@ -8,4 +8,4 @@
 #include "Formats/DYLB_File.h"
 #include "Formats/KCL_File.h"
 #include "Formats/MESG_File.h"
-#include "Formats/LVL_Overlay.h"
+#include "Formats/LevelOverlay.h"
