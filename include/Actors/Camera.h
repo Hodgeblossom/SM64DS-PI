@@ -146,7 +146,7 @@ struct Camera : View // internal name: dCamera
 	u32 unk16c;
 	u32 unk170;
 	u32 unk174;
-	u16 angZ;
+	s16 angZ;
 	s16 fov;
 	s16 angY; // ?
 	s16 unk17e;

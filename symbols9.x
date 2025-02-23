@@ -235,7 +235,7 @@ DOOR_KEY_HOLE_MODEL_PTR                                                         
 
 STAR_DOOR_MODEL_PTR                                                               = 0x02148934;
 
-/* SM64DS_2.h */
+/* SM64DS_PI.h */
 OBJ_TO_ACTOR_ID_TABLE                                                             = 0x02004b00;
 ACTOR_SPAWN_TABLE                                                                 = 0x02006590;
 
