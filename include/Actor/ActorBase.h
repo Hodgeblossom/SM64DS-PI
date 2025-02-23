@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../Memory.h"
+
 // vtable at 0x02099edc
 struct ActorBase // internal name: fBase
 {
@@ -56,7 +58,7 @@ struct ActorBase // internal name: fBase
 	u8 unk48;                       // 0x48
 	u8 unk49;                       // 0x49
 	u16 unk4a;                      // 0x4a
-	u32 unk4c;                      // 0x4c
+	Heap* unkHeap;                  // 0x4c (usually null, may be set in Virtual34 or Virtual38)
 
 	ActorBase();
 	virtual s32  InitResources();

@@ -210,17 +210,17 @@ struct Heap // internal name: mHeap::Heap_t
 	Heap* parentHeap; // Pointer to the heap's parent. May be null if it's the root heap.
 	u32 flags;        // Only flag is 0x4000 (which is set in ctor) which allows crashing the game on a fatal heap exception if set.
 
-	static SolidHeap* CreateSolidHeap(u32 size, Heap* root, s32 align);         // Allocates a SolidHeap on root with size size (except heap object members) and alignment/allocation direction align. Returns a pointer to the newly created heap.
-	static ExpandingHeap* CreateExpandingHeap(u32 size, Heap* root, s32 align); // Allocates an ExpandingHeap on root with size size (except heap object members) and alignment/allocation direction align. Returns a pointer to the newly created heap.
+	static SolidHeap* CreateSolidHeap(u32 size, Heap* root, s32 align);              // Allocates a SolidHeap on root with size size (except heap object members) and alignment/allocation direction align. Returns a pointer to the newly created heap.
+	static ExpandingHeap* CreateExpandingHeap(u32 size, Heap* root, s32 align);      // Allocates an ExpandingHeap on root with size size (except heap object members) and alignment/allocation direction align. Returns a pointer to the newly created heap.
 	static SolidHeapAllocator* CreateSolidHeapAllocator(void* address, u32 size, u32 flags);
 	static ExpandingHeapAllocator* CreateExpandingHeapAllocator(void* address, u32 size, u32 flags);
-	static ExpandingHeap* CreateRootHeap(void* address, u32 size);              // Creates the root heap (and therefore doesn't allocate it on another heap which doesn't exist at this point)
-	static void SetupRootHeap();                                                // Sets up the root heap's bounds, creates it and registers it to its respective global pointers.
-	static void InitializeRootHeap();                                           // Sets rootParamOffset to 0 and calls SetupRootHeap.
-	static void InitializeGameHeap(u32 size, Heap* root);                       // Forwards the arguments to CreateExpandingHeap and sets gameHeapPtr to the new game heap pointer.
-	static void* SetupSolidHeapAsDefault(u32 size, Heap* root, s32 align);      // Creates a SolidHeap, saves the current default heap to tmpHeapPtr and sets the newly created heap as default; Returns a pointer to the new heap or null if CreateSolidHeap failed to allocate space for it.
-	static void* InitializeSolidHeapAsDefault(u32 size, Heap* root, s32 align); // Calls SetupSolidHeapAsDefault
-	static void RestoreFromTemporary();                                         // Sets the temporary heap to the default heap and resets tmpHeapPtr to 0.
+	static ExpandingHeap* CreateRootHeap(void* address, u32 size);                   // Creates the root heap (and therefore doesn't allocate it on another heap which doesn't exist at this point)
+	static void SetupRootHeap();                                                     // Sets up the root heap's bounds, creates it and registers it to its respective global pointers.
+	static void InitializeRootHeap();                                                // Sets rootParamOffset to 0 and calls SetupRootHeap.
+	static void InitializeGameHeap(u32 size, Heap* root);                            // Forwards the arguments to CreateExpandingHeap and sets gameHeapPtr to the new game heap pointer.
+	static SolidHeap* SetupSolidHeapAsDefault(u32 size, Heap* root, s32 align);      // Creates a SolidHeap, saves the current default heap to tmpHeapPtr and sets the newly created heap as default; Returns a pointer to the new heap or null if CreateSolidHeap failed to allocate space for it.
+	static SolidHeap* InitializeSolidHeapAsDefault(u32 size, Heap* root, s32 align); // Calls SetupSolidHeapAsDefault
+	static void RestoreFromTemporary();                                              // Sets the temporary heap to the default heap and resets tmpHeapPtr to 0.
 
 	Heap(void* start, u32 size, Heap* root);
 	virtual ~Heap();
