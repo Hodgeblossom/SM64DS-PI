@@ -1234,7 +1234,23 @@ _ZN5Enemy12KillByAttackER5Actor                                                 
 _ZN5Enemy9SpawnCoinEv                                                             = 0x020aeabc;
 _ZN5Enemy12UpdateWMClsnER12WithMeshClsnj                                          = 0x020aebf8;
 
+_ZN5Enemy13DeathBySquashER12WithMeshClsn                                          = 0x020ae64c;
+_ZN5Enemy18DeathByOtherAttackER12WithMeshClsn                                     = 0x020ae608;
+_ZN5Enemy11DeathByBurnER12WithMeshClsn                                            = 0x020ae4cc;
+_ZN5Enemy13DeathByRegurgER12WithMeshClsn                                          = 0x020ae454;
+_ZN5Enemy27DeathByInvincibleCharUnusedER12WithMeshClsn                            = 0x020aea24;
+
+_ZN5Enemy12KillBySquashER5Actor                                                   = 0x020ae9f8;
+_ZN5Enemy11KillByPunchER5Actor                                                    = 0x020ae954;
+_ZN5Enemy10KillByKickER5Actor                                                     = 0x020ae890;
+_ZN5Enemy10KillByBurnER5Actor                                                     = 0x020ae87c;
+_ZN5Enemy10KillByDiveER5Actor                                                     = 0x020ae844;
+_ZN5Enemy10KillByUnk6ER5Actor                                                     = 0x020ae80c;
+_ZN5Enemy12KillByRegurgER5Actor                                                   = 0x020ae73c;
+_ZN5Enemy26KillByInvincibleCharUnusedER5Actor                                     = 0x020aea2c;
+
 ENEMY_DEATH_FUNCS                                                                 = 0x0210dbc0;
+ENEMY_KILL_FUNCS                                                                  = 0x0210db80;
 
 /* Actor/CapEnemy.h */
 _ZN8CapEnemyC2Ev                                                                  = 0x02006554;
