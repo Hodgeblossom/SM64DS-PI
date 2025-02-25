@@ -51,8 +51,11 @@ struct SharedFilePtr
 	[[gnu::always_inline]] BTA_File*  BTA () const { return reinterpret_cast<BTA_File*> (filePtr); }
 	[[gnu::always_inline]] BTP_File*  BTP () const { return reinterpret_cast<BTP_File*> (filePtr); }
 	[[gnu::always_inline]] KCL_File*  KCL () const { return reinterpret_cast<KCL_File*> (filePtr); }
-	[[gnu::always_inline]] DYLB_File* DYLB() const { return reinterpret_cast<DYLB_File*>(filePtr); }
 	[[gnu::always_inline]] MESG_File* MESG() const { return reinterpret_cast<MESG_File*>(filePtr); }
+
+#ifndef NO_DL_PATCH
+	[[gnu::always_inline]] DYLB_File* DYLB() const { return reinterpret_cast<DYLB_File*>(filePtr); }
+#endif
 };
 
 // temporary as these are static member variables

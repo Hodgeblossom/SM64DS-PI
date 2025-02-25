@@ -238,8 +238,11 @@ DOOR_KEY_HOLE_MODEL_PTR                                                         
 STAR_DOOR_MODEL_PTR                                                               = 0x02148934;
 
 /* SM64DS_PI.h */
-OBJ_TO_ACTOR_ID_TABLE                                                             = 0x02004b00;
-ACTOR_SPAWN_TABLE                                                                 = 0x02006590;
+OBJ_TO_ACTOR_ID_TABLE_VANILLA                                                     = 0x0210cbf4;
+OBJ_TO_ACTOR_ID_TABLE_AFTER_DL_PATCH                                              = 0x02004b00;
+
+ACTOR_SPAWN_TABLE_VANILLA                                                         = 0x02090864;
+ACTOR_SPAWN_TABLE_AFTER_DL_PATCH                                                  = 0x02006590;
 
 _ZN5Event8ClearBitEj                                                              = 0x02029ea4;
 _ZN5Event6SetBitEj                                                                = 0x02029ec4;

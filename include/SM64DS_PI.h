@@ -20,8 +20,23 @@
 #include "Save.h"
 #include "Actor.h"
 
-extern u16 OBJ_TO_ACTOR_ID_TABLE[640];
-extern SpawnInfo* ACTOR_SPAWN_TABLE[668];
+#ifdef NO_DL_PATCH
+
+extern SpawnInfo* ACTOR_SPAWN_TABLE_VANILLA[391];
+extern u16 OBJ_TO_ACTOR_ID_TABLE_VANILLA[326];
+
+inline constexpr auto& ACTOR_SPAWN_TABLE = ACTOR_SPAWN_TABLE_VANILLA;
+inline constexpr auto& OBJ_TO_ACTOR_ID_TABLE = OBJ_TO_ACTOR_ID_TABLE_VANILLA;
+
+#else
+
+extern SpawnInfo* ACTOR_SPAWN_TABLE_AFTER_DL_PATCH[668];
+extern u16 OBJ_TO_ACTOR_ID_TABLE_AFTER_DL_PATCH[638];
+
+inline constexpr auto& ACTOR_SPAWN_TABLE = ACTOR_SPAWN_TABLE_AFTER_DL_PATCH;
+inline constexpr auto& OBJ_TO_ACTOR_ID_TABLE = OBJ_TO_ACTOR_ID_TABLE_AFTER_DL_PATCH;
+
+#endif
 
 namespace Event
 {
@@ -147,7 +162,9 @@ extern u32 FRAME_COUNTER;
 extern Timer TIME_TIMER;
 extern bool DISPLAY_TIMER;
 
+#ifndef NO_DL_PATCH
 extern char** DL_PTR_ARR_PTR;
+#endif
 
 extern s32 ACTOR_BANK_OVL_MAP[7][7];
 extern s32 LEVEL_OVL_MAP[NUM_LEVELS];

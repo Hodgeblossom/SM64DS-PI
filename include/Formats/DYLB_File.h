@@ -1,4 +1,5 @@
 #pragma once
+#ifndef NO_DL_PATCH
 
 #include "Math.h"
 
@@ -11,3 +12,5 @@ struct DYLB_File
 };
 
 static_assert(sizeof(DYLB_File) == 0x8);
+
+#endif
