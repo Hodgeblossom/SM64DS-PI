@@ -25,7 +25,7 @@ struct Fix
 
 	// SM64DS rounds down (0.1_f becomes 0x199, not 0x19a)
 	constexpr explicit Fix(long double val):
-#ifdef FIXED_POINT_LITERAL_ROUND_DOWN
+#ifdef FIXED_POINT_ROUND_LITERALS_DOWN
 		val(val * (1ll << q))
 #else
 		val(val * (1ll << q) + 0.5l)
@@ -95,6 +95,11 @@ struct Fix
 	template<FixUR U> [[gnu::always_inline, nodiscard]] friend
 	Promoted operator*(CRTP<T> f0, CRTP<U> f1)
 	{
+#ifdef FIXED_POINT_ROUND_PRODUCTS_DOWN
+		using LargeEnoughInt = std::conditional_t<sizeof(T) + sizeof(U) <= 4, s32, s64>;
+
+		return {static_cast<LargeEnoughInt>(f0.val) * f1.val >> q, as_raw};
+#else
 		const u64 product = static_cast<s64>(f0.val) * f1.val;
 		Promoted result;
 
@@ -109,6 +114,7 @@ struct Fix
 		[s1] "I" (32 - q) : "cc");
 
 		return result;
+#endif
 	}
 
 	template<FixUR U> friend constexpr
