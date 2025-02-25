@@ -71,7 +71,7 @@ _Z14ApproachLinearRiii                                                          
 _Z15ApproachLinear2Rsss                                                           = 0x0203aed8;
 _Z15ApproachLinear2Riii                                                           = 0x0203af34;
 
-_Z11UpdateAngleRssis                                                              = 0x0203af90;
+UpdateAngle                                                                       = 0x0203af90;
 
 _ZN4cstd4fdivE5Fix12IiES1_                                                        = 0x02053258;
 _ZN4cstd4finvEi                                                                   = 0x02008c34;

@@ -1,6 +1,13 @@
 #pragma once
 
-#include "SM64DS_Common.h"
+#include "Math.h"
+
+constexpr s32 NUM_LEVELS = 52;
+constexpr s32 NUM_MAIN_LEVELS = 15;
+constexpr s32 NUM_SECRET_LEVELS = 15;
+constexpr s32 NUM_MINIGAMES = 36;
+
+extern s8 SUBLEVEL_LEVEL_TABLE[NUM_LEVELS];
 
 struct FileSaveData
 {

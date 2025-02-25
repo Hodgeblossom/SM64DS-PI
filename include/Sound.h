@@ -1,9 +1,11 @@
 #pragma once
 
-#include "SM64DS_Common.h"
+#include "Math.h"
 #include "MusicIDs.h"
 
 struct ROM_Info;
+struct Actor;
+
 namespace Sound
 {
 	enum RecordType
@@ -165,6 +167,8 @@ namespace Sound
 		u32 unke;
 		Data data;
 	};
+
+	struct Player; // needs to be declared here because otherwise FileRef::soundPlayer would be a ::Player*
 
 	struct FileRef //guess
 	{

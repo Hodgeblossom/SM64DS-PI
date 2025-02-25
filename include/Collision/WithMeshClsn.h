@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../Math.h"
+
 struct ClsnResult
 {
 	u32* vTable;                  // 0x0

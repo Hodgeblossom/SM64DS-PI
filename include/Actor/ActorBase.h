@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../Memory.h"
+#include <cstddef>
 
 // vtable at 0x02099edc
 struct ActorBase // internal name: fBase

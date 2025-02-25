@@ -1,6 +1,6 @@
 #pragma once
 
-#include "SM64DS_Common.h"
+#include "Math.h"
 
 namespace Particle
 {

@@ -1,5 +1,8 @@
 #pragma once
 
+#include "../Math.h"
+struct Actor;
+
 struct MeshColliderBase // vtable at 0x02099388
 {
 	enum SphereResultFlags : s32 // returned by DetectClsn(SphereClsn& sphere)

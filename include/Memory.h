@@ -1,6 +1,6 @@
 #pragma once
 
-#include "SM64DS_Common.h"
+#include "Math.h"
 
 //WARNING: Only use these objects if you REALLY know what you're doing. Heap management in SM64DS is VERY unstable when using functions outside of their respective safe scopes.
 //WARNING: You should NEVER touch HeapAllocator functions when hacking. Those are used internally to manage the memory and represent the low level management of the heap. 

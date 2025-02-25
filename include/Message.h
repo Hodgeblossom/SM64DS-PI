@@ -1,6 +1,6 @@
 #pragma once
 
-#include "SM64DS_Common.h"
+#include "Math.h"
 
 //0xfd is new line
 //0xff is end of text

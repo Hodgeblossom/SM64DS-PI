@@ -1,13 +1,14 @@
 #ifndef SM64DS_CUTSCENE_INCLUDED
 #define SM64DS_CUTSCENE_INCLUDED
 
-#include "SM64DS_Common.h"
+#include "Math.h"
 #include <cstdint>
 #include <concepts>
 #include <array>
 #include <bit>
 
 struct Camera;
+struct Player;
 struct FaderWipe;
 
 template<class T>
