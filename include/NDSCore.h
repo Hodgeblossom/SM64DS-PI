@@ -105,11 +105,6 @@ struct ARMContext
 
 namespace cstd
 {
-	void fdiv_async(Fix12i numerator, Fix12i denominator);
-	Fix12i fdiv_result(); // Returns the division result
-	s64 ldiv_result(); // Returns the 64 bit division result (which type?)
-	void reciprocal_async(Fix12i x); // Computes 1/x
-
 	[[noreturn]] void _start(); // ROM entry point, resets the NDS on return = 0x02004800
 	void __builtin_trap(); // Abort functionality. Triggers an undefined instruction (UDF)
 	void __assert(const char* file, const char* line, const char* exp, s32 eval); // Assertion that causes hangup if eval != 0

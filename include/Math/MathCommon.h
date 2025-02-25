@@ -19,3 +19,13 @@ bool ApproachLinear2(s32& counter, s32 dest, s32 step);
 
 u16 CountDownToZero(u16& counter); // returns the counter's new value
 u8  CountDownToZero(u8&  counter); // returns the counter's new value
+
+s32 SoftwareDiv(s32 numerator, s32 denominator);
+s32 HardwareDiv(s32 numerator, s32 denominator);
+s32 HardwareMod(s32 numerator, s32 denominator);
+
+void HardwareDivAsync(s32 numerator, s32 denominator);
+s64 HardwareDivResultQ32();
+s64 HardwareDivQ32(s32 numerator, s32 denominator); // returns a Q32 number
+
+u32 Sqrt(u64 x); // 64 bit unsigned sqrt

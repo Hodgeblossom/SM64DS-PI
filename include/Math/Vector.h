@@ -539,7 +539,7 @@ struct Vector3
 
 	s32 AngleTo(const Vector3& other) const
 	{
-		return cstd::atan2(this->Cross(other).Len(), this->Dot(other)) & 0xffff;
+		return Atan2(this->Cross(other).Len(), this->Dot(other)) & 0xffff;
 	}
 
 	[[gnu::always_inline, nodiscard]]

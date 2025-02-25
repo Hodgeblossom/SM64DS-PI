@@ -47,6 +47,17 @@ _ZdaPv                                                                          
 _ZdlPvj                                                                           = 0x0203CBF0; /* thunk at 0x0203cbcc */
 _ZdaPvj                                                                           = 0x0203CBF0; /* thunk at 0x0203cbcc */
 
+_Z11SoftwareDivii                                                                 = 0x01ffabe4;
+_Z11HardwareDivii                                                                 = 0x02052f4c;
+_Z11HardwareModii                                                                 = 0x02052ef4;
+_Z14HardwareDivQ125Fix12IiES0_                                                    = 0x02053258;
+_Z14HardwareDivQ32ii                                                              = 0x0205321c;
+_Z16HardwareDivAsyncii                                                            = 0x02052FA4;
+_Z20HardwareDivResultQ12v                                                         = 0x020530CC;
+_Z20HardwareDivResultQ32v                                                         = 0x02053108;
+_ZNH5Fix12IiE12InverseAsyncES0_                                                   = 0x02053090;
+_ZNH5Fix12IiE7InverseES0_                                                         = 0x02053200;
+
 /* integer division */
 __aeabi_idiv                                                                      = 0x01ffabe4;
 __aeabi_idivmod                                                                   = 0x01ffabe4;
@@ -55,12 +66,6 @@ __aeabi_uidivmod                                                                
 __aeabi_uldiv                                                                     = 0x01ffa9dc;
 __aeabi_ulmod                                                                     = 0x01ffa9e8;
 __aeabi_uldivmod                                                                  = 0x01ffe684;
-
-/* SM64DS_Common.h */
-_ZN4cstd3divEii                                                                   = 0x02052f4c;
-_ZN4cstd3modEii                                                                   = 0x02052ef4;
-_ZN4cstd4fdivEii                                                                  = 0x02053258;
-_ZN4cstd4ldivEii                                                                  = 0x0205321c;
 
 nds_print                                                                         = 0x02014770;
 nds_printf                                                                        = 0x0201470c;
@@ -73,11 +78,8 @@ _Z15ApproachLinear2Riii                                                         
 
 UpdateAngle                                                                       = 0x0203af90;
 
-_ZN4cstd4fdivE5Fix12IiES1_                                                        = 0x02053258;
-_ZN4cstd4finvEi                                                                   = 0x02008c34;
-_ZN4cstd4sqrtEy                                                                   = 0x0203D744;
-
-_ZN4cstd5atan2E5Fix12IiES1_                                                       = 0x0203B4DC;
+_Z4Sqrty                                                                          = 0x0203D744;
+_Z5Atan2ii                                                                        = 0x0203B4DC;
 
 _Z14ApproachLinearR7Vector3RKS_5Fix12IiE                                          = 0x0203b89c;
 
@@ -621,11 +623,6 @@ _ZN3IRQ24IPCRxFifoNotEmptyHandlerEv                                             
 _ZN3IRQ21GameCardIREQMCHandlerEv                                                  = 0x020610AC;
 _ZN3IRQ13DmaTimHandlerEv                                                          = 0x02056CC0;
 _ZN3IRQ20UserInterruptHandlerEv                                                   = 0x01FFD97C;
-
-_ZN4cstd10fdiv_asyncE5Fix12IiE5Fix12IiE                                           = 0x02052FA4;
-_ZN4cstd11fdiv_resultEv                                                           = 0x020530CC;
-_ZN4cstd11ldiv_resultEv                                                           = 0x02053108;
-_ZN4cstd16reciprocal_asyncE5Fix12IiE                                              = 0x02053090;
 
 _start                                                                            = 0x02004800;
 _ZN4cstd14__builtin_trapEv                                                        = 0x0206DABC;

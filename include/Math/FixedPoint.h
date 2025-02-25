@@ -7,11 +7,6 @@
 #include <limits>
 #include <utility>
 
-namespace cstd
-{
-	s32 fdiv(s32 numerator, s32 denominator); // returns a Q12 number
-}
-
 struct AsRaw {} constexpr as_raw;
 
 template<class T> // a valid underlying representation of a fixed-point number
@@ -184,8 +179,11 @@ struct Fix12 : Fix<T, 12, Fix12>
 {
 	using Fix<T, 12, Fix12>::Fix;
 
-	Fix12<s32> operator/ (Fix12 f) const { return {cstd::fdiv(this->val, f.val), as_raw}; }
-	Fix12&     operator/=(Fix12 f) & { this->val = cstd::fdiv(this->val, f.val); return *this; }
+	Fix12<s32> operator/ (Fix12 f) const { return HardwareDivQ12(*this, f.val); }
+	Fix12&     operator/=(Fix12 f) & { *this = *this / f; return *this; }
+
+	Fix12<s32> Inverse(this Fix12<s32>);
+	void InverseAsync(this Fix12<s32>);
 };
 
 using Fix12i = Fix12<s32>;
@@ -197,12 +195,16 @@ consteval Fix12s operator""_fs(u64 val) { return Fix12s(val, as_raw); }
 consteval Fix12i operator""_f (long double val) { return Fix12i(val); }
 consteval Fix12s operator""_fs(long double val) { return Fix12s(val); }
 
-namespace cstd
+s16 Atan2(s32 y, s32 x); // atan2 function, what about 0x020538b8?
+inline s16 Atan2(Fix12i y, Fix12i x) { return Atan2(y.val, x.val); }
+inline Fix12i Sqrt(Fix12i x) { return Fix12i(Sqrt(static_cast<u64>(x.val) << 12), as_raw); }
+
+Fix12i HardwareDivResultQ12();
+Fix12i HardwareDivQ12(Fix12i numerator, Fix12i denominator);
+
+inline void HardwareDivAsync(Fix12i numerator, Fix12i denominator)
 {
-	Fix12i fdiv(Fix12i numerator, Fix12i denominator);
-	Fix12i finv(Fix12i denominator); // inverse
-	inline Fix12i sqrt(Fix12i x) { return Fix12i(sqrt(static_cast<u64>(x.val) << 12), as_raw); }
-	s16 atan2(Fix12i y, Fix12i x); //atan2 function, what about 0x020538b8?
+	HardwareDivAsync(numerator.val, denominator.val);
 }
 
 template<FixUR T>

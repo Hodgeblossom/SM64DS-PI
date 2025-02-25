@@ -6,14 +6,6 @@
 #include "Math/Matrix.h"
 #include "Math/Quaternion.h"
 
-namespace cstd
-{
-	s32 div(s32 numerator, s32 denominator);
-	s32 mod(s32 numerator, s32 denominator);
-	s64 ldiv(s32 numerator, s32 denominator); // returns a Q32 number
-	u32 sqrt(u64 x); // 64 bit unsigned sqrt
-}
-
 inline bool IsBetween (u8 x, u8 x1, u8 x2) { return x1 <= x && x < x2; } // alternative implemantation: (u8)(x - x1) < (x2 - x1)
 inline bool NotBetween(u8 x, u8 x1, u8 x2) { return x < x1 || x2 < x; }  // alternative implemantation: (u8)(x - x1) > (x2 - x1)
 
