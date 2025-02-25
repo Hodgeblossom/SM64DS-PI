@@ -625,8 +625,8 @@ _ZN3IRQ13DmaTimHandlerEv                                                        
 _ZN3IRQ20UserInterruptHandlerEv                                                   = 0x01FFD97C;
 
 _start                                                                            = 0x02004800;
-_ZN4cstd14__builtin_trapEv                                                        = 0x0206DABC;
-_ZN4cstd8__assertEPKcPKcPKci                                                      = 0x0206CD44;
+__builtin_trap                                                                    = 0x0206DABC;
+AssertHandler                                                                     = 0x0206CD44;
 
 abs                                                                               = 0x0206df84;
 malloc                                                                            = 0x0203cc0c;

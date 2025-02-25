@@ -103,11 +103,14 @@ struct ARMContext
 	ARMMathState savedMath;
 };
 
-namespace cstd
+extern "C"
 {
-	[[noreturn]] void _start(); // ROM entry point, resets the NDS on return = 0x02004800
+	[[noreturn]]
+	void _start(); // ROM entry point, resets the NDS on return = 0x02004800
 	void __builtin_trap(); // Abort functionality. Triggers an undefined instruction (UDF)
-	void __assert(const char* file, const char* line, const char* exp, s32 eval); // Assertion that causes hangup if eval != 0
+
+	// Probably not useful for implementing the assert macro
+	void AssertHandler(const char* file, const char* line, const char* exp, bool shouldCrash);
 }
 
 extern "C"
