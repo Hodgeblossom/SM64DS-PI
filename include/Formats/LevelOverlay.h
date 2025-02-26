@@ -177,6 +177,7 @@ struct LevelOverlay
 	u8 skyboxID; // upper 4 bits are skybox ID, lower 4 bits are unused (always 0xf)?
 	u8 unk19; // always 0?
 	u16 unk1a; // always 0?
+#ifndef NO_SM64DSe_PATCH
 	u8 sGroupID;
 	u8 sBankID;
 	u8 sSequenceID;
@@ -186,4 +187,5 @@ struct LevelOverlay
 	u32 reserved28;
 	u32 reserved2c;
 	u32 reserved30;
+#endif
 };

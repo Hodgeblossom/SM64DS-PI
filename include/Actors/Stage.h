@@ -105,7 +105,7 @@ struct Stage : Scene
 
 	static void SetVramBanks();
 	static void ResetMeshColliders(); // identical function at 0x02039218
-	static void LoadClsnAndObjects(LevelOverlay& lvlFile, u32 entranceID, MeshCollider& clsn);
+	static void LoadClsnAndObjects(LevelOverlay& levelOverlay, u32 entranceID, MeshCollider& clsn);
 	static void LoadGraphics2D(bool vsMode, s32 levelID);
 
 	static u32 GetSkyboxID();
@@ -144,7 +144,11 @@ struct Stage : Scene
 static_assert(sizeof(Stage) == 0x9c8, "Size of Stage is incorrect.");
 
 extern LevelOverlay* LEVEL_OVERLAY_PTR;
+
+#ifndef NO_SM64DSe_PATCH
+// pointed by LEVEL_OVERLAY_PTR, not in a fixed address in the vanilla game
 extern LevelOverlay LEVEL_OVERLAY;
+#endif
 
 extern ModelComponents* LEVEL_MODEL_DATA;
 
