@@ -76,6 +76,16 @@ struct Material
 		polygonAttr &= ~(0x3f << 24);
 		polygonAttr |= (polygonID & 0x3f) << 24;
 	}
+
+	inline void Show()
+	{
+		polygonAttr &= ~0x80000000;
+	}
+
+	inline void Hide()
+	{
+		polygonAttr |= 0x80000000;
+	}
 };
 
 struct Bone
