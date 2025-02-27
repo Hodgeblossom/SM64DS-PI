@@ -2082,6 +2082,9 @@ DEFAULT_SCENE_FADER                                                             
 
 /* Actors/BootScene.h */
 _ZTV9BootScene                                                                    = 0x02091520;
+_ZN9BootSceneD0Ev                                                                 = 0x020235d4;
+_ZN9BootSceneD1Ev                                                                 = 0x02023598;
+_ZN9BootSceneD2Ev                                                                 = 0x02023598;
 
 /* Actors/MultiBootScene.h */
 _ZTV14MultiBootScene                                                              = 0x020943bc;
