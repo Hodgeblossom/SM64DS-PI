@@ -3,7 +3,7 @@
 #include "SpawnInfo.h"
 #include <concepts>
 
-struct Actor : ActorBase // internal name: dActor
+struct Actor : ActorDerived // internal name: dActor
 {
 	enum Flags : s32
 	{

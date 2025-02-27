@@ -6,10 +6,25 @@
 // vtable at 0x02099edc
 struct ActorBase // internal name: fBase
 {
-	enum AliveState
+	enum AliveState : u8
 	{
 		ALIVE = 1,
 		DEAD = 2
+	};
+
+	enum Category : u8
+	{
+		OTHER = 0, // ???
+		SCENE = 1,
+		ACTOR = 2
+	};
+
+	enum GraphFlags : u8
+	{
+		SKIP_CHILD_UPDATE = 1 << 0, // checked when spawning a child
+		SKIP_SELF_UPDATE  = 1 << 1, // checked in BeforeBehavior
+		SKIP_CHILD_RENDER = 1 << 2, // checked when spawning a child
+		SKIP_SELF_RENDER  = 1 << 3, // checked in BeforeRender
 	};
 
 	struct SceneNode
@@ -49,10 +64,10 @@ struct ActorBase // internal name: fBase
 	u16 actorID;                    // 0x0c
 	u8 aliveState;                  // 0x0e
 	bool shouldBeKilled;            // 0x0f
-	u8 unk10;                       // 0x10
-	u8 unk11;                       // 0x11
-	u8 unk12;                       // 0x12
-	u8 unk13;                       // 0x13
+	u8 unk10;                       // 0x10 (aka pendingUpdateRegistry in the old ASM Reference repo, not sure what that means)
+	u8 unk11;                       // 0x11 (aka pendingCreateRegistry in the old ASM Reference repo, not sure what that means)
+	u8 category;                    // 0x12
+	u8 graphFlags;                  // 0x13
 	SceneNode sceneNode;            // 0x14
 	ProcessingListNode behavNode;   // 0x28
 	ProcessingListNode renderNode;  // 0x38

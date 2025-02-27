@@ -1132,7 +1132,7 @@ _ZN12ActorDerivedD0Ev                                                           
 _ZN12ActorDerivedD1Ev                                                             = 0x02013e80;
 _ZN12ActorDerivedD2Ev                                                             = 0x02013e80;
 _ZN12ActorDerived18AfterInitResourcesEj                                           = 0x02013ef4;
-_ZN12ActorDerived5SpawnEjP9ActorBaseii                                            = 0x02013ee8;
+_ZN12ActorDerived5SpawnEjP9ActorBasejh                                            = 0x02013ee8;
 
 /* Actor/Actor.h */
 _ZTV5Actor                                                                        = 0x0208e39c;
