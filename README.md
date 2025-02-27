@@ -23,5 +23,5 @@ headers and symbols by [pants64DS](https://github.com/pants64DS),
 [SplattyDS](https://github.com/SplattyDS) and Overblade
   - See [this](https://github.com/pants64DS/Misc-SM64DS-Patches/tree/c67465dd15a2b1997a1eb0c1a02f4110445310f5),
   [this](https://github.com/SplattyDS/DynamicAllocationDecomp/tree/a6935a5f24f0d0e9126079ca67c48804622c735b)
-  and [this](https://github.com/pants64DS/SM64DS-ASM-Reference/tree/15ec5e98c359e2c7347db779583a047de475d3fb)
+  and [this](https://github.com/pants64DS/SM64DS-ASM-Reference/tree/9c29ec997a41f3c0108043df561a509177eb86ca)
   for their respective versions predating this repository.
