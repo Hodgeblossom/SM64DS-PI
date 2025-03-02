@@ -24,7 +24,7 @@ consteval s32 operator""_rad(u64 val) { return operator""_rad(static_cast<long d
 extern "C"
 {
 	void UpdateAngle(s16& angle, s32 targetAngle, s32 numFrames, s16 maxStep);
-	s16 ApproachAngle(s16& angle, s32 targetAngle, s32 invFactor, s32 maxDelta = 180_deg, s32 minDelta = 0); // the old LeanPlayerForwardWhileRunning
+	s32 ApproachAngle(s16& angle, s16 targetAngle, s32 invFactor, s32 maxDelta = 180_deg, s32 minDelta = 0); // the old LeanPlayerForwardWhileRunning
 	u16 AngleDiff(s16 ang0, s16 ang1) __attribute__((const)); // from 0 to 0x8000 inclusive (0° - 180°)
 
 	s32 RandomIntInternal(s32* randomIntStatePtr);

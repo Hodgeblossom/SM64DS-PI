@@ -708,7 +708,7 @@ _ZN15MaterialChangerD0Ev                                                        
 _ZN15MaterialChangerD1Ev                                                          = 0x0201582c;
 _ZN15MaterialChanger7SetFileER8BMA_Filei5Fix12IiEj                                = 0x020157ac;
 _ZN15MaterialChanger6UpdateER15ModelComponents                                    = 0x02015788;
-_ZN15MaterialChanger11PrepareAnimER8BMD_FileR8BMA_File                            = 0x0201577c;
+_ZN8BMD_File11PrepareAnimER8BMA_File                                              = 0x0201577c;
 
 _ZTV18TextureTransformer                                                          = 0x0208e7bc;
 _ZN18TextureTransformerC1Ev                                                       = 0x02015950;
@@ -716,7 +716,7 @@ _ZN18TextureTransformerD0Ev                                                     
 _ZN18TextureTransformerD1Ev                                                       = 0x0201592c;
 _ZN18TextureTransformer7SetFileER8BTA_Filei5Fix12IiEj                             = 0x020158ac;
 _ZN18TextureTransformer6UpdateER15ModelComponents                                 = 0x02015888;
-_ZN18TextureTransformer11PrepareAnimER8BMD_FileR8BTA_File                         = 0x0201587c;
+_ZN8BMD_File11PrepareAnimER8BTA_File                                              = 0x0201587c;
 
 _ZTV15TextureSequence                                                             = 0x0208e7cc;
 _ZN15TextureSequenceC1Ev                                                          = 0x02015a50;
@@ -726,7 +726,7 @@ _ZN15TextureSequence7SetFileER8BTP_Filei5Fix12IiEj                              
 _ZN15TextureSequence6UpdateER15ModelComponents                                    = 0x02015988;
 _ZN13SharedFilePtr7LoadBTPEv                                                      = 0x020178e4;
 _ZN8BTP_File12InitPointersEv                                                      = 0x020468a0;
-_ZN15TextureSequence11PrepareAnimER8BMD_FileR8BTP_File                            = 0x0201597c;
+_ZN8BMD_File11PrepareAnimER8BTP_File                                              = 0x0201597c;
 
 /* Model/ModelComponents.h */
 _ZN15ModelComponents11UpdateBonesEP8BCA_Filei                                     = 0x02045394;
@@ -789,7 +789,7 @@ _ZTV10ModelAnim2                                                                
 _ZN10ModelAnim2C1Ev                                                               = 0x020163A0;
 _ZN10ModelAnim2D0Ev                                                               = 0x02016320;
 _ZN10ModelAnim2D1Ev                                                               = 0x02016364;
-_ZN10ModelAnim24CopyERKS_Pcj                                                      = 0x02016254;
+_ZN10ModelAnim24CopyERKS_R8BCA_Filej                                              = 0x02016254;
 _ZN10ModelAnim213Func_020162C4Eji5Fix12IiEt                                       = 0x020162C4;
 
 _ZTV11ShadowModel                                                                 = 0x0208e860;

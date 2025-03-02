@@ -9,137 +9,158 @@ constexpr s32 NUM_MINIGAMES = 36;
 
 extern s8 SUBLEVEL_LEVEL_TABLE[NUM_LEVELS];
 
+namespace CourseIDs // aka act selector IDs
+{
+	enum
+	{
+		BoB   = 0,
+		WF    = 1,
+		JRB   = 2,
+		CCM   = 3,
+		BBH   = 4,
+		HMC   = 5,
+		LLL   = 6,
+		SSL   = 7,
+		DDD   = 8,
+		SL    = 9,
+		WDW   = 10,
+		TTM   = 11,
+		THI   = 12,
+		TTC   = 13,
+		RR    = 14,
+		BitDW = 15,
+		BitFS = 16,
+		BitS  = 17,
+		GB    = 18,
+		BBB   = 19,
+		CCC   = 20,
+		PSS   = 21,
+		SA    = 22,
+		WMotR = 23,
+		SutM  = 24,
+		BtW   = 25,
+		OtR   = 26,
+		SI    = 27,
+		BF    = 28,
+		HUB   = 29,
+	};
+};
+
 struct FileSaveData
 {
-	u32 magic8000;               // 8000 in ASCII
-	u32 flags1;             /*  0x00000001: File saved // set when file is saved
-	                            0x00000002: Basement key obtained
-	                            0x00000004: Upper hall key obtained // Removes sub from DDD
-	                            0x00000008: Mario key obtained
-	                            0x00000010: Luigi key obtained
-	                            0x00000020: Wario key obtained
-	                            0x00000040: Main hall key obtained
-	                            0x00000080: White key obtained // Triggers white room star
-	                            0x00000100: Basement key used
-	                            0x00000200: Upper hall key used // Removes sub from DDD
-	                            0x00000400: Mario key used
-	                            0x00000800: Luigi key used
-	                            0x00001000: Wario key used
-	                            0x00002000: Main hall key used
-	                            0x00004000: White key used // Disables white room star
-	                            0x00008000: WF star door open
-	                            0x00010000: Character star door open
-	                            0x00020000: JRB star door open
-	                            0x00040000: CCM star door open
-	                            0x00080000: Mario star door open
-	                            0x00100000: Bowser 1 door open
-	                            0x00200000: Bowser 2 door open
-	                            0x00400000: Clock door open
-	                            0x00800000: ??? // Unused
-	                            0x01000000: Mario lost his cap
-	                            0x02000000: Luigi lost his cap
-	                            0x04000000: Wario lost his cap
-	                            0x08000000: ??? // Unused
-	                            0x10000000: ??? // Unused
-	                            0x20000000: ??? // Unused
-	                            0x40000000: Minigames activated // talked to minigame toad
-	                            0x80000000: Red switch activated // if not set, the shine in main hall is rendered */
-	u32 flags2;             /*  0x00000001: Mario intro
-	                            0x00000002: Luigi intro
-	                            0x00000004: Wario intro
-	                            0x00000008: Always set, marks started save
-	                            0x00000010: ??? // Unused
-	                            0x00000020: ??? // Unused
-	                            0x00000040: ??? // Unused
-	                            0x00000080: Character control // Getting control of character
-	                            0x00000100: ??? // Unused
-	                            0x00000200: Bowser intro
-	                            0x00000400: Feather intro
-	                            0x00000800: Balloon intro
-	                            0x00001000: Invisibility intro
-	                            0x00002000: Metal cap intro
-	                            0x00004000: Fire breath intro
-	                            0x00008000: Bomb-omb intro
-	                            0x00010000: Door text activated, Lakitu trigger
-	                            0x00020000: Lakitu done
-	                            0x00040000: DDD image moved  // set every frame if DDD star 1 is collected & player is in basement
-	                            0x00080000: Water drained
-	                            0x00100000: Glowing rabbit 1
-	                            0x00200000: Glowing rabbit 2
-	                            0x00400000: Glowing rabbit 3
-	                            0x00800000: Glowing rabbit 4
-	                            0x01000000: Glowing rabbit 5
-	                            0x02000000: Glowing rabbit 6
-	                            0x04000000: Glowing rabbit 7
-	                            0x08000000: Glowing rabbit 8
-	                            0x10000000: Mario cap intro
-	                            0x20000000: ??? // Unused
-	                            0x40000000: ??? // Unused
-	                            0x80000000: ??? // Unused */
-	u32 minigameRabbits;    /*  0x00000001: Left bridge (M)
-	                            0x00000002: Backyard (L)
-	                            0x00000004: Castle right (W)
-	                            0x00000008: Castle 1 (Y)
-	                            0x00000010: Aquarium room (M)
-	                            0x00000020: Water drainage (L)
-	                            0x00000040: TTM room (W)
-	                            0x00000080: Castle 2 (Y)
-	                            0x00000100: Mirror room (M)
-	                            0x00000200: Mario room (L)
-	                            0x00000400: Basement (W)
-	                            0x00000800: Castle 3 (Y)
-	                            0x00001000: Basement 1 (M)
-	                            0x00002000: BOB room (L)
-	                            0x00004000: Backyard (W)
-	                            0x00008000: Castle right (Y)
-	                            0x00010000: Basement 2 (M)
-	                            0x00020000: Hedge maze (L)
-	                            0x00040000: THI room (W)
-	                            0x00080000: Hedge maze (Y)
-	                            0x00100000: Moat (M)
-	                            0x00200000: 2nd floor (L)
-	                            0x00400000: 3rd floor 1 (W)
-	                            0x00800000: Basement (Y)
-	                            0x01000000: Upper hall (M)
-	                            0x02000000: Castle roof (L)
-	                            0x04000000: 3rd floor 2 (W)
-	                            0x08000000: Moat (Y)
-	                            0x10000000: ??? // Unused
-	                            0x20000000: ??? // Unused
-	                            0x40000000: ??? // Unused
-	                            0x80000000: ??? // Unused */
-	u32 cannonUnlocked;     /*  0x00000001: BOB
-	                            0x00000002: WF
-	                            0x00000004: JRB
-	                            0x00000008: CCM
-	                            0x00000010: ??? // Unused
-	                            0x00000020: ??? // Unused
-	                            0x00000040: ??? // Unused
-	                            0x00000080: SSL
-	                            0x00000100: ??? // Unused
-	                            0x00000200: SL
-	                            0x00000400: WDW
-	                            0x00000800: TTM
-	                            0x00001000: THI
-	                            0x00002000: ??? // Unused
-	                            0x00004000: RR
-	                            0x00008000: ??? // Unused
-	                            0x00010000: ??? // Unused
-	                            0x00020000: ??? // Unused
-	                            0x00040000: ??? // Unused
-	                            0x00080000: ??? // Unused
-	                            0x00100000: ??? // Unused
-	                            0x00200000: ??? // Unused
-	                            0x00400000: ??? // Unused
-	                            0x00800000: ??? // Unused
-	                            0x00010000: ??? // Unused
-	                            0x02000000: ??? // Unused
-	                            0x04000000: OTR
-	                            0x08000000: ??? // Unused
-	                            0x10000000: ??? // Unused
-	                            0x20000000: ??? // Unused
-	                            0x40000000: ??? // Unused
-	                            0x80000000: ??? // Unused */
+	enum Flags1 : u32
+	{
+		FILE_SAVED                 = 1u << 0, // set when file is saved
+		BASEMENT_KEY_OBTAINED      = 1u << 1,
+		UPPER_HALL_KEY_OBTAINED    = 1u << 2, // removes the sub from DDD
+		MARIO_KEY_OBTAINED         = 1u << 3,
+		LUIGI_KEY_OBTAINED         = 1u << 4,
+		WARIO_KEY_OBTAINED         = 1u << 5,
+		MAIN_HALL_KEY_OBTAINED     = 1u << 6,
+		WHITE_KEY_OBTAINED         = 1u << 7, // triggers the white room star
+		BASEMENT_KEY_USED          = 1u << 8,
+		UPPER_HALL_KEY_USED        = 1u << 9, // removes the sub from DDD
+		MARIO_KEY_USED             = 1u << 10,
+		LUIGI_KEY_USED             = 1u << 11,
+		WARIO_KEY_USED             = 1u << 12,
+		MAIN_HALL_KEY_USED         = 1u << 13,
+		WHITE_KEY_USED             = 1u << 14, // removes the white room star
+		WF_STAR_DOOR               = 1u << 15,
+		CHARACTER_STAR_DOOR_OPENED = 1u << 16,
+		JRB_STAR_DOOR_OPENED       = 1u << 17,
+		CCM_STAR_DOOR_OPENED       = 1u << 18,
+		MARIO_STAR_DOOR_OPENED     = 1u << 19,
+		BOWSER_1_DOOR_OPENED       = 1u << 20,
+		BOWSER_2_DOOR_OPENED       = 1u << 21,
+		CLOCK_STAR_DOOR_OPENED     = 1u << 22,
+		UNUSED_STAR_DOOR_OPENED    = 1u << 23, // BitS star door?
+		MARIO_CAP_LOST             = 1u << 24,
+		LUIGI_CAP_LOST             = 1u << 25,
+		WARIO_CAP_LOST             = 1u << 26,
+		// Bits 27-29 may be unused
+		MINIGAMES_ACTIVATED        = 1u << 30, // talked to minigame toad
+		RED_SWITCH_ACTIVATED       = 1u << 31, // if not set, the shine in main hall is rendered
+	};
+
+	enum Flags2 : u32
+	{
+		MARIO_UNLOCKED             = 1u << 0,
+		LUIGI_UNLOCKED             = 1u << 1,
+		WARIO_UNLOCKED             = 1u << 2,
+		SAVE_STARTED               = 1u << 3, // always set
+		// Bits 4-6 may be unused
+		CHARACTER_CONTROL_GIVEN    = 1u << 7, // got control of the character
+		// Bit 8 may be unused
+		BOWSER_INTRODUCED          = 1u << 9,
+		FEATHER_INTRODUCED         = 1u << 10,
+		BALLOON_INTRODUCED         = 1u << 11,
+		VANISH_LUIGI_INTRODUCED    = 1u << 12,
+		METAL_WARIO_INTRODUCED     = 1u << 13,
+		FIRE_YOSHI_INTRODUCED      = 1u << 14,
+		BOB_INTRODUCED             = 1u << 15,
+		INTRO_LAKITU_SUMMONED      = 1u << 16, // set when trying to enter the castle for the first time
+		INTRO_LAKITU_DONE          = 1u << 17,
+		DDD_ENTRANCE_MOVED         = 1u << 18, // set every frame if DDD star 1 is collected & player is in basement
+		CASTLE_WATER_DRAINED       = 1u << 19,
+		GLOWING_RABBITS            = 0xffu << 20,
+		MARIO_CAP_INTRODUCED       = 1u << 28,
+		// Bits 29-31 may be unused
+	};
+
+	enum MinigameRabbits : u32
+	{
+		RABBIT_M_LEFT_BRIDGE    = 1u << 0,
+		RABBIT_L_BACKYARD       = 1u << 1,
+		RABBIT_W_CASTLE_RIGHT   = 1u << 2,
+		RABBIT_Y_CASTLE_1       = 1u << 3,
+		RABBIT_M_AQUARIUM_ROOM  = 1u << 4,
+		RABBIT_L_WATER_DRAINAGE = 1u << 5,
+		RABBIT_W_TTM_ROOM       = 1u << 6,
+		RABBIT_Y_CASTLE_2       = 1u << 7,
+		RABBIT_M_MIRROR_ROOM    = 1u << 8,
+		RABBIT_L_MARIO_ROOM     = 1u << 9,
+		RABBIT_W_BASEMENT       = 1u << 10,
+		RABBIT_Y_CASTLE_3       = 1u << 11,
+		RABBIT_M_BASEMENT_1     = 1u << 12,
+		RABBIT_L_BOB_ROOM       = 1u << 13,
+		RABBIT_W_BACKYARD       = 1u << 14,
+		RABBIT_Y_CASTLE_RIGHT   = 1u << 15,
+		RABBIT_M_BASEMENT_2     = 1u << 16,
+		RABBIT_L_HEDGE_MAZE     = 1u << 17,
+		RABBIT_W_THI_ROOM       = 1u << 18,
+		RABBIT_Y_HEDGE_MAZE     = 1u << 19,
+		RABBIT_M_MOAT           = 1u << 20,
+		RABBIT_L_SECOND_FLOOR   = 1u << 21,
+		RABBIT_W_THIRD_FLOOR_1  = 1u << 22,
+		RABBIT_Y_BASEMENT       = 1u << 23,
+		RABBIT_M_UPPER_HALL     = 1u << 24,
+		RABBIT_L_CASTLE_ROOF    = 1u << 25,
+		RABBIT_W_THIRD_FLOOR_2  = 1u << 26,
+		RABBIT_Y_MOAT           = 1u << 27,
+		// Bits 28-31 may be unused
+	};
+
+	enum CannonsUnlocked : u32
+	{
+		CANNON_BOB = 1u << 0,
+		CANNON_WF  = 1u << 1,
+		CANNON_JRB = 1u << 2,
+		CANNON_CCM = 1u << 3,
+		CANNON_SSL = 1u << 7,
+		CANNON_SL  = 1u << 9,
+		CANNON_WDW = 1u << 10,
+		CANNON_TTM = 1u << 11,
+		CANNON_THI = 1u << 12,
+		CANNON_RR  = 1u << 14,
+		CANNON_OTR = 1u << 26,
+		// Other bits may be unused
+	};
+
+	u32 magic8000; // 8000 in ASCII
+	u32 flags1;
+	u32 flags2;
+	u32 minigameRabbits;
+	u32 cannonsUnlocked;
 	u8 stars[NUM_MAIN_LEVELS + NUM_SECRET_LEVELS];  // Stars in each level
 		/* Secret levels:
 		15: Bowser 1 (0x02=Red, 0x04=Time)
@@ -167,15 +188,17 @@ struct FileSaveData
 	void CollectStar(s32 levelID, s32 starID)
 	{
 		s32 courseID = SUBLEVEL_LEVEL_TABLE[levelID];
-		stars[courseID] |= (u8)(1 << starID);
+		stars[courseID] |= 1u << starID;
 	}
 
 	[[gnu::always_inline]]
-	bool RemoveBowserSub()
+	bool WasBowserSubRemoved() const
 	{
 		return flags1 & 0x204;
 	}
 };
+
+static_assert(sizeof(FileSaveData) == 0x44);
 
 struct MinigameSaveData
 {

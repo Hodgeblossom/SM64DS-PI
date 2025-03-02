@@ -15,7 +15,7 @@ struct BMA_File
 
 		u16 ID;
 		u16 unk02; // probably padding
-		char* name;
+		const char* name;
 
 		MaterialProperty difRed;
 		MaterialProperty difGreen;
