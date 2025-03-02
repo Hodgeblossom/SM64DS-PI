@@ -1796,8 +1796,6 @@ _ZN8Particle6System17NewUnkCallback818Ejj5Fix12IiES2_S2_PK11Vector3_16f         
 _ZN8Particle6System12FromUniqueIDEj                                               = 0x02022e68;
 
 _ZN8Particle7Manager9AddSystemEiR7Vector3                                         = 0x02049e0c;
-_ZN8Particle7Manager13UnloadNewTexsEv                                             = 0x0208fb1c;
-_ZN8Particle7Manager7LoadTexEjj                                                   = 0x0208f9d0;
 
 _ZN8Particle10SysTrackerC1Ev                                                      = 0x02023204;
 _ZN8Particle10SysTrackerD1Ev                                                      = 0x02023194;
