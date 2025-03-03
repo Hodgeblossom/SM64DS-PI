@@ -185,7 +185,7 @@ struct Fix12 : Fix<T, 12, Fix12>
 {
 	using Fix<T, 12, Fix12>::Fix;
 
-	Fix12<s32> operator/ (Fix12 f) const { return HardwareDivQ12(*this, f.val); }
+	Fix12<s32> operator/ (Fix12 f) const { return HardwareDivQ12(*this, f); }
 	Fix12&     operator/=(Fix12 f) & { *this = *this / f; return *this; }
 
 	Fix12<s32> Inverse(this Fix12<s32>);
