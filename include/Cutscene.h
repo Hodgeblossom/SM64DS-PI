@@ -630,7 +630,7 @@ public:
 };
 
 template<std::size_t scriptSize = 0>
-class VanillaScriptCompiler : BaseScriptCompiler<VanillaScriptCompiler, scriptSize> {};
+class VanillaScriptCompiler : public BaseScriptCompiler<VanillaScriptCompiler, scriptSize> {};
 
 struct DefaultCompilerTag {};
 
