@@ -865,6 +865,7 @@ GLOBAL_FADER                                                                    
 /* Collision/CLPS.h */
 
 _ZNK11SurfaceInfo12CopyNormalToER7Vector3                                         = 0x02037dcc;
+GetSteepnessClass                                                                 = 0x02039794;
 
 /* Collision/MeshCollider.h */
 _ZTV16MeshColliderBase                                                            = 0x02099380;

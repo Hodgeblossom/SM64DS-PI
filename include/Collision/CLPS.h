@@ -146,10 +146,20 @@ template<s32 Size> struct OldFixedSizeCLPS_Block
 	OldCLPS clpses[Size];
 };
 
+enum SteepnessClass
+{
+	FLOOR,
+	WALL,
+	CEILING
+};
+
+extern "C" s32 GetSteepnessClass(Fix12i normalY);
+
 struct SurfaceInfo
 {
 	CLPS clps;
 	Vector3 normal;
 
 	void CopyNormalTo(Vector3& vec) const;
+	s32 GetSteepnessClass() const { return ::GetSteepnessClass(normal.y); }
 };
