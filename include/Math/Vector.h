@@ -336,7 +336,8 @@ struct Vector3
 	s16      VertAngle   (const Vector3& v) const { return Vec3_VertAngle(*this, v); }
 	bool     ApproachHorz(const Vector3& targetPos, Fix12i step) { return Vec3_ApproachHorz(*this, targetPos, step); }
 
-	Vector3& operator*=(const auto& m) & { return *this = m * *this; }
+	template<class T>
+	Vector3& operator*=(T&& m) & { return *this = std::forward<T>(m) * *this; }
 
 	[[gnu::always_inline]]
 	bool operator== (const Vector3& other) const& { return Vec3_Equal(*this, other); }

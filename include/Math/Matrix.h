@@ -243,7 +243,8 @@ struct Matrix3x3 // Matrix is column-major!
 		return operator()(std::forward<T>(x));
 	}
 
-	Matrix3x3& operator*=(const auto& m) & { return *this = m * *this; }
+	template<class T>
+	Matrix3x3& operator*=(T&& m) & { return *this = std::forward<T>(m) * *this; }
 
 	class TransposeProxy
 	{
@@ -593,7 +594,8 @@ struct Matrix4x3 : private Matrix3x3 // Matrix is column-major!
 		return operator()(std::forward<T>(x));
 	}
 
-	Matrix4x3& operator*=(const auto& m) & { return *this = m * *this; }
+	template<class T>
+	Matrix4x3& operator*=(T&& m) & { return *this = std::forward<T>(m) * *this; }
 
 	[[gnu::always_inline, nodiscard]]
 	static auto Identity()
