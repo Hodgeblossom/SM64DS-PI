@@ -298,6 +298,13 @@ struct Vector3
 	}
 
 	[[gnu::always_inline, nodiscard]]
+	static constexpr auto Temp(const auto& v)
+	{
+		const auto& [x, y, z] = v;
+		return Temp(x, y, z);
+	};
+
+	[[gnu::always_inline, nodiscard]]
 	static constexpr auto Raw(const auto& x, const auto& y, const auto& z)
 	{
 		return Proxy([&x, &y, &z]<bool resMayAlias> [[gnu::always_inline]] (Vector3& res)
