@@ -4,13 +4,13 @@
 
 struct ClsnResult
 {
-	u32* vTable;                  // 0x0
-	SurfaceInfo surfaceInfo;      // 0x4
-	s16 triangleID;               // 0x18 (0xffff if in air)
-	s16 clsnID;                   // 0x1a (not constant per object, 0x18 if in air (only 24 mesh colliders can be active at a time))
-	u32 objID;                    // 0x1c
-	Actor* obj;                   // 0x20
-	MovingMeshCollider* meshClsn; // 0x24
+	u32* vTable;                // 0x0
+	SurfaceInfo surfaceInfo;    // 0x4
+	s16 triangleID;             // 0x18 (0xffff if in air)
+	s16 clsnID;                 // 0x1a (not constant per object, 0x18 if in air (only 24 mesh colliders can be active at a time))
+	u32 objID;                  // 0x1c
+	Actor* obj;                 // 0x20
+	MeshColliderBase* meshClsn; // 0x24
 
 	ClsnResult();
 	~ClsnResult();
