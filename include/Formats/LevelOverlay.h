@@ -82,8 +82,6 @@ struct LevelOverlay
 		u8 param2; // ff: normal
 		Vector3_16 pos;
 		Vector3_16 rot;
-
-		static ViewObj& Get(u32 viewID);
 	};
 
 	struct SimpleObj
