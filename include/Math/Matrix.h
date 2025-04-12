@@ -340,6 +340,8 @@ struct Matrix3x3 // Matrix is column-major!
 			Matrix3x3_FromQuaternion(quaternion, res);
 		});
 	}
+
+	constexpr bool operator==(const Matrix3x3&) const = default;
 };
 
 
@@ -744,6 +746,8 @@ struct Matrix4x3 : private Matrix3x3 // Matrix is column-major!
 			}
 		});
 	}
+
+	constexpr bool operator==(const Matrix4x3&) const = default;
 };
 
 extern Matrix4x3 MATRIX_SCRATCH_PAPER;

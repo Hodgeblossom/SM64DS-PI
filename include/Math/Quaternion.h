@@ -66,4 +66,6 @@ struct Quaternion
 	{
 		Quaternion_SLerp(*this, q, weight, *this);
 	}
+
+	constexpr bool operator==(const Quaternion&) const = default;
 };
