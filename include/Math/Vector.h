@@ -84,7 +84,7 @@ struct Vector3
 		constexpr explicit Proxy(F&& eval) : eval(eval) {}
 
 		template<bool resMayAlias> [[gnu::always_inline]]
-		void Eval(Vector3& res) { eval.template operator()<resMayAlias>(res); }
+		constexpr void Eval(Vector3& res) { eval.template operator()<resMayAlias>(res); }
 
 		[[gnu::always_inline, nodiscard]]
 		Fix12i Dist(const Vector3& v) && { return static_cast<Vector3>(std::move(*this)).Dist(v); }
@@ -161,6 +161,15 @@ struct Vector3
 		auto AngleTo(const Vector3& other) &&
 		{
 			return static_cast<Vector3>(std::move(*this)).AngleTo(other);
+		}
+
+		[[gnu::always_inline, nodiscard]]
+		auto operator+() &&
+		{
+			return NewProxy([this]<bool resMayAlias> [[gnu::always_inline]] (Vector3& res)
+			{
+				Eval<resMayAlias>(res);
+			});
 		}
 
 		[[gnu::always_inline, nodiscard]]
@@ -281,10 +290,10 @@ struct Vector3
 	constexpr Vector3(const Vector3_16& v): x(v.x), y(v.y), z(v.z) {}
 
 	template<class F> [[gnu::always_inline]]
-	Vector3(Proxy<F>&& proxy) { proxy.template Eval<false>(*this); }
+	constexpr Vector3(Proxy<F>&& proxy) { proxy.template Eval<false>(*this); }
 
 	template<class F> [[gnu::always_inline]]
-	Vector3& operator=(Proxy<F>&& proxy) & { proxy.template Eval<true>(*this); return *this; }
+	constexpr Vector3& operator=(Proxy<F>&& proxy) & { proxy.template Eval<true>(*this); return *this; }
 
 	[[gnu::always_inline, nodiscard]]
 	static constexpr auto Temp(const auto& x, const auto& y, const auto& z)
@@ -347,16 +356,35 @@ struct Vector3
 	Vector3& operator*=(T&& m) & { return *this = std::forward<T>(m) * *this; }
 
 	[[gnu::always_inline]]
-	bool operator== (const Vector3& other) const& { return Vec3_Equal(*this, other); }
+	constexpr bool operator==(const Vector3& other) const&
+	{
+		if consteval
+		{
+			return this->x == other.x && this->y == other.y && this->z == other.z;
+		}
+		else
+		{
+			return Vec3_Equal(*this, other);
+		}
+	}
 
 	// use an inlinable version if either operand is a proxy
 	template<class T, class F> [[gnu::always_inline]] friend
-	bool operator== (T&& any, Proxy<F>&& proxy)
+	constexpr bool operator== (T&& any, Proxy<F>&& proxy)
 	{
 		const Vector3& v0 = std::forward<T>(any);
 		const Vector3& v1 = std::move(proxy);
 
-		return v0.x == v1.x && v0.y == v1.y && v0.z == v1.z;
+		return v0 == v1;
+	}
+
+	[[gnu::always_inline, nodiscard]]
+	auto operator+() const
+	{
+		return Proxy([this]<bool resMayAlias> [[gnu::always_inline]] (Vector3& res)
+		{
+			res = *this;
+		});
 	}
 
 	[[gnu::always_inline, nodiscard]]

@@ -135,8 +135,9 @@ Matrix4x3_ApplyInPlaceToTranslation                                             
 Matrix4x3_ApplyInPlaceToScale                                                     = 0x0203c148;
 
 Quaternion_FromVector3                                                            = 0x0202fd4c;
+Quaternion_Lerp                                                                   = 0x0202fef8;
+Quaternion_Multiply                                                               = 0x0202ffec;
 Quaternion_Normalize                                                              = 0x02030450;
-Quaternion_SLerp                                                                  = 0x0202fef8;
 
 Vec3_HorzDist                                                                     = 0x0203cf40;
 Vec3_HorzLen                                                                      = 0x0203cf78;

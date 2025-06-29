@@ -34,3 +34,8 @@ constexpr UnaliasedRef<T> AssureUnaliased(T& t) { return t; }
 
 template<class T> [[gnu::always_inline, nodiscard]]
 constexpr T& AssureUnaliased(T& t) { return t; }
+
+template<bool mayAlias, HasProxy T>
+[[gnu::always_inline, nodiscard]]
+std::conditional_t<mayAlias, T&, UnaliasedRef<T>>
+constexpr ToggleAliased(T& t) { return t; }

@@ -29,3 +29,6 @@ s64 HardwareDivResultQ32();
 s64 HardwareDivQ32(s32 numerator, s32 denominator); // returns a Q32 number
 
 u32 Sqrt(u64 x); // 64 bit unsigned sqrt
+
+template<class T> [[nodiscard, gnu::always_inline]]
+constexpr T Sqr(T val) { return val * val; }

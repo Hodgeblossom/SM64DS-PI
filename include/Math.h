@@ -73,9 +73,6 @@ inline Fix12i SmoothStep(Fix12i t)
 	return t * t * (3._f - (t << 1));
 }
 
-template<class T> [[nodiscard, gnu::always_inline]]
-constexpr T Sqr(T val) { return val * val; }
-
 template<class T, T zero = static_cast<T>(0)>
 constexpr s32 Sgn(T val)
 {
