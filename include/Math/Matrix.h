@@ -333,7 +333,7 @@ struct Matrix3x3 // Matrix is column-major!
 	}
 
 	[[gnu::always_inline, nodiscard]]
-	static auto Quat(const Quaternion& quaternion)
+	static auto FromQuaternion(const Quaternion& quaternion)
 	{
 		return Proxy([&quaternion]<bool resMayAlias> [[gnu::always_inline]] (Matrix3x3& res)
 		{
@@ -343,6 +343,18 @@ struct Matrix3x3 // Matrix is column-major!
 
 	constexpr bool operator==(const Matrix3x3&) const = default;
 };
+
+inline constexpr Fix12i Det(const Matrix3x3& m)
+{
+	return m.c0.x*(m.c1.y*m.c2.z - m.c1.z*m.c2.y)
+	     - m.c0.y*(m.c1.x*m.c2.z - m.c1.z*m.c2.x)
+	     + m.c0.z*(m.c1.x*m.c2.y - m.c1.y*m.c2.x);
+}
+
+inline constexpr Fix12i Trace(const Matrix3x3& m)
+{
+	return m.c0.x + m.c1.y + m.c2.z;
+}
 
 
 // Actually a 4x4 matrix with (0, 0, 0, 1) as the last row
@@ -717,7 +729,7 @@ struct Matrix4x3 : private Matrix3x3 // Matrix is column-major!
 	}
 
 	[[gnu::always_inline, nodiscard]]
-	static auto Quat(const Quaternion& quaternion)
+	static auto FromQuaternion(const Quaternion& quaternion)
 	{
 		return Proxy([&quaternion]<bool resMayAlias> [[gnu::always_inline]] (Matrix4x3& res)
 		{
