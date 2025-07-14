@@ -53,6 +53,8 @@ struct Matrix3x3 // Matrix is column-major!
 {
 	Vector3 c0, c1, c2;
 
+	class TransposeProxy;
+
 	template<class F>
 	class Proxy
 	{
@@ -129,6 +131,25 @@ struct Matrix3x3 // Matrix is column-major!
 		auto operator*(T&& x) &&
 		{
 			return std::move(*this)(std::forward<T>(x));
+		}
+
+		auto Transpose() &&
+		{
+			return NewProxy([this]<bool resMayAlias> [[gnu::always_inline]] (Matrix3x3& res)
+			{
+				Eval<resMayAlias>(res);
+				res.TransposeInPlace();
+			});
+		}
+
+		[[gnu::always_inline, nodiscard]]
+		auto operator()(const TransposeProxy& proxy) const
+		{
+			return Matrix3x3::Proxy([this, &proxy]<bool resMayAlias> [[gnu::always_inline]] (Matrix3x3& res)
+			{
+				Eval<resMayAlias>(res);
+				res = res * Matrix3x3(proxy);
+			});
 		}
 	};
 
@@ -250,8 +271,26 @@ struct Matrix3x3 // Matrix is column-major!
 	{
 		const Matrix3x3& original;
 
+		void EvalImpl(Matrix3x3& res) const
+		{
+			void* trash; // input operands can't be clobbers
+
+			asm(R"(
+				ldmia  %3,  {r2-r10}
+				stmia  %2!, {r2, r5, r8}
+				stmia  %2!, {r3, r6, r9}
+				stmia  %2,  {r4, r7, r10}
+			)"
+			: "=r" (trash), "=m" (res)
+			: "0" (&res), "r" (&original)
+			: "r2", "r3", "r4", "r5", "r6", "r7", "r8", "r9", "r10");
+		}
+
 	public:
 		constexpr TransposeProxy(const Matrix3x3& original) : original(original) {}
+
+		template<bool resMayAlias> [[gnu::always_inline]]
+		void Eval(Matrix3x3& res) const { EvalImpl(res); }
 
 		[[gnu::noinline, gnu::noclone]]
 		friend Vector3& operator*=(Vector3& v, TransposeProxy t)
@@ -275,6 +314,40 @@ struct Matrix3x3 // Matrix is column-major!
 			{
 				proxy.template Eval<resMayAlias>(res);
 				res = operator()(res);
+			});
+		}
+
+		[[gnu::always_inline, nodiscard]]
+		auto operator()(const TransposeProxy& other) const
+		{
+			return Matrix3x3::Proxy([this, &other]<bool resMayAlias> [[gnu::always_inline]] (Matrix3x3& res)
+			{
+				res = (other.original * this->original).Transpose();
+			});
+		}
+
+		[[gnu::always_inline, nodiscard]]
+		auto operator()(const Matrix3x3& m) const
+		{
+			return Matrix3x3::Proxy([this, &m]<bool resMayAlias> [[gnu::always_inline]] (Matrix3x3& res)
+			{
+				if constexpr (resMayAlias)
+					res = Matrix3x3(*this) * m;
+				else
+				{
+					EvalImpl(res);
+					res = res(m);
+				}
+			});
+		}
+
+		template<class F> [[gnu::always_inline, nodiscard]]
+		auto operator()(Proxy<F>&& proxy) const
+		{
+			return Matrix3x3::Proxy([this, &proxy]<bool resMayAlias> [[gnu::always_inline]] (Matrix3x3& res)
+			{
+				proxy.template Eval<resMayAlias>(res);
+				res = Matrix3x3(*this) * res;
 			});
 		}
 
@@ -314,22 +387,42 @@ struct Matrix3x3 // Matrix is column-major!
 			});
 		}
 
-		const Matrix3x3& GetOriginal() const { return original; }
+		const Matrix3x3& Transpose() const { return original; }
 	};
 
 	TransposeProxy Transpose() const { return *this; }
+
+	[[gnu::always_inline]]
+	Matrix3x3(TransposeProxy proxy) { proxy.template Eval<false>(*this); }
 
 	void TransposeInPlace() &
 	{
 		void* trash; // input operands can't be clobbers
 
-		asm volatile (R"(
+		asm(R"(
 			ldmib  %0,  {r1-r7}
 			stmib  %0!, {r3, r6}
 			stmib  %0!, {r1, r4, r7}
 			stmib  %0,  {r2, r5}
 		)"
-		: "=r" (trash) : "0" (this) : "r1", "r2", "r3", "r4", "r5", "r6", "r7");
+		: "=r" (trash), "=m" (*this)
+		: "0" (this)
+		: "r1", "r2", "r3", "r4", "r5", "r6", "r7");
+	}
+
+	[[gnu::always_inline, nodiscard]]
+	auto operator()(const TransposeProxy& proxy) const
+	{
+		return Matrix3x3::Proxy([this, &proxy]<bool resMayAlias> [[gnu::always_inline]] (Matrix3x3& res)
+		{
+			if constexpr (resMayAlias)
+				res = *this * Matrix3x3(proxy);
+			else
+			{
+				proxy.template Eval<false>(res);
+				res = *this * res;
+			}
+		});
 	}
 
 	[[gnu::always_inline, nodiscard]]
