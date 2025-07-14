@@ -202,10 +202,12 @@ consteval Fix12i operator""_f (long double val) { return Fix12i(val); }
 consteval Fix12s operator""_fs(long double val) { return Fix12s(val); }
 
 s16 Atan2(s32 y, s32 x); // atan2 function, what about 0x020538b8?
+Fix12i Sqrt(Fix12i x);
+void SqrtAsync(Fix12i x);
+Fix12i SqrtResultFix12i();
 Fix12i InvSqrt(Fix12i x);
 
 inline s16 Atan2(Fix12i y, Fix12i x) { return Atan2(y.val, x.val); }
-inline Fix12i Sqrt(Fix12i x) { return Fix12i(Sqrt(static_cast<u64>(x.val) << 12), as_raw); }
 
 Fix12i HardwareDivResultQ12();
 Fix12i HardwareDivQ12(Fix12i numerator, Fix12i denominator);

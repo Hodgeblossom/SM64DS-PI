@@ -162,6 +162,9 @@ MulVec3Mat4x3                                                                   
 MulMat4x3Mat4x3                                                                   = 0x02052914;
 InvMat4x3                                                                         = 0x02052b34;
 
+_Z16SqrtResultFix12iv                                                             = 0x02052fdc;
+_Z9SqrtAsync5Fix12IiE                                                             = 0x02053008;
+_Z4Sqrt5Fix12IiE                                                                  = 0x020531a4;
 _Z7InvSqrt5Fix12IiE                                                               = 0x02053130;
 NormalizeVec3                                                                     = 0x020534ec;
 NormalizeVec3IfNonZero                                                            = 0x0203ce2c;
