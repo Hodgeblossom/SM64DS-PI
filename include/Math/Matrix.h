@@ -486,6 +486,17 @@ struct Matrix4x3 : private Matrix3x3 // Matrix is column-major!
 		}
 
 		[[gnu::always_inline, nodiscard]]
+		auto RigidInverse() &&
+		{
+			return NewProxy([this]<bool resMayAlias> [[gnu::always_inline]] (Matrix4x3& res)
+			{
+				Eval<resMayAlias>(res);
+				res.Linear().TransposeInPlace();
+				res.c3 = -(res.Linear()(res.c3));
+			});
+		}
+
+		[[gnu::always_inline, nodiscard]]
 		auto RotateZ(const s16& angZ) &&
 		{
 			return NewProxy([this, &angZ]<bool resMayAlias> [[gnu::always_inline]] (Matrix4x3& res)
@@ -637,6 +648,16 @@ struct Matrix4x3 : private Matrix3x3 // Matrix is column-major!
 		return Proxy([this]<bool resMayAlias> [[gnu::always_inline]] (Matrix4x3& res)
 		{
 			InvMat4x3(*this, res);
+		});
+	}
+
+	[[gnu::always_inline, nodiscard]]
+	auto RigidInverse() const
+	{
+		return Proxy([this]<bool resMayAlias> [[gnu::always_inline]] (Matrix4x3& res)
+		{
+			res.Linear() = this->Linear().Transpose();
+			res.c3 = -(res.Linear()(this->c3));
 		});
 	}
 
