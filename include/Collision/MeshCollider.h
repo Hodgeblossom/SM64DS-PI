@@ -138,8 +138,8 @@ struct MovingMeshCollider : MeshCollider
 	Matrix4x3 invMat4x3_084;    // 0x84
 	Matrix4x3 scMat4x3_0b4;     // 0xb4
 	Matrix4x3 invMat4x3_0e4;    // 0xe4
-	s16 angleY;                 // 0xe8
-	s16 angularVelY;            // 0xea
+	s16 angleY;                 // 0x114
+	s16 angularVelY;            // 0x116
 	Vector3 pos;                // 0x118
 	Vector3 velocity;           // 0x124
 	u32 unk130;                 // 0x130
