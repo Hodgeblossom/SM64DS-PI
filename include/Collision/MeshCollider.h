@@ -133,7 +133,7 @@ struct MeshCollider : MeshColliderBase
 
 struct MovingMeshCollider : MeshCollider
 {
-	u32 unk50;                  // 0x50
+	Fix12i scale;               // 0x50
 	Matrix4x3 newTransform;     // 0x54
 	Matrix4x3 invMat4x3_084;    // 0x84
 	Matrix4x3 scMat4x3_0b4;     // 0xb4
