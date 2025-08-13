@@ -127,6 +127,16 @@ struct Matrix3x3 // Matrix is column-major!
 			});
 		}
 
+		[[gnu::always_inline, nodiscard]]
+		auto operator()(const Fix12i& s) &&
+		{
+			return NewProxy([this, &s]<bool resMayAlias> [[gnu::always_inline]] (Matrix3x3& res)
+			{
+				Eval<resMayAlias>(res);
+				res *= s;
+			});
+		}
+
 		template<class T> [[gnu::always_inline, nodiscard]]
 		auto operator*(T&& x) &&
 		{
@@ -266,6 +276,26 @@ struct Matrix3x3 // Matrix is column-major!
 
 	template<class T>
 	Matrix3x3& operator*=(T&& m) & { return *this = std::forward<T>(m) * *this; }
+
+	Matrix3x3& operator*=(Fix12i s) &
+	{
+		c0 *= s;
+		c1 *= s;
+		c2 *= s;
+
+		return *this;
+	}
+
+	[[gnu::always_inline, nodiscard]]
+	auto operator()(const Fix12i& s) const
+	{
+		return Proxy([this, &s]<bool resMayAlias> [[gnu::always_inline]] (Matrix3x3& res)
+		{
+			res.c0 = c0 * s;
+			res.c1 = c1 * s;
+			res.c2 = c2 * s;
+		});
+	}
 
 	class TransposeProxy
 	{
@@ -587,6 +617,16 @@ struct Matrix4x3 : private Matrix3x3 // Matrix is column-major!
 		{
 			return std::move(*this)(std::forward<T>(x));
 		}
+
+		[[gnu::always_inline, nodiscard]]
+		auto operator()(const Fix12i& s) &&
+		{
+			return NewProxy([this, &s]<bool resMayAlias> [[gnu::always_inline]] (Matrix4x3& res)
+			{
+				Eval<resMayAlias>(res);
+				res *= s;
+			});
+		}
 	};
 
 	constexpr Matrix4x3() = default;
@@ -724,6 +764,25 @@ struct Matrix4x3 : private Matrix3x3 // Matrix is column-major!
 
 	template<class T>
 	Matrix4x3& operator*=(T&& m) & { return *this = std::forward<T>(m) * *this; }
+
+	Matrix4x3& operator*=(Fix12i s) &
+	{
+		Linear() *= s;
+		c3 *= s;
+		return *this;
+	}
+
+	[[gnu::always_inline, nodiscard]]
+	auto operator()(const Fix12i& s) const
+	{
+		return Proxy([this, &s]<bool resMayAlias> [[gnu::always_inline]] (Matrix4x3& res)
+		{
+			res.c0 = c0 * s;
+			res.c1 = c1 * s;
+			res.c2 = c2 * s;
+			res.c3 = c3 * s;
+		});
+	}
 
 	[[gnu::always_inline, nodiscard]]
 	static auto Identity()
@@ -875,6 +934,15 @@ struct Matrix4x3 : private Matrix3x3 // Matrix is column-major!
 
 	constexpr bool operator==(const Matrix4x3&) const = default;
 };
+
+[[gnu::always_inline]] inline auto operator*(const Fix12i& scalar, const Matrix3x3& m) { return m * scalar; }
+[[gnu::always_inline]] inline auto operator*(const Fix12i& scalar, const Matrix4x3& m) { return m * scalar; }
+
+template<class F> [[gnu::always_inline]]
+inline auto operator*(const Fix12i& scalar, Matrix3x3::Proxy<F>&& proxy) { return std::move(proxy) * scalar; }
+
+template<class F> [[gnu::always_inline]]
+inline auto operator*(const Fix12i& scalar, Matrix4x3::Proxy<F>&& proxy) { return std::move(proxy) * scalar; }
 
 extern Matrix4x3 MATRIX_SCRATCH_PAPER;
 
