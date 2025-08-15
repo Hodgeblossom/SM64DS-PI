@@ -110,8 +110,8 @@ struct SphereClsn : BgCh
 		MOVING_UP        = 1 << 5
 	};
 
-	u32* sphVTable;         // 0x40
-	Vector3 pos;            // 0x44
+	u32* sphVTable;         // 0x38
+	Vector3 pos;            // 0x3c
 	Fix12i radius;          // 0x48
 	Vector3 pushback;       // 0x4c
 	Vector3 pushback0;      // 0x58
