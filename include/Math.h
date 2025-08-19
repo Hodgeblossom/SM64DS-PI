@@ -79,21 +79,6 @@ constexpr s32 Sgn(T val)
     return (val > zero) - (val < zero);
 }
 
-extern const Fix12s SINE_TABLE[0x2000];
-extern const Fix12s ATAN_TABLE[0x400];
-
-[[gnu::always_inline]]
-inline const Fix12s& Sin(s16 angle)
-{
-	return SINE_TABLE[static_cast<u16>(angle + 8) >> 4 << 1];
-}
-
-[[gnu::always_inline]]
-inline const Fix12s& Cos(s16 angle)
-{
-	return SINE_TABLE[1 + (static_cast<u16>(angle + 8) >> 4 << 1)];
-}
-
 [[gnu::always_inline]]
 constexpr u16 Color5Bit(u8 r, u8 g, u8 b) //0x00 to 0xff each
 {

@@ -464,6 +464,16 @@ struct Matrix3x3 // Matrix is column-major!
 		});
 	}
 
+	[[gnu::always_inline, nodiscard]]
+	static auto FromAxisAngle(auto&& axis, const s16& angle)
+	{
+		return Proxy([&axis, &angle]<bool resMayAlias> [[gnu::always_inline]] (Matrix3x3& res)
+		{
+			const s16 a = angle >> 1;
+			Matrix3x3_FromQuaternion(Quaternion{Cos(a), Sin(a)*std::move(axis)}, res);
+		});
+	}
+
 	constexpr bool operator==(const Matrix3x3&) const = default;
 };
 
@@ -907,6 +917,16 @@ struct Matrix4x3 : private Matrix3x3 // Matrix is column-major!
 		return Proxy([&quaternion]<bool resMayAlias> [[gnu::always_inline]] (Matrix4x3& res)
 		{
 			Matrix4x3_FromQuaternion(quaternion, res);
+		});
+	}
+
+	[[gnu::always_inline, nodiscard]]
+	static auto FromAxisAngle(auto&& axis, const s16& angle)
+	{
+		return Proxy([&axis, &angle]<bool resMayAlias> [[gnu::always_inline]] (Matrix4x3& res)
+		{
+			const s16 a = angle >> 1;
+			Matrix4x3_FromQuaternion(Quaternion{Cos(a), Sin(a)*std::move(axis)}, res);
 		});
 	}
 

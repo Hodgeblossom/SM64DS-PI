@@ -201,6 +201,21 @@ consteval Fix12s operator""_fs(u64 val) { return Fix12s(val, as_raw); }
 consteval Fix12i operator""_f (long double val) { return Fix12i(val); }
 consteval Fix12s operator""_fs(long double val) { return Fix12s(val); }
 
+extern const Fix12s SINE_TABLE[0x2000];
+extern const Fix12s ATAN_TABLE[0x400];
+
+[[gnu::always_inline]]
+inline const Fix12s& Sin(s16 angle)
+{
+	return SINE_TABLE[static_cast<u16>(angle + 8) >> 4 << 1];
+}
+
+[[gnu::always_inline]]
+inline const Fix12s& Cos(s16 angle)
+{
+	return SINE_TABLE[1 + (static_cast<u16>(angle + 8) >> 4 << 1)];
+}
+
 s16 Atan2(s32 y, s32 x); // atan2 function, what about 0x020538b8?
 Fix12i Sqrt(Fix12i x);
 void SqrtAsync(Fix12i x);
