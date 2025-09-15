@@ -488,7 +488,7 @@ struct Player : Actor
 	u8 prevHatChar; // 0x6DC
 	u8 currHatChar; // 0x6DD
 	bool isInAir;
-	bool landedSoundPlayed;
+	bool landingSoundPlayed;
 	u8 unk6e0;
 	u8 currJumpNumber; // 0x6E1: 0 - first, 1 - second, 2 - triple jump, more?
 	u8 currPunchKickNumber; // 0x6E2: 0 - first, 1 - second, 2 - kick;
@@ -806,7 +806,7 @@ struct Player : Actor
 	s32 St_GroundPound_Init();
 	s32 St_GroundPound_Main();
 	s32 St_GroundPound_Cleanup();
-	void St_Dive_Init();
+	s32 St_Dive_Init();
 	s32 St_Dive_Main();
 	s32 St_Throw_Init();
 	s32 St_Throw_Main();
