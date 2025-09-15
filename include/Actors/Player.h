@@ -536,8 +536,7 @@ struct Player : Actor
 	u8 unk715;
 	u8 isIntangibleToMesh;
 	u8 unk717;
-	bool unk718;
-	bool unk719;
+	u16 unkFlags;
 	bool unk71a;
 	bool unk71b;
 	u32 unk71c;
