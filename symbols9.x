@@ -1542,7 +1542,7 @@ _ZN6Player26CallKuppaScriptInstructionEPcss                                     
 _ZN6Player11SlidingDustEv                                                         = 0x020bf90c;
 _ZN6Player21SetStomachOrButtSlideEh                                               = 0x020c0364;
 _ZN6Player15DecelerateSlideE5Fix12IiE                                             = 0x020c06fc;
-_ZN6Player24PlayGroundPoundLandSoundEv                                            = 0x020c2f64;
+_ZN6Player17PlayJumpLandSoundEv                                                   = 0x020c2f64;
 _ZN6Player10NotOnFloorEv                                                          = 0x020d1164;
 _ZN6Player19SetCrouchJumpActionEv                                                 = 0x020d1204;
 _ZN6Player19SetCrouchAttackActionEv                                               = 0x020d12b0;

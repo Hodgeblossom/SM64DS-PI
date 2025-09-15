@@ -488,7 +488,7 @@ struct Player : Actor
 	u8 prevHatChar; // 0x6DC
 	u8 currHatChar; // 0x6DD
 	bool isInAir;
-	u8 unk6df;
+	bool landedSoundPlayed;
 	u8 unk6e0;
 	u8 currJumpNumber; // 0x6E1: 0 - first, 1 - second, 2 - triple jump, more?
 	u8 currPunchKickNumber; // 0x6E2: 0 - first, 1 - second, 2 - kick;
@@ -526,7 +526,8 @@ struct Player : Actor
 	u8 unk709;
 	u8 noControlState; // 0x70a
 	u8 unk70b;
-	u16 unk70c;
+	u8 unk70c;
+	bool isLongFalling;
 	u16 unk70e;
 	s16 unk710;
 	u8 isInAirIsh; // 0x712
@@ -535,7 +536,10 @@ struct Player : Actor
 	u8 unk715;
 	u8 isIntangibleToMesh;
 	u8 unk717;
-	u32 unk718;
+	bool unk718;
+	bool unk719;
+	bool unk71a;
+	bool unk71b;
 	u32 unk71c;
 	u32 unk720;
 	u32 unk724;
@@ -632,8 +636,8 @@ struct Player : Actor
 
 	void SlidingDust();
 	void SetStomachOrButtSlide(u8 slideCondition);
-	bool DecelerateSlide(Fix12i minimumSlideSpeed);
-	void PlayGroundPoundLandSound();
+	bool DecelerateSlide(Fix12i minSlideSpeed);
+	void PlayJumpLandSound();
 	bool NotOnFloor();
 	bool SetCrouchJumpAction();
 	bool SetCrouchAttackAction();
