@@ -1539,6 +1539,22 @@ _ZN6Player15InitVanishLuigiEv                                                   
 _ZN6Player14InitMetalWarioEv                                                      = 0x020bde14;
 _ZN6Player13InitFireYoshiEv                                                       = 0x020d8228;
 _ZN6Player26CallKuppaScriptInstructionEPcss                                       = 0x020bd664;
+_ZN6Player11SlidingDustEv                                                         = 0x020bf90c;
+_ZN6Player21SetStomachOrButtSlideEh                                               = 0x020c0364;
+_ZN6Player15DecelerateSlideE5Fix12IiE                                             = 0x020c06fc;
+_ZN6Player17PlayJumpLandSoundEv                                                   = 0x020c2f64;
+_ZN6Player10NotOnFloorEv                                                          = 0x020d1164;
+_ZN6Player19SetCrouchJumpActionEv                                                 = 0x020d1204;
+_ZN6Player21SetCrouchAttackActionEv                                               = 0x020d12b0;
+_ZN6Player15SetLandingStateEh                                                     = 0x020d36d8;
+_ZN6Player18CheckHoldingPlayerEv                                                  = 0x020dab14;
+_ZN6Player23InitGroundPoundCylClsn2Ev                                             = 0x020dbc94;
+_ZN6Player16AdjustSlideAngleEv                                                    = 0x020dd2f4;
+_ZN6Player22CheckGroundPoundPlayerEv                                              = 0x020dd908;
+_ZN6Player19SetDiveOrKickMidairEv                                                 = 0x020dde74;
+_ZN6Player15SetMidairActionEv                                                     = 0x020e2664;
+_ZN6Player14GetLandingTypeEv                                                      = 0x020e2c84;
+_ZN6Player23CheckGroundPoundOnActorER12WithMeshClsnR5Actor                        = 0x020ef2a4;
 
 _ZN6Player17St_LedgeHang_InitEv                                                   = 0x020d0c54;
 _ZN6Player17St_LedgeHang_MainEv                                                   = 0x020d0a44;

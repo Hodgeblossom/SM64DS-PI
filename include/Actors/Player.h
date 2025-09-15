@@ -488,11 +488,11 @@ struct Player : Actor
 	u8 prevHatChar; // 0x6DC
 	u8 currHatChar; // 0x6DD
 	bool isInAir;
-	u8 unk6df;
+	bool landingSoundPlayed;
 	u8 unk6e0;
 	u8 currJumpNumber; // 0x6E1: 0 - first, 1 - second, 2 - triple jump, more?
-	u8 unk6e2;
-	u8 stateState; // 0x6E3: the current state of the current state. How meta.
+	u8 currPunchKickNumber; // 0x6E2: 0 - first, 1 - second, 2 - kick;
+	s8 stateState; // 0x6E3: the current state of the current state. How meta.
 	u8 unk6e4;
 	u8 canFlutterJump;
 	u8 unk6e6;
@@ -526,7 +526,9 @@ struct Player : Actor
 	u8 unk709;
 	u8 noControlState; // 0x70a
 	u8 unk70b;
-	u32 unk70c;
+	u8 unk70c;
+	bool isLongFalling;
+	u16 unk70e;
 	s16 unk710;
 	u8 isInAirIsh; // 0x712
 	bool isTangible;
@@ -534,7 +536,9 @@ struct Player : Actor
 	u8 unk715;
 	u8 isIntangibleToMesh;
 	u8 unk717;
-	u32 unk718;
+	u16 unkFlags;
+	bool unk71a;
+	bool unk71b;
 	u32 unk71c;
 	u32 unk720;
 	u32 unk724;
@@ -629,6 +633,23 @@ struct Player : Actor
 	bool DropActor();
 	bool FinishedAnim();
 
+	void SlidingDust();
+	void SetStomachOrButtSlide(u8 slideCondition);
+	bool DecelerateSlide(Fix12i minSlideSpeed);
+	void PlayJumpLandSound();
+	bool NotOnFloor();
+	bool SetCrouchJumpAction();
+	bool SetCrouchAttackAction();
+	bool SetLandingState(u8 stateCondition);
+	bool CheckHoldingPlayer();
+	void InitGroundPoundCylClsn2();
+	void AdjustSlideAngle();
+	bool CheckGroundPoundPlayer(); //Multiplayer only
+	bool SetDiveOrKickMidair();
+	bool SetMidairAction();
+	u8 GetLandingType();
+	static bool CheckGroundPoundOnActor(WithMeshClsn& wmClsn, Actor& groundpounder);
+	
 	bool IsInAnim(u32 animID);
 	bool IsFrontSliding();
 	bool LostGrabbedObject();
