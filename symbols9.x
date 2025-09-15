@@ -1545,7 +1545,7 @@ _ZN6Player15DecelerateSlideE5Fix12IiE                                           
 _ZN6Player17PlayJumpLandSoundEv                                                   = 0x020c2f64;
 _ZN6Player10NotOnFloorEv                                                          = 0x020d1164;
 _ZN6Player19SetCrouchJumpActionEv                                                 = 0x020d1204;
-_ZN6Player19SetCrouchAttackActionEv                                               = 0x020d12b0;
+_ZN6Player21SetCrouchAttackActionEv                                               = 0x020d12b0;
 _ZN6Player15SetLandingStateEh                                                     = 0x020d36d8;
 _ZN6Player18CheckHoldingPlayerEv                                                  = 0x020dab14;
 _ZN6Player23InitGroundPoundCylClsn2Ev                                             = 0x020dbc94;
