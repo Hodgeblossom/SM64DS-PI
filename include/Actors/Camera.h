@@ -138,7 +138,7 @@ struct Camera : View // internal name: dCamera
 	u32 unk14c;
 	u32 unk150;
 	u32 flags;
-	u32 unk158;
+	u32 rotationSoundUniqueID;
 	u32 unk15c;
 	u32 unk160;
 	u32 unk164;

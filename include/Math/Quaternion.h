@@ -22,6 +22,79 @@ struct Quaternion : private Vector3
 	using Vector3::z;
 	Fix12i w;
 
+	[[gnu::always_inline, nodiscard]]
+	auto operator+(const Quaternion& q) const
+	{
+		return Proxy([this, &q]<bool resMayAlias> [[gnu::always_inline]] (Quaternion& res)
+		{
+			res.Vec() = this->Vec() + q.Vec();
+			res.w = this->w + q.w;
+		});
+	}
+
+	[[gnu::always_inline, nodiscard]]
+	auto operator-(const Quaternion& q) const
+	{
+		return Proxy([this, &q]<bool resMayAlias> [[gnu::always_inline]] (Quaternion& res)
+		{
+			res.Vec() = this->Vec() - q.Vec();
+			res.w = this->w - q.w;
+		});
+	}
+
+	[[gnu::always_inline, nodiscard]]
+	auto Conjugate() const
+	{
+		return Proxy([this]<bool resMayAlias> [[gnu::always_inline]] (Quaternion& res)
+		{
+			res.Vec() = -this->Vec();
+			res.w = this->w;
+		});
+	}
+
+	[[gnu::always_inline, nodiscard]]
+	auto Inverse() const
+	{
+		return Proxy([this]<bool resMayAlias> [[gnu::always_inline]] (Quaternion& res)
+		{
+			res = this->Conjugate();
+			res /= res.Dot(res);
+		});
+	}
+
+	// Computes (*this * Quaternion(v) * this->Inverse()).Vec(),
+	// assuming *this is a unit quaternion
+	[[gnu::always_inline, nodiscard]]
+	auto Rotate(const Vector3& v) const
+	{
+		return Vector3::Proxy([this, &v]<bool resMayAlias> [[gnu::always_inline]] (Vector3& res)
+		{
+			const Vector3& u = this->Vec();
+			const Vector3 uv = u.Cross(v);
+
+			ToggleAliased<resMayAlias>(res) = v + ((w*uv + u.Cross(uv)) << 1);
+		});
+	}
+
+	// Computes (*this * Quaternion(v) * this->Inverse()).Vec()
+	[[gnu::always_inline, nodiscard]]
+	auto RotateSafe(const Vector3& v) const
+	{
+		return Vector3::Proxy([this, &v]<bool resMayAlias> [[gnu::always_inline]] (Vector3& res)
+		{
+			const Vector3& u = this->Vec();
+			const Fix12i uu = u.Dot(u);
+			const Fix12i ww = w*w;
+
+			ToggleAliased<resMayAlias>(res)
+				= (u.Dot(v) << 1)*u
+				+ (ww - uu)*v
+				+ (w << 1)*u.Cross(v);
+
+			res *= 1._f / (uu + ww);
+		});
+	}
+
 	template<class F>
 	class Proxy
 	{
@@ -396,46 +469,6 @@ struct Quaternion : private Vector3
 	}
 
 	[[gnu::always_inline, nodiscard]]
-	auto Conjugate() const
-	{
-		return Proxy([this]<bool resMayAlias> [[gnu::always_inline]] (Quaternion& res)
-		{
-			res.Vec() = -this->Vec();
-			res.w = this->w;
-		});
-	}
-
-	[[gnu::always_inline, nodiscard]]
-	auto Inverse() const
-	{
-		return Proxy([this]<bool resMayAlias> [[gnu::always_inline]] (Quaternion& res)
-		{
-			res = this->Conjugate();
-			res /= res.Dot(res);
-		});
-	}
-
-	[[gnu::always_inline, nodiscard]]
-	auto operator+(const Quaternion& q) const
-	{
-		return Proxy([this, &q]<bool resMayAlias> [[gnu::always_inline]] (Quaternion& res)
-		{
-			res.Vec() = this->Vec() + q.Vec();
-			res.w = this->w + q.w;
-		});
-	}
-
-	[[gnu::always_inline, nodiscard]]
-	auto operator-(const Quaternion& q) const
-	{
-		return Proxy([this, &q]<bool resMayAlias> [[gnu::always_inline]] (Quaternion& res)
-		{
-			res.Vec() = this->Vec() - q.Vec();
-			res.w = this->w - q.w;
-		});
-	}
-
-	[[gnu::always_inline, nodiscard]]
 	auto operator+(const Fix12i& x) const
 	{
 		return Proxy([this, &x]<bool resMayAlias> [[gnu::always_inline]] (Quaternion& res)
@@ -655,39 +688,6 @@ struct Quaternion : private Vector3
 		{
 			res = *this;
 			res.Normalize();
-		});
-	}
-
-	// Computes (*this * Quaternion(v) * this->Inverse()).Vec(),
-	// assuming *this is a unit quaternion
-	[[gnu::always_inline, nodiscard]]
-	auto Rotate(const Vector3& v) const
-	{
-		return Vector3::Proxy([this, &v]<bool resMayAlias> [[gnu::always_inline]] (Vector3& res)
-		{
-			const Vector3& u = this->Vec();
-			const Vector3 uv = u.Cross(v);
-
-			ToggleAliased<resMayAlias>(res) = v + ((w*uv + u.Cross(uv)) << 1);
-		});
-	}
-
-	// Computes (*this * Quaternion(v) * this->Inverse()).Vec()
-	[[gnu::always_inline, nodiscard]]
-	auto RotateSafe(const Vector3& v) const
-	{
-		return Vector3::Proxy([this, &v]<bool resMayAlias> [[gnu::always_inline]] (Vector3& res)
-		{
-			const Vector3& u = this->Vec();
-			const Fix12i uu = u.Dot(u);
-			const Fix12i ww = w*w;
-
-			ToggleAliased<resMayAlias>(res)
-				= (u.Dot(v) << 1)*u
-				+ (ww - uu)*v
-				+ (w << 1)*u.Cross(v);
-
-			res *= 1._f / (uu + ww);
 		});
 	}
 

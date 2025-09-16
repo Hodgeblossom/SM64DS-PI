@@ -1849,6 +1849,7 @@ _ZN5Sound6Player19SetPlayableSeqCountEii                                        
 _ZN5Sound7PLAYERSE                                                                = 0x020a4d6c;
 
 _ZN5Sound8PlayLongEjjjRK7Vector3j                                                 = 0x02012328;
+_ZN5Sound10PlayLong2DEjjjj                                                        = 0x020124c4;
 _ZN5Sound13PlayCharVoiceEjjRK7Vector3                                             = 0x02012154;
 _ZN5Sound4PlayEjjRK7Vector3                                                       = 0x02012590;
 _ZN5Sound6Play2DEjj                                                               = 0x02012840;

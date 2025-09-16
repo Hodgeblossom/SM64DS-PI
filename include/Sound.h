@@ -211,7 +211,8 @@ namespace Sound
 
 	extern Player PLAYERS[]; //size not known, but greater than 9.
 
-	u32 PlayLong(u32 uniqueID, u32 soundArchiveID, u32 soundID, const Vector3& camSpacePos, u32 arg4); //first arg = guess
+	u32 PlayLong(u32 uniqueID, u32 archiveID, u32 soundID, const Vector3& camSpacePos, u32 arg4 = 0); // first arg = guess
+	u32 PlayLong2D(u32 uniqueID, u32 archiveID, u32 soundID, u32 arg4 = 0);
 
 	void PlayCharVoice(u32 charID, u32 soundID, const Vector3& camSpacePos);
 

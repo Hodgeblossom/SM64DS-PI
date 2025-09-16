@@ -7,7 +7,8 @@ struct UnaliasedRef
 {
 	T& r;
 
-	constexpr UnaliasedRef(T& r) [[gnu::always_inline]] : r(r) {}
+	[[gnu::always_inline]]
+	constexpr UnaliasedRef(T& r) : r(r) {}
 
 	[[gnu::always_inline]]
 	T& operator=(auto&& proxy)

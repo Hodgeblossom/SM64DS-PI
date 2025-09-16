@@ -55,6 +55,21 @@ struct Matrix3x3 // Matrix is column-major!
 
 	class TransposeProxy;
 
+	template<class T> [[gnu::always_inline, nodiscard]]
+	auto operator*(T&& x) const
+	{
+		return operator()(std::forward<T>(x));
+	}
+
+	[[gnu::always_inline, nodiscard]]
+	auto operator()(const Matrix3x3& other) const
+	{
+		return Proxy([this, &other]<bool resMayAlias> [[gnu::always_inline]] (Matrix3x3& res)
+		{
+			MulMat3x3Mat3x3(other, *this, res);
+		});
+	}
+
 	template<class F>
 	class Proxy
 	{
@@ -213,15 +228,6 @@ struct Matrix3x3 // Matrix is column-major!
 		});
 	}
 
-	[[gnu::always_inline, nodiscard]]
-	auto operator()(const Matrix3x3& other) const
-	{
-		return Proxy([this, &other]<bool resMayAlias> [[gnu::always_inline]] (Matrix3x3& res)
-		{
-			MulMat3x3Mat3x3(other, *this, res);
-		});
-	}
-
 	template<class F> [[gnu::always_inline, nodiscard]]
 	auto operator()(Proxy<F>& proxy) const
 	{
@@ -266,12 +272,6 @@ struct Matrix3x3 // Matrix is column-major!
 				MulVec3Mat3x3(res, *this, res);
 			}
 		});
-	}
-
-	template<class T> [[gnu::always_inline, nodiscard]]
-	auto operator*(T&& x) const
-	{
-		return operator()(std::forward<T>(x));
 	}
 
 	template<class T>
