@@ -1478,7 +1478,8 @@ _ZN6Player16IncMegaKillCountEv                                                  
 _ZN6Player18SetNewHatCharacterEjjb                                                = 0x020be0f8;
 _ZN6Player16SetRealCharacterEj                                                    = 0x020be1e0;
 _ZN6Player18TurnOffToonShadingEj                                                  = 0x020be324;
-_ZN6Player9IsInStateERNS_5StateE                                                  = 0x020e308c;
+_ZN6Player9IsInStateERKNS_5StateE                                                 = 0x020e308c;
+_ZN6Player16WasPreviousStateERKNS_5StateE                                         = 0x020e3078;
 _ZN6Player8IsDivingEv                                                             = 0x020dd240;
 _ZN6Player16IsInsideOfCannonEv                                                    = 0x020df288;
 _ZN6Player15IsCollectingCapEv                                                     = 0x020bea94;

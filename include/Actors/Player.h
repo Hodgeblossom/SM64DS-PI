@@ -521,14 +521,15 @@ struct Player : Actor
 	u8 unk704;
 	u8 unk705;
 	bool isUnderwater;
-	u8 unk707;
+	bool standingInPuddle;
 	u8 unk708;
 	u8 unk709;
 	u8 noControlState; // 0x70a
 	u8 unk70b;
-	u8 unk70c;
+	u8 currGroundedState;
 	bool isLongFalling;
-	u16 unk70e;
+	bool onSlideSurface;
+	u8 unk70f;
 	s16 unk710;
 	u8 isInAirIsh; // 0x712
 	bool isTangible;
@@ -579,7 +580,8 @@ struct Player : Actor
 	void SetRealCharacter(u32 character);
 	void TurnOffToonShading(u32 character);
 	
-	bool IsInState(const State& state);
+	bool IsInState(const Player::State& state);
+	bool WasPreviousState(const Player::State& state);
 	bool IsDiving();
 	bool IsInsideOfCannon();
 	bool IsCollectingCap();
