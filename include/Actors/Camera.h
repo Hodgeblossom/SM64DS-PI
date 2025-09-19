@@ -75,9 +75,9 @@ struct Camera : View // internal name: dCamera
 
 	enum Flags
 	{
-		UNDERWATER      = 1 << 0,
+		UNDERWATER         = 1 << 0,
+		ZOOMED_OUT         = 1 << 1,
 
-		ZOOMED_OUT         = 1 << 2,
 		BOSS_TALK          = 1 << 3,
 		STATE_LOCKED       = 1 << 4,
 		ROTATING_LEFT      = 1 << 5,
