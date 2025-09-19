@@ -1541,8 +1541,12 @@ _ZN6Player14InitMetalWarioEv                                                    
 _ZN6Player13InitFireYoshiEv                                                       = 0x020d8228;
 _ZN6Player26CallKuppaScriptInstructionEPcss                                       = 0x020bd664;
 _ZN6Player11SlidingDustEv                                                         = 0x020bf90c;
+_ZN6Player17PlayerLandingDustEv                                                   = 0x020bf9d4;
 _ZN6Player21SetStomachOrButtSlideEh                                               = 0x020c0364;
 _ZN6Player15DecelerateSlideE5Fix12IiE                                             = 0x020c06fc;
+_ZN6Player19ApplySlopeTransformEv                                                 = 0x020c1e44;
+_ZN6Player8InitBonkEs                                                             = 0x020c1eb4;
+_ZN6Player10ShouldBonkEs                                                          = 0x020c200c;
 _ZN6Player17PlayJumpLandSoundEv                                                   = 0x020c2f64;
 _ZN6Player10NotOnFloorEv                                                          = 0x020d1164;
 _ZN6Player19SetCrouchJumpActionEv                                                 = 0x020d1204;
@@ -1552,9 +1556,15 @@ _ZN6Player18CheckHoldingPlayerEv                                                
 _ZN6Player23InitGroundPoundCylClsn2Ev                                             = 0x020dbc94;
 _ZN6Player16AdjustSlideAngleEv                                                    = 0x020dd2f4;
 _ZN6Player22CheckGroundPoundPlayerEv                                              = 0x020dd908;
-_ZN6Player19SetDiveOrKickMidairEv                                                 = 0x020dde74;
+_ZN6Player13SetDiveOrKickEv                                                       = 0x020dde74;
+_ZN6Player18SetJumpLandingAnimEv                                                  = 0x020e0a64;
+_ZN6Player20ShouldUseCrazedCrateEP5Actor                                          = 0x020e0ccc;
+_ZN6Player21PlayBackflipLandVoiceEv                                               = 0x020e25d4;
 _ZN6Player15SetMidairActionEv                                                     = 0x020e2664;
+_ZN6Player22ShouldGetStuckInGroundEv                                              = 0x020e2ea0;
 _ZN6Player14GetLandingTypeEv                                                      = 0x020e2c84;
+_ZN6Player16CheckJumpOnActorER12WithMeshClsnR5Actor                               = 0x020eeca8;
+_ZN6Player18CheckShotIntoActorER12WithMeshClsnR5Actor                             = 0x020eedc0;
 _ZN6Player23CheckGroundPoundOnActorER12WithMeshClsnR5Actor                        = 0x020ef2a4;
 
 _ZN6Player17St_LedgeHang_InitEv                                                   = 0x020d0c54;

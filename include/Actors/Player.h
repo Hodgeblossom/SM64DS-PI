@@ -435,7 +435,7 @@ struct Player : Actor
 	u32 unk634;
 	u32 unk638;
 	u32 animID;
-	u32 unk640;
+	Fix12i unk640;
 	Fix12i floorY;
 	u32 unk648;
 	u32 unk64c;
@@ -454,7 +454,7 @@ struct Player : Actor
 	u32 unk680;
 	Fix12i jumpPeakHeight; // 0x684
 	union { s32 msgID; Fix12i yPosOnPole; /* zero at the bottom of the pole */ };
-	Fix12i unk68c;
+	Fix12i yVisualOffset;
 	Fix12i unk690;
 	Fix12i unk694;
 	u32 unk698;
@@ -528,18 +528,18 @@ struct Player : Actor
 	u8 unk70b;
 	u8 currGroundedState;
 	bool isLongFalling;
-	bool onSlideSurface;
+	bool onSlopedSurface;
 	u8 unk70f;
 	s16 unk710;
-	u8 isInAirIsh; // 0x712
+	bool isInAirIsh; // 0x712
 	bool isTangible;
 	u8 unk714;
 	u8 unk715;
-	u8 isIntangibleToMesh;
+	bool isIntangibleToMesh;
 	u8 unk717;
 	u16 unkFlags;
-	bool unk71a;
-	bool unk71b;
+	bool hasNoCap;
+	bool quickSandJump;
 	u32 unk71c;
 	u32 unk720;
 	u32 unk724;
@@ -636,8 +636,12 @@ struct Player : Actor
 	bool FinishedAnim();
 
 	void SlidingDust();
+	void PlayerLandingDust();
 	void SetStomachOrButtSlide(u8 slideCondition);
 	bool DecelerateSlide(Fix12i minSlideSpeed);
+	s32 ApplySlopeTransform();
+	void InitBonk(s16 bonkAngle);
+	bool ShouldBonk(s16 wallNormalAngle);
 	void PlayJumpLandSound();
 	bool NotOnFloor();
 	bool SetCrouchJumpAction();
@@ -647,9 +651,15 @@ struct Player : Actor
 	void InitGroundPoundCylClsn2();
 	void AdjustSlideAngle();
 	bool CheckGroundPoundPlayer(); //Multiplayer only
-	bool SetDiveOrKickMidair();
+	bool SetDiveOrKick();
+	void SetJumpLandingAnim();
+	bool ShouldUseCrazedCrate(Actor* actor);
+	void PlayBackflipLandVoice();
 	bool SetMidairAction();
+	bool ShouldGetStuckInGround();
 	u8 GetLandingType();
+	static bool CheckJumpOnActor(WithMeshClsn& wmClsn, Actor& groundpounder);
+	static bool CheckShotIntoActor(WithMeshClsn& wmClsn, Actor& groundpounder);
 	static bool CheckGroundPoundOnActor(WithMeshClsn& wmClsn, Actor& groundpounder);
 	
 	bool IsInAnim(u32 animID);
