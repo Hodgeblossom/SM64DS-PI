@@ -464,9 +464,9 @@ struct Player : Actor
 	s16 unk6a2;
 	u16 stateTimer; // sleep, run charge, etc.
 	u16 unkTimer6a6;
-	union { u16 uWaterSplashBubbleTimer; u16 treeGrabParticleTimer; };
+	u16 unk6a8; // underwater splash bubbles, tree particles, jump related, etc.
 	u16 nextPunchKickDelay;
-	s16 unk6ac; // never set
+	s16 unk6ac;
 	s16 featherCapTimeRemaining; // 0x6AE
 	u16 unk6b0;
 	u16 unk6b2; // never set
