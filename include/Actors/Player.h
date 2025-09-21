@@ -401,9 +401,9 @@ struct Player : Actor
 	u32 unk554;
 	u32 unk558;
 	u32 unk55c;
-	u32 unk560;
-	u32 unk564;
-	u32 unk568;
+	Fix12i wallNormalX;
+	Fix12i wallNormalY;
+	Fix12i wallNormalZ;
 	u32 unk56c;
 	u32 unk570;
 	u32 unk574;
@@ -462,19 +462,23 @@ struct Player : Actor
 	s16 unk69e;
 	s16 visibilityCounter; // the player is visible when this is even (except when the player is electrocuted the second bit is checked instead)
 	s16 unk6a2;
-	u32 stateTimer; // sleep, run charge, etc.
-	u32 unk6a8;
-	s16 unk6ac;
+	u16 stateTimer; // sleep, run charge, etc.
+	u16 unkTimer6a6;
+	union { u16 uWaterSplashBubbleTimer; u16 treeGrabParticleTimer; };
+	u16 nextPunchKickDelay;
+	s16 unk6ac; // never set
 	s16 featherCapTimeRemaining; // 0x6AE
-	u32 unk6b0;
-	u32 unk6b4;
-	u32 unk6b8;
+	u16 unk6b0;
+	u16 unk6b2; // never set
+	u32 unk6b4; // never set
+	u16 unk6b6; // climing related
+	u16 unk6b8;
 	s16 unk6bc;
 	s16 powerupTimer;
 	s16 balloonTimer;
 	s16 unk6c2;
 	u32 unk6c4;
-	u16 unk6c8;
+	u16 warpTimer;
 	u16 unk6ca;
 	s16 unk6cc;
 	s16 flags2; // 0x6ce && 0x6cf
@@ -494,8 +498,8 @@ struct Player : Actor
 	u8 currPunchKickNumber; // 0x6E2: 0 - first, 1 - second, 2 - kick;
 	s8 stateState; // 0x6E3: the current state of the current state. How meta.
 	u8 unk6e4;
-	u8 canFlutterJump;
-	u8 unk6e6;
+	u8 canFlutterJump; // 0x6E5: needs to be investigated, certainly used for a good amount more than flutter jumps
+	u8 slidingState;
 	u8 unk6e7;
 	u8 unk6e8;
 	u8 currClsnState; // 0x06E9: 0 - not colliding, 1 - standing on ground, 2 - colliding with wall in water, 3 - colliding with wall on land
@@ -522,13 +526,13 @@ struct Player : Actor
 	u8 unk705;
 	bool isUnderwater;
 	bool standingInPuddle;
-	u8 unk708;
+	bool isBeingHurt;
 	u8 unk709;
 	u8 noControlState; // 0x70a
 	u8 unk70b;
 	u8 currGroundedState;
 	bool isLongFalling;
-	bool onSlopedSurface;
+	u8 onSlopedSurface;
 	u8 unk70f;
 	s16 unk710;
 	bool isInAirIsh; // 0x712
@@ -618,7 +622,7 @@ struct Player : Actor
 	bool JumpIntoBooCage(Vector3& cagePos);
 	bool EnterWhirlpool();
 	void BlowAway(s16 dir);
-	bool IsInAir();
+	bool IsInAirAndAirIsh();
 	bool CanWarp();
 	bool IsStateEnteringLevel();
 	bool SetNoControlState(u8 arg0, s32 messageID, u8 arg2);
@@ -638,20 +642,32 @@ struct Player : Actor
 	void SlidingDust();
 	void PlayerLandingDust();
 	void SetStomachOrButtSlide(u8 slideCondition);
+	bool ShouldSlide();
 	bool DecelerateSlide(Fix12i minSlideSpeed);
+	bool CheckHitWall(u8 unitsForward, u8 unitsAbove);
+	bool CheckSideStep(s16 wallAngle);
+	bool SetWallSlideOrBounceBack(s16 wallAngle);
 	s32 ApplySlopeTransform();
 	void InitBonk(s16 bonkAngle);
-	bool ShouldBonk(s16 wallNormalAngle);
+	bool ShouldBonk(s16 wallAngle);
+	bool CheckBonkOrWallSlide();
 	void PlayJumpLandSound();
-	bool NotOnFloor();
+	bool IsHangingFromCeiling();
+	bool TryLedgeHang(Fix12i maxGrabHeight, bool facingAway);
+	bool ShouldLedgeHang();
+	void SetPunchKickAttack(u8 punchKickNumber);
+	bool CheckLedgeHangOrGrab();
+	bool NotAboveFloor();
 	bool SetCrouchJumpAction();
 	bool SetCrouchAttackAction();
 	bool SetLandingState(u8 stateCondition);
 	bool CheckHoldingPlayer();
 	void InitGroundPoundCylClsn2();
+	void InitPunchKickCylClsn2();
 	void AdjustSlideAngle();
 	bool CheckGroundPoundPlayer(); //Multiplayer only
 	bool SetDiveOrKick();
+	bool IsFlying();
 	void SetJumpLandingAnim();
 	bool ShouldUseCrazedCrate(Actor* actor);
 	void PlayBackflipLandVoice();

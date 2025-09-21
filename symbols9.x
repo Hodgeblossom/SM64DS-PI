@@ -1514,7 +1514,7 @@ _ZN6Player11ChangeStateERNS_5StateE                                             
 _ZN6Player15JumpIntoBooCageER7Vector3                                             = 0x020ca2ac;
 _ZN6Player14EnterWhirlpoolEv                                                      = 0x020c5cc8;
 _ZN6Player8BlowAwayEs                                                             = 0x020d4fe4;
-_ZN6Player7IsInAirEv                                                              = 0x020c2f3c;
+_ZN6Player16IsInAirAndAirishEv                                                    = 0x020c2f3c;
 _ZN6Player7CanWarpEv                                                              = 0x020c2ef0;
 _ZN6Player20IsStateEnteringLevelEv                                                = 0x020c7ed4;
 _ZN6Player17SetNoControlStateEhih                                                 = 0x020ca1b8;
@@ -1543,20 +1543,32 @@ _ZN6Player26CallKuppaScriptInstructionEPcss                                     
 _ZN6Player11SlidingDustEv                                                         = 0x020bf90c;
 _ZN6Player17PlayerLandingDustEv                                                   = 0x020bf9d4;
 _ZN6Player21SetStomachOrButtSlideEh                                               = 0x020c0364;
+_ZN6Player11ShouldSlideEv                                                         = 0x020c0434;
 _ZN6Player15DecelerateSlideE5Fix12IiE                                             = 0x020c06fc;
+_ZN6Player12CheckHitWallEhh                                                       = 0x020c19d0;
+_ZN6Player13CheckSideStepEs                                                       = 0x020c1ad8;
+_ZN6Player24SetWallSlideOrBounceBackEs                                            = 0x020c1c84;
 _ZN6Player19ApplySlopeTransformEv                                                 = 0x020c1e44;
 _ZN6Player8InitBonkEs                                                             = 0x020c1eb4;
 _ZN6Player10ShouldBonkEs                                                          = 0x020c200c;
+_ZN6Player20CheckBonkOrWallSlideEv                                                = 0x020c2138;
 _ZN6Player17PlayJumpLandSoundEv                                                   = 0x020c2f64;
-_ZN6Player10NotOnFloorEv                                                          = 0x020d1164;
+_ZN6Player20IsHangingFromCeilingEv                                                = 0x020cf700;
+_ZN6Player12TryLedgeHangE5Fix12IiEb                                               = 0x020d0178;
+_ZN6Player15ShouldLedgeHangEv                                                     = 0x020d0580;
+_ZN6Player18SetPunchKickAttackEh                                                  = 0x020d8a50;
+_ZN6Player20CheckLedgeHangOrGrabEv                                                = 0x020d0d2c;
+_ZN6Player13NotAboveFloorEv                                                       = 0x020d1164;
 _ZN6Player19SetCrouchJumpActionEv                                                 = 0x020d1204;
 _ZN6Player21SetCrouchAttackActionEv                                               = 0x020d12b0;
 _ZN6Player15SetLandingStateEh                                                     = 0x020d36d8;
 _ZN6Player18CheckHoldingPlayerEv                                                  = 0x020dab14;
 _ZN6Player23InitGroundPoundCylClsn2Ev                                             = 0x020dbc94;
+_ZN6Player21InitPunchKickCylClsn2Ev                                               = 0x020dc020;
 _ZN6Player16AdjustSlideAngleEv                                                    = 0x020dd2f4;
 _ZN6Player22CheckGroundPoundPlayerEv                                              = 0x020dd908;
 _ZN6Player13SetDiveOrKickEv                                                       = 0x020dde74;
+_ZN6Player8IsFlyingEv                                                             = 0x020e0478;
 _ZN6Player18SetJumpLandingAnimEv                                                  = 0x020e0a64;
 _ZN6Player20ShouldUseCrazedCrateEP5Actor                                          = 0x020e0ccc;
 _ZN6Player21PlayBackflipLandVoiceEv                                               = 0x020e25d4;
@@ -1838,6 +1850,7 @@ _ZN8Particle10SysTracker6UpdateEv                                               
 
 _ZNK8Particle10SysTracker8Contents8FindDataEj                                     = 0x02021b58;
 
+_ZN8Particle23BigRunningSlidingDustAtE5Fix12IiES1_S1_                            = 0x02022b04;
 _ZN8Particle20RunningSlidingDustAtE5Fix12IiES1_S1_                                = 0x02022b58;
 _ZN8Particle19SetSelfDestructFlagEj                                               = 0x020226d4;
 _ZN8Particle9RenderAllEv                                                          = 0x02022ee0;

@@ -932,9 +932,16 @@ namespace Particle
 		void Update();
 	};
 
+	void BigRunningSlidingDustAt(Fix12i x, Fix12i y, Fix12i z);
 	void RunningSlidingDustAt(Fix12i x, Fix12i y, Fix12i z);
 	void SetSelfDestructFlag(u32 sysDefID);
 	void RenderAll();
+
+	[[gnu::always_inline]]
+	inline void BigRunningSlidingDustAt(const Vector3& pos)
+	{
+		BigRunningSlidingDustAt(pos.x, pos.y, pos.z);
+	}
 
 	[[gnu::always_inline]]
 	inline void RunningSlidingDustAt(const Vector3& pos)
