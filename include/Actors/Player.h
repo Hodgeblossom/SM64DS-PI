@@ -469,7 +469,7 @@ struct Player : Actor
 	u16 unk6b0;
 	u16 squishedTimer;
 	u16 unk6b4;
-	u16 unk6b6; // climing related
+	u16 unk6b6; // climbing related
 	u16 unk6b8;
 	u16 unk6ba;
 	u16 unk6bc;
