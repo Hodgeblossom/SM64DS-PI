@@ -598,6 +598,7 @@ struct Player : Actor
 	bool Unk_020ca488(); // calls Unk_020c9e5c(0xb);
 	bool Unk_020ca150(u8 arg0);
 	u32 GetBodyModelID(u32 character, bool checkMetalStateInsteadOfMetalModel) const;
+	ModelAnim2* GetBodyModel();
 	void SetAnim(u32 animID, s32 flags, Fix12i animSpeed, u32 startFrame);
 	void UpdateAnim();
 	bool ShowMessage(ActorBase& speaker, u32 msgIndex, const Vector3* lookAt, u32 arg3, u32 arg4);
