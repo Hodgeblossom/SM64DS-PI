@@ -1490,6 +1490,7 @@ _ZN6Player12Unk_020c9e5cEh                                                      
 _ZN6Player12Unk_020ca488Ev                                                        = 0x020ca488;
 _ZN6Player12Unk_020ca150Eh                                                        = 0x020ca150;
 _ZNK6Player14GetBodyModelIDEjb                                                    = 0x020becc8;
+_ZN6Player12GetBodyModelEv                                                        = 0x020e496c;
 _ZN6Player7SetAnimEji5Fix12IiEj                                                   = 0x020bef2c;
 _ZN6Player11ShowMessageER9ActorBasejPK7Vector3jj                                  = 0x020c4ec0;
 _ZN6Player12ShowMessage2ER9ActorBasejPK7Vector3jj                                 = 0x020c4c60;
