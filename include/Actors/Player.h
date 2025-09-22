@@ -239,11 +239,11 @@ struct Player : Actor
 
 	enum TalkStates
 	{
-		TK_NOT     = -1,
-		TK_START   =  0,
-		TK_TALKING =  1, // +0x6e3 == anything but 3, 5, or 7
-		TK_UNK2    =  2, // +0x6e3 == 3
-		TK_UNK3    =  3  // +0x6e3 == 5 or 7
+		TK_NOT         = -1,
+		TK_START       =  0,
+		TK_TALKING     =  1, // +0x6e3 == anything but 3, 5, or 7
+		TK_POST_CHOICE =  2, // +0x6e3 == 3; After selecting a dialog option
+		TK_UNK3        =  3  // +0x6e3 == 5 or 7
 	};
 
 	enum HurtStates
@@ -397,13 +397,11 @@ struct Player : Actor
 	CylinderClsn* climbedCylClsn; // null if the player isn't climbing on anything
 	WithMeshClsn wmClsn;
 	Vector3 unk53c;
-	Vector3 unk540; //mirrors the player's position?
+	Vector3 unk548; //mirrors the player's position?
 	u32 unk554;
 	u32 unk558;
 	u32 unk55c;
-	Fix12i wallNormalX;
-	Fix12i wallNormalY;
-	Fix12i wallNormalZ;
+	Vector3 wallNormal;
 	u32 unk56c;
 	u32 unk570;
 	u32 unk574;
@@ -460,31 +458,34 @@ struct Player : Actor
 	u32 unk698;
 	s16 spinningAngularVelY; // used for at least turning on poles and spinning Bowser
 	s16 unk69e;
-	s16 visibilityCounter; // the player is visible when this is even (except when the player is electrocuted the second bit is checked instead)
+	u16 visibilityCounter; // the player is visible when this is even (except when the player is electrocuted the second bit is checked instead)
 	s16 unk6a2;
 	u16 stateTimer; // sleep, run charge, etc.
-	u16 unkTimer6a6;
+	u16 noControlTimer;
 	u16 unk6a8; // underwater splash bubbles, tree particles, jump related, etc.
 	u16 nextPunchKickDelay;
-	s16 unk6ac;
+	u16 walkRunDecelTimer;
 	s16 featherCapTimeRemaining; // 0x6AE
 	u16 unk6b0;
-	u16 unk6b2; // never set
-	u32 unk6b4; // never set
+	u16 squishedTimer;
+	u16 unk6b4;
 	u16 unk6b6; // climing related
 	u16 unk6b8;
-	s16 unk6bc;
-	s16 powerupTimer;
-	s16 balloonTimer;
-	s16 unk6c2;
-	u32 unk6c4;
+	u16 unk6ba;
+	u16 unk6bc;
+	u16 powerupTimer;
+	u16 balloonTimer;
+	u16 superMushroomTimer;
+	u16 unk6c4;
+	u16 yoshiSwallowTimer;
 	u16 warpTimer;
 	u16 unk6ca;
 	s16 unk6cc;
 	s16 flags2; // 0x6ce && 0x6cf
 	s16 megaDestroyCounter;
 	s16 inputAngle;
-	u32 unk6d4;
+	s16 unk6d4;
+	s16 unk6d6;
 	u8 playerID; // always 0 in single player mode
 	u8 realChar; // probably
 	u8 unk6da;
@@ -508,7 +509,7 @@ struct Player : Actor
 	u32 unk6f0;
 	bool hasFireInMouth;
 	bool opacity;
-	u8 unk6f6;
+	bool powerupTimersFrozen;
 	u8 unk6f7;
 	bool isFireYoshi;       // 0x6f8
 	bool isMetalWario;      // 0x6f9
@@ -537,7 +538,7 @@ struct Player : Actor
 	s16 unk710;
 	bool isInAirIsh; // 0x712
 	bool isTangible;
-	u8 unk714;
+	bool unk714;
 	u8 unk715;
 	bool isIntangibleToMesh;
 	u8 unk717;
@@ -639,6 +640,8 @@ struct Player : Actor
 	bool DropActor();
 	bool FinishedAnim();
 
+	void Unk_020bf13c();
+	void UpdateSwimmingClsn(CylinderClsn& cylClsn);
 	void SlidingDust();
 	void PlayerLandingDust();
 	void SetStomachOrButtSlide(u8 slideCondition);
@@ -651,7 +654,10 @@ struct Player : Actor
 	void InitBonk(s16 bonkAngle);
 	bool ShouldBonk(s16 wallAngle);
 	bool CheckBonkOrWallSlide();
+	void UpdateFloorCollision();
 	void PlayJumpLandSound();
+	void WadingRipples(Fix12i speedToCompare);
+	void UpdateCameraZoom();
 	bool IsHangingFromCeiling();
 	bool TryLedgeHang(Fix12i maxGrabHeight, bool facingAway);
 	bool ShouldLedgeHang();
@@ -661,12 +667,16 @@ struct Player : Actor
 	bool SetCrouchJumpAction();
 	bool SetCrouchAttackAction();
 	bool SetLandingState(u8 stateCondition);
-	bool CheckHoldingPlayer();
+	bool CheckHoldingActor();
+	bool CheckYoshiSwallow();
+	void Unk_020d8158();
+	bool CheckJumpOnPlayer();
+	void UpdatePlayerScale();
 	void InitGroundPoundCylClsn2();
 	void InitPunchKickCylClsn2();
 	void AdjustSlideAngle();
 	bool CheckGroundPoundPlayer(); //Multiplayer only
-	bool SetDiveOrKick();
+	s32 SetDiveOrKick();
 	bool IsFlying();
 	void SetJumpLandingAnim();
 	bool ShouldUseCrazedCrate(Actor* actor);
@@ -674,6 +684,7 @@ struct Player : Actor
 	bool SetMidairAction();
 	bool ShouldGetStuckInGround();
 	u8 GetLandingType();
+	void UpdatePlayerModel();
 	static bool CheckJumpOnActor(WithMeshClsn& wmClsn, Actor& groundpounder);
 	static bool CheckShotIntoActor(WithMeshClsn& wmClsn, Actor& groundpounder);
 	static bool CheckGroundPoundOnActor(WithMeshClsn& wmClsn, Actor& groundpounder);
@@ -689,6 +700,14 @@ struct Player : Actor
 	void InitVanishLuigi();
 	void InitMetalWario();
 	void InitFireYoshi();
+
+	void CleanupWingFeathers();
+	void CleanupSuperMushroom();
+	void CleanupMetalWario();
+	void CleanupVanishLuigi();
+	void CleanupKoopaShell();
+	void CleanupFireYoshi();
+	void CleanupBalloonMario();
 
 	s32 St_LedgeHang_Init();
 	s32 St_LedgeHang_Main();

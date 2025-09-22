@@ -1045,6 +1045,8 @@ _ZN12WithMeshClsn20UpdateExtraContinousEv                                       
 _ZN12WithMeshClsn22UpdateContinuousNoLavaEv                                       = 0x02036318;
 _ZN12WithMeshClsn20UpdateDiscreteNoLavaEv                                         = 0x02037024;
 _ZN12WithMeshClsn22UpdateDiscreteNoLava_2Ev                                       = 0x02036ee4;
+_ZN12WithMeshClsn13SetVertOffsetE5Fix12IiE                                        = 0x02035684;
+_ZN12WithMeshClsn9SetRadiusE5Fix12IiE                                             = 0x0203568c;
 
 /* PathPtr.h */
 _ZN7PathPtrC1Ev                                                                   = 0x0203ad74;
@@ -1540,6 +1542,8 @@ _ZN6Player15InitVanishLuigiEv                                                   
 _ZN6Player14InitMetalWarioEv                                                      = 0x020bde14;
 _ZN6Player13InitFireYoshiEv                                                       = 0x020d8228;
 _ZN6Player26CallKuppaScriptInstructionEPcss                                       = 0x020bd664;
+_ZN6Player12Unk_020bf13cEv                                                        = 0x020bf13c;
+_ZN6Player18UpdateSwimmingClsnER12CylinderClsn                                    = 0x020bf36c;
 _ZN6Player11SlidingDustEv                                                         = 0x020bf90c;
 _ZN6Player17PlayerLandingDustEv                                                   = 0x020bf9d4;
 _ZN6Player21SetStomachOrButtSlideEh                                               = 0x020c0364;
@@ -1552,7 +1556,10 @@ _ZN6Player19ApplySlopeTransformEv                                               
 _ZN6Player8InitBonkEs                                                             = 0x020c1eb4;
 _ZN6Player10ShouldBonkEs                                                          = 0x020c200c;
 _ZN6Player20CheckBonkOrWallSlideEv                                                = 0x020c2138;
+_ZN6Player20UpdateFloorCollisionEv                                                = 0x020c2db8;
 _ZN6Player17PlayJumpLandSoundEv                                                   = 0x020c2f64;
+_ZN6Player13WadingRipplesE5Fix12IiE                                               = 0x020ce8bc;
+_ZN6Player16UpdateCameraZoomEv                                                    = 0x020ca940;
 _ZN6Player20IsHangingFromCeilingEv                                                = 0x020cf700;
 _ZN6Player12TryLedgeHangE5Fix12IiEb                                               = 0x020d0178;
 _ZN6Player15ShouldLedgeHangEv                                                     = 0x020d0580;
@@ -1562,7 +1569,11 @@ _ZN6Player13NotAboveFloorEv                                                     
 _ZN6Player19SetCrouchJumpActionEv                                                 = 0x020d1204;
 _ZN6Player21SetCrouchAttackActionEv                                               = 0x020d12b0;
 _ZN6Player15SetLandingStateEh                                                     = 0x020d36d8;
-_ZN6Player18CheckHoldingPlayerEv                                                  = 0x020dab14;
+_ZN6Player17CheckYoshiSwallowEv                                                   = 0x020d6790;
+_ZN6Player12Unk_020d8158Ev                                                        = 0x020d8158;
+_ZN6Player17CheckJumpOnPlayerEv                                                   = 0x020d869c;
+_ZN6Player17CheckHoldingActorEv                                                   = 0x020dab14;
+_ZN6Player17UpdatePlayerScaleEv                                                   = 0x020db704;
 _ZN6Player23InitGroundPoundCylClsn2Ev                                             = 0x020dbc94;
 _ZN6Player21InitPunchKickCylClsn2Ev                                               = 0x020dc020;
 _ZN6Player16AdjustSlideAngleEv                                                    = 0x020dd2f4;
@@ -1575,9 +1586,17 @@ _ZN6Player21PlayBackflipLandVoiceEv                                             
 _ZN6Player15SetMidairActionEv                                                     = 0x020e2664;
 _ZN6Player22ShouldGetStuckInGroundEv                                              = 0x020e2ea0;
 _ZN6Player14GetLandingTypeEv                                                      = 0x020e2c84;
+_ZN6Player17UpdatePlayerModelEv                                                   = 0x020e4bb8;
 _ZN6Player16CheckJumpOnActorER12WithMeshClsnR5Actor                               = 0x020eeca8;
 _ZN6Player18CheckShotIntoActorER12WithMeshClsnR5Actor                             = 0x020eedc0;
 _ZN6Player23CheckGroundPoundOnActorER12WithMeshClsnR5Actor                        = 0x020ef2a4;
+_ZN6Player19CleanupWingFeathersEv                                                 = 0x020bda48;
+_ZN6Player20CleanupSuperMushroomEv                                                = 0x020bdd2c;
+_ZN6Player17CleanupMetalWarioEv                                                   = 0x020bdd9c;
+_ZN6Player18CleanupVanishLuigiEv                                                  = 0x020bdef0;
+_ZN6Player17CleanupKoopaShellEv                                                   = 0x020cc1f4;
+_ZN6Player16CleanupFireYoshiEv                                                    = 0x020d80d0;
+_ZN6Player19CleanupBalloonMarioEv                                                 = 0x020de968;
 
 _ZN6Player17St_LedgeHang_InitEv                                                   = 0x020d0c54;
 _ZN6Player17St_LedgeHang_MainEv                                                   = 0x020d0a44;
