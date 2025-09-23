@@ -198,6 +198,9 @@ struct WithMeshClsn
 	ClsnResult& GetFloorResult() const;
 	ClsnResult& GetWallResult() const;
 	void Init(Actor* owner, Fix12i radius, Fix12i vertOffset, Vector3_16* motionDirPtr, Vector3_16* angPtr);
+	
+	void SetVertOffset(Fix12i vertOffset);
+	void SetRadius(Fix12i radius);
 
 	void UpdateContinuous();
 	void UpdateExtraContinous();
