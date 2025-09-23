@@ -585,8 +585,8 @@ struct Player : Actor
 	void SetRealCharacter(u32 character);
 	void TurnOffToonShading(u32 character);
 	
-	bool IsInState(const Player::State& state);
-	bool WasPreviousState(const Player::State& state);
+	bool IsInState(const State& state);
+	bool WasPreviousState(const State& state);
 	bool IsDiving();
 	bool IsInsideOfCannon();
 	bool IsCollectingCap();
