@@ -180,7 +180,7 @@ struct LevelOverlay
 	u8 sBankID;
 	u8 sSequenceID;
 	u8 reserved1f;
-	u32 reserved20;
+	s16* planetCamSettingsArray; // The first value is the number of entries, each entry contains eight s16 values
 	u32 reserved24;
 	u32 reserved28;
 	u32 reserved2c;
