@@ -1482,6 +1482,7 @@ _ZN6Player16SetRealCharacterEj                                                  
 _ZN6Player18TurnOffToonShadingEj                                                  = 0x020be324;
 _ZN6Player9IsInStateERKNS_5StateE                                                 = 0x020e308c;
 _ZN6Player16WasPreviousStateERKNS_5StateE                                         = 0x020e3078;
+_ZN6Player15UpdateBeingHeldEv                                                     = 0x020e3f90;
 _ZN6Player8IsDivingEv                                                             = 0x020dd240;
 _ZN6Player16IsInsideOfCannonEv                                                    = 0x020df288;
 _ZN6Player15IsCollectingCapEv                                                     = 0x020bea94;

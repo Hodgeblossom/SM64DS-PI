@@ -386,7 +386,7 @@ struct Player : Actor
 	MovingCylinderClsnWithPos cylClsn2;
 	Actor* shellPtr;
 	Actor* actorInHands;
-	u32 unk35c;
+	Actor* holdingActor;
 	Actor* actorInMouth;
 	u32 unk364;
 	ActorBase* speaker;
@@ -642,6 +642,7 @@ struct Player : Actor
 	bool FinishedAnim();
 
 	void Unk_020bf13c();
+	bool UpdateBeingHeld(); // returns whether being held
 	void UpdateSwimmingClsn(CylinderClsn& cylClsn);
 	void SlidingDust();
 	void PlayerLandingDust();
