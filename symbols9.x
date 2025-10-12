@@ -48,6 +48,9 @@ _ZdlPvj                                                                         
 _ZdaPvj                                                                           = 0x0203CBF0; /* thunk at 0x0203cbcc */
 
 _Z11SoftwareDivii                                                                 = 0x01ffabe4;
+_Z11SoftwareDivjj                                                                 = 0x01ffadf0;
+_Z11SoftwareDivxx                                                                 = 0x01ffaa34;
+_Z11SoftwareDivyy                                                                 = 0x01ffa9dc;
 _Z11HardwareDivii                                                                 = 0x02052f4c;
 _Z11HardwareModii                                                                 = 0x02052ef4;
 _Z14HardwareDivQ125Fix12IiES0_                                                    = 0x02053258;
@@ -63,9 +66,9 @@ __aeabi_idiv                                                                    
 __aeabi_idivmod                                                                   = 0x01ffabe4;
 __aeabi_uidiv                                                                     = 0x01ffadf0;
 __aeabi_uidivmod                                                                  = 0x01ffadf0;
+__aeabi_ldiv                                                                      = 0x01ffaa34;
 __aeabi_uldiv                                                                     = 0x01ffa9dc;
 __aeabi_ulmod                                                                     = 0x01ffa9e8;
-__aeabi_uldivmod                                                                  = 0x01ffe684;
 
 nds_print                                                                         = 0x02014770;
 nds_printf                                                                        = 0x0201470c;

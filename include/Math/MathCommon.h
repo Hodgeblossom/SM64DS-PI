@@ -21,6 +21,9 @@ u16 CountDownToZero(u16& counter); // returns the counter's new value
 u8  CountDownToZero(u8&  counter); // returns the counter's new value
 
 s32 SoftwareDiv(s32 numerator, s32 denominator);
+u32 SoftwareDiv(u32 numerator, u32 denominator);
+s64 SoftwareDiv(s64 numerator, s64 denominator);
+u64 SoftwareDiv(u64 numerator, u64 denominator);
 s32 HardwareDiv(s32 numerator, s32 denominator);
 s32 HardwareMod(s32 numerator, s32 denominator);
 
