@@ -77,7 +77,7 @@ struct Actor : ActorDerived // internal name: dActor
 	Fix12i drawDistAsr3;    // 0xbc
 	Fix12i unkc0Asr3;       // 0xc0
 	u32 unkc4;              // 0xc4
-	u32 unkc8;              // 0xc8
+	Matrix4x3* carryMatrix; // 0xc8
 	s8 areaID;              // 0xcc (it is signed)
 	u8 unkcd;               // 0xcd
 	s16 deathTableID;       // 0xce
