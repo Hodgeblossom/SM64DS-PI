@@ -398,9 +398,7 @@ struct Player : Actor
 	WithMeshClsn wmClsn;
 	Vector3 unk53c;
 	Vector3 unk548; //mirrors the player's position?
-	u32 unk554;
-	u32 unk558;
-	u32 unk55c;
+	Vector3 floorNormal;
 	Vector3 wallNormal;
 	u32 unk56c;
 	u32 unk570;
