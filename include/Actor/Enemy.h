@@ -57,7 +57,7 @@ struct Enemy : Actor
 	Enemy();
 	virtual ~Enemy() override;
 
-	u32 UpdateKillByInvincibleCharModel(WithMeshClsn& wmClsn, Model& model, u32 flags); // like below but takes a Model& instead of ModelAnim&
+	u32 UpdateKillByInvincibleChar(WithMeshClsn& wmClsn, Model& model, u32 flags); // like below but takes a Model& instead of ModelAnim&
 	u32 UpdateKillByInvincibleChar(WithMeshClsn& wmClsn, ModelAnim& rigMdl, u32 flags); //returns 0 with 0 side effects if N/A.
 	void KillByInvincibleChar(const Vector3_16& newRotation, Player& player);
 	void SpawnMegaCharParticles(Actor& attacker, char* arg2);

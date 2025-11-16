@@ -1238,7 +1238,7 @@ _ZN5Actor10FindWithIDEj                                                         
 _ZN5EnemyC2Ev                                                                     = 0x020aed98;
 _ZN5EnemyD0Ev                                                                     = 0x020aed3c;
 _ZN5EnemyD2Ev                                                                     = 0x020aed74;
-_ZN5Enemy31UpdateKillByInvincibleCharModelER12WithMeshClsnR5Modelj                = 0x020ad660;
+_ZN5Enemy26UpdateKillByInvincibleCharER12WithMeshClsnR5Modelj                     = 0x020ad660;
 _ZN5Enemy26UpdateKillByInvincibleCharER12WithMeshClsnR9ModelAnimj                 = 0x020ad838;
 _ZN5Enemy20KillByInvincibleCharERK10Vector3_16R6Player                            = 0x020ada40;
 _ZN5Enemy22SpawnMegaCharParticlesER5ActorPc                                       = 0x020adb40;
