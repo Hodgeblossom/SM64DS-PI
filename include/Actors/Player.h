@@ -505,7 +505,7 @@ struct Player : Actor
 	s16 unk6ea;
 	u8 unk6ec;
 	u8 runUpCounter;
-	u16 unk6ee; // related to eating; not sure if its a 0x6EE and 0x6EF are shared
+	u16 unk6ee; // related to eating; not sure if 0x6EE and 0x6EF are shared
 	u32 unk6f0;
 	bool hasFireInMouth;
 	u8 opacity;
