@@ -58,7 +58,7 @@ struct BMD_File
 	struct Palette
 	{
 		char* name;
-		char* data; // dangling after Model::LoadFile
+		u16* data; // dangling after Model::LoadFile
 		u32 size;
 		u32 vramOffset;
 	};
