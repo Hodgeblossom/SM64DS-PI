@@ -77,7 +77,7 @@ struct Actor : ActorDerived // internal name: dActor
 	Fix12i drawDistAsr3;    // 0xbc
 	Fix12i unkc0Asr3;       // 0xc0
 	u32 unkc4;              // 0xc4
-	u32 unkc8;              // 0xc8
+	Matrix4x3* unkc8;       // 0xc8
 	s8 areaID;              // 0xcc (it is signed)
 	u8 unkcd;               // 0xcd
 	s16 deathTableID;       // 0xce
@@ -110,6 +110,7 @@ struct Actor : ActorDerived // internal name: dActor
 	bool IsTooFarAwayFromPlayer(Fix12i tooFar);
 	void MakeVanishLuigiWork(CylinderClsn& cylClsn);
 	void SpawnSoundObj(u32 soundObjParam);
+	void PlayHitSound(u32 hitFlags); //NCS_SE_PT_HIT_S if HIT_BY_PUNCH, NCS_SE_PT_HIT_H if HIT_BY_KICK, HIT_BY_BREAKDANCE or HIT_BY_SLIDE_KICK
 
 	void KillAndTrackInDeathTable();
 	void TrackInDeathTable();
@@ -120,6 +121,7 @@ struct Actor : ActorDerived // internal name: dActor
 	void BigLandingDustAt(Vector3& vec, bool doRaycast);
 	void LandingDust(bool doRaycast);
 	void LandingDustAt(Vector3& vec, bool doRaycast);
+	void TinyPoofDustAt(Vector3& vec, bool doRaycast);
 	void DisappearPoofDustAt(const Vector3& vec);
 	void SmallPoofDust();
 	void PoofDustAt(const Vector3& vec);
@@ -160,6 +162,7 @@ struct Actor : ActorDerived // internal name: dActor
 	bool DetectRaycastClsn(Vector3& raycastPos, Vector3& pos, bool updatePos);
 
 	Matrix4x3& UpdateCarry(Player& player, const Vector3& offset); // returns a reference to the transform mat (MATRIX_SCRATCH_PAPER)
+	Player* TryCarry(CylinderClsn& cylClsn); // checks if the cylinderclsn is HIT_BY_GRAB, calls TryGrab() on the closest player, and returns the player if so
 
 	void SetRanges(Fix12i newRangeOffsetY, Fix12i newRange, Fix12i newDrawDist, Fix12i newUnkc0);
 
