@@ -215,10 +215,11 @@ extern bool RETURN_TO_REC_ROOM;
 extern Area* AREAS;
 extern Camera* CAMERA;
 extern FaderWipe* WIPES;
-extern Actor* MINIMAP_STARS_AND_RED_COINS[12]; // may contain red coins, stars, silver stars and enemies that have them
-extern u8 MINIMAP_ACTOR_TYPES[12]; // type 1 is silver star (or enemy that has one), type 4 is red coin
 extern Actor* CASTLE_KEY_RABBIT;
+extern u8 MINIMAP_ACTOR_TYPES[12]; // type 1 is silver star (or enemy that has one), type 4 is red coin
 extern SpikeBomb* BOWSER_SPIKE_BOMBS[8];
+extern Actor* CAPS[9];
+extern Actor* MINIMAP_STARS_AND_RED_COINS[12]; // may contain red coins, stars, silver stars and enemies that have them
 
 extern Fix12i WATER_HEIGHT;
 extern Fix12i STAR_CAP_MAX_POS_Y;

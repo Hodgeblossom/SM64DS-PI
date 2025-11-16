@@ -88,7 +88,7 @@ struct Camera : View // internal name: dCamera
 		UNK_10             = 1 << 10,
 		UNK_11             = 1 << 11,
 		ARROWS_ALLOWED     = 1 << 12,
-
+		SLEEP_COLD_ZOOM_IN = 1 << 13,
 		TALK               = 1 << 14,
 		ZOOM_OUT_FROM_TALK = 1 << 15,
 
@@ -185,6 +185,7 @@ struct Camera : View // internal name: dCamera
 	void LookAtExit(Actor& exit);
 	void GoBehindPlayer(u32 playerID);
 	s32 CallKuppaScriptInstruction(char* instruction, s16 minFrame, s16 maxFrame);
+	void SetSwimCamera(u32 playerID);
 
 	// Func_0200D954
 	// Func_0200D8C8
