@@ -644,6 +644,7 @@ struct Player : Actor
 	void HandleRunningDust();
 
 	void Unk_020bf13c();
+	bool UpdateBeingHeld(); // returns whether being held
 	void UpdateSwimmingClsn(CylinderClsn& cylClsn);
 	Fix12i ScaleSpeedByFloorTraction(Fix12i baseSpeed);
 	void RunningDust();
