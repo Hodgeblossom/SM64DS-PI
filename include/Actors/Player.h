@@ -598,6 +598,7 @@ struct Player : Actor
 	bool Unk_020ca488(); // calls Unk_020c9e5c(0xb);
 	bool Unk_020ca150(u8 arg0);
 	u32 GetBodyModelID(u32 character, bool checkMetalStateInsteadOfMetalModel) const;
+	void HandleReturnLevelAndEntrance();
 	ModelAnim2* GetBodyModel();
 	void SetAnim(u32 animID, s32 flags, Fix12i animSpeed, u32 startFrame);
 	void UpdateAnim();
@@ -668,6 +669,7 @@ struct Player : Actor
 	void SetFirstPerson();
 	void WadingRipples(Fix12i speedToCompare);
 	void UpdateCameraZoom();
+	bool IsOnWaterSurface();
 	bool IsHangingFromCeiling();
 	bool TryLedgeHang(Fix12i maxGrabHeight, bool facingAway);
 	bool ShouldLedgeHang();

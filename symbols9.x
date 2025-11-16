@@ -1504,6 +1504,7 @@ _ZN6Player12Unk_020ca8f8Ev                                                      
 _ZN6Player12Unk_020c9e5cEh                                                        = 0x020c9e5c;
 _ZN6Player12Unk_020ca488Ev                                                        = 0x020ca488;
 _ZN6Player12Unk_020ca150Eh                                                        = 0x020ca150;
+_ZN6Player28HandleReturnLevelAndEntranceEv                                        = 0x020c94a4;
 _ZNK6Player14GetBodyModelIDEjb                                                    = 0x020becc8;
 _ZN6Player12GetBodyModelEv                                                        = 0x020e496c;
 _ZN6Player7SetAnimEji5Fix12IiEj                                                   = 0x020bef2c;
@@ -1586,6 +1587,7 @@ _ZN6Player22MakePlayerInvulnerableEv                                            
 _ZN6Player14SetFirstPersonEv                                                      = 0x020cabe0;
 _ZN6Player13WadingRipplesE5Fix12IiE                                               = 0x020ce8bc;
 _ZN6Player16UpdateCameraZoomEv                                                    = 0x020ca940;
+_ZN6Player16IsOnWaterSurfaceEv                                                    = 0x020ceb54;
 _ZN6Player20IsHangingFromCeilingEv                                                = 0x020cf700;
 _ZN6Player12TryLedgeHangE5Fix12IiEb                                               = 0x020d0178;
 _ZN6Player15ShouldLedgeHangEv                                                     = 0x020d0580;
