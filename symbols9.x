@@ -1573,7 +1573,7 @@ _ZN6Player11ShouldSlideEv                                                       
 _ZN6Player24TrySnapToGroundFromSlideEv                                            = 0x020c0688;
 _ZN6Player15DecelerateSlideE5Fix12IiE                                             = 0x020c06fc;
 _ZN6Player16CheckShouldSlideEv                                                    = 0x020c0cbc;
-_ZN6Player12CheckHitWallEhh                                                       = 0x020c19d0;
+_ZN6Player20DetectRaycastFromPosEhh                                               = 0x020c19d0;
 _ZN6Player13CheckSideStepEs                                                       = 0x020c1ad8;
 _ZN6Player24SetWallSlideOrBounceBackEs                                            = 0x020c1c84;
 _ZN6Player19ApplySlopeTransformEv                                                 = 0x020c1e44;
