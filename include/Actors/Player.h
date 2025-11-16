@@ -655,7 +655,7 @@ struct Player : Actor
 	bool DecelerateSlide(Fix12i minSlideSpeed);
 	bool TrySnapToGroundFromSlide(); // Responsible for up/downwarps
 	bool CheckShouldSlide();
-	bool DetectRaycastFromPos(u8 unitsForward, u8 unitsAbove);
+	bool DetectRaycastFromPos(u8 horzOffset, u8 vertOffset);
 	bool CheckSideStep(s16 wallAngle);
 	bool SetWallSlideOrBounceBack(s16 wallAngle);
 	s32 ApplySlopeTransform();
