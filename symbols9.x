@@ -193,7 +193,7 @@ _ZN9Matrix4x38IDENTITYE                                                         
 /* SharedFilePtr.h */
 _ZN13SharedFilePtr9FromOv0IDEj                                                    = 0x02017e0c; /* thunks at 0x02017e48 and 0x0201799c */
 _ZN13SharedFilePtr7ReleaseEv                                                      = 0x02017b64;
-_ZN13SharedFilePtr4LoadBMDEv                                                      = 0x02017bc4;
+_ZN13SharedFilePtr4LoadEv                                                         = 0x02017bc4;
 _ZN13SharedFilePtr12LoadInternalEv                                                = 0x02017c54;
 _ZN13SharedFilePtr19ReallocateModelFileEv                                         = 0x02017a8c;
 
@@ -771,7 +771,7 @@ _ZN5Model12SetPolygonIDEi                                                       
 _ZN5Model14SetPolygonModeEi                                                       = 0x02016a8c;
 _ZN5Model12ShowMaterialEii                                                        = 0x02016a24;
 _ZN5Model12HideMaterialEii                                                        = 0x02016a58;
-_ZN13SharedFilePtr7Ev                                                             = 0x02017a3c;
+_ZN13SharedFilePtr7LoadBMDEv                                                      = 0x02017a3c;
 _ZN8BMD_File12InitPointersEv                                                      = 0x020465fc;
 _ZN8BMD_File26AddToArrayAndLoadTexAndPalEv                                        = 0x02016f08;
 _ZN8BMD_File16ShrinkAllocationEv                                                  = 0x02017060;
