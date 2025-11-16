@@ -193,7 +193,7 @@ _ZN9Matrix4x38IDENTITYE                                                         
 /* SharedFilePtr.h */
 _ZN13SharedFilePtr9FromOv0IDEj                                                    = 0x02017e0c; /* thunks at 0x02017e48 and 0x0201799c */
 _ZN13SharedFilePtr7ReleaseEv                                                      = 0x02017b64;
-_ZN13SharedFilePtr4LoadEv                                                         = 0x02017bc4;
+_ZN13SharedFilePtr4LoadBMDEv                                                      = 0x02017bc4;
 _ZN13SharedFilePtr12LoadInternalEv                                                = 0x02017c54;
 _ZN13SharedFilePtr19ReallocateModelFileEv                                         = 0x02017a8c;
 
