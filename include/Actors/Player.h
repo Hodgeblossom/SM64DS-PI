@@ -460,7 +460,7 @@ struct Player : Actor
 	u16 unk6a2;
 	u16 stateTimer; // sleep, run charge, etc.
 	u16 noControlTimer;
-	u16 unk6a8; // underwater splash bubbles, tree particles, jump related, etc.
+	union { u16 unk6a8; u16 jumpSequenceTimer;}; // underwater splash bubbles, tree particles, jump related, etc.
 	u16 nextPunchKickDelay;
 	u16 walkRunDecelTimer;
 	s16 featherCapTimeRemaining; // 0x6AE
@@ -621,6 +621,9 @@ struct Player : Actor
 	s32 GetHealth();
 	void Bounce(Fix12i bounceInitVel);
 	void SpinBounce(Fix12i bounceInitVel);
+	void HandleYoshiFlutterJump();
+	void HandleLuigiFlutterJump();
+	void HandleVariableJumpHeight();
 	bool ChangeState(Player::State& state);
 	bool JumpIntoBooCage(Vector3& cagePos);
 	bool EnterWhirlpool();
@@ -645,8 +648,12 @@ struct Player : Actor
 
 	void Unk_020bf13c();
 	bool UpdateBeingHeld(); // returns whether being held
+	Fix12i ScaleHorzSpeedByMag(Fix12i baseSpeed, Fix12i minSpeed);
+	Fix12i ScaleVertAccelByChar(Fix12i baseAccel);
+	void SetSpeedYByChar(Fix12i baseSpeed);
+	Fix12i ScaleHorzSpeedByChar(Fix12i baseSpeed);
 	void UpdateSwimmingClsn(CylinderClsn& cylClsn);
-	Fix12i ScaleSpeedByFloorTraction(Fix12i baseSpeed);
+	Fix12i ScaleHorzSpeedByFloorTraction(Fix12i baseSpeed);
 	void RunningDust();
 	void SlidingDust();
 	void PlayerLandingDust();

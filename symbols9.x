@@ -342,6 +342,11 @@ HEALTH_ARR                                                                      
 NUM_LIVES                                                                         = 0x0209f2f4;
 RENDERED_HEALTH                                                                   = 0x0211117c;
 
+HORZ_SPEED_CHAR_MULTIPLIERS                                                       = 0x020ff170;
+JUMP_SPEED_CHAR_MULTIPLIERS                                                       = 0x020ff140;
+JUMP_SEQUENCE_SPEEDS                                                              = 0x0210a59c;
+JUMP_SEQUENCE_ANIMS                                                               = 0x0210a5a8;
+
 NEXT_HAT_CHARACTER                                                                = 0x02092114;
 UNK_YOSHI_EGG_RELATED                                                             = 0x0209f254;
 LAST_ENTRANCE_ID                                                                  = 0x0209f264;
@@ -1526,6 +1531,9 @@ _ZN6Player4HealEi                                                               
 _ZN6Player9GetHealthEv                                                            = 0x020bf548;
 _ZN6Player6BounceE5Fix12IiE                                                       = 0x020d932c;
 _ZN6Player10SpinBounceE5Fix12IiE                                                  = 0x020e1020;
+_ZN6Player22HandleYoshiFlutterJumpEv                                              = 0x020e1c20;
+_ZN6Player22HandleLuigiFlutterJumpEv                                              = 0x020e1e70;
+_ZN6Player24HandleVariableJumpHeightEv                                            = 0x020e200c;
 _ZN6Player11ChangeStateERNS_5StateE                                               = 0x020e30a0;
 _ZN6Player15JumpIntoBooCageER7Vector3                                             = 0x020ca2ac;
 _ZN6Player14EnterWhirlpoolEv                                                      = 0x020c5cc8;
@@ -1560,10 +1568,12 @@ _ZN6Player26CallKuppaScriptInstructionEPcss                                     
 _ZN6Player11EndSubMusicEj                                                         = 0x020bd8c0;
 _ZN6Player12PlaySubMusicEj                                                        = 0x020bd928;
 _ZN6Player12Unk_020bf13cEv                                                        = 0x020bf13c;
-_ZN6Player15ScaleSpeedByMagE5Fix12IiES1_                                          = 0x020bf224;
-_ZN6Player16ScaleSpeedByCharE5Fix12IiE                                            = 0x020bf30c;
+_ZN6Player19ScaleHorzSpeedByMagE5Fix12IiES1_                                      = 0x020bf224;
+_ZN6Player20ScaleVertAccelByCharE5Fix12IiE                                        = 0x020bf27c;
+_ZN6Player15SetSpeedYByCharE5Fix12IiE                                             = 0x020bf2d8;
+_ZN6Player20ScaleHorzSpeedByCharE5Fix12IiE                                        = 0x020bf30c;
 _ZN6Player18UpdateSwimmingClsnER12CylinderClsn                                    = 0x020bf36c;
-_ZN6Player25ScaleSpeedByFloorTractionE5Fix12IiE                                   = 0x020bf56c;
+_ZN6Player29ScaleHorzSpeedByFloorTractionE5Fix12IiE                               = 0x020bf56c;
 _ZN6Player11RunningDustEv                                                         = 0x020bf88c;
 _ZN6Player11SlidingDustEv                                                         = 0x020bf90c;
 _ZN6Player17PlayerLandingDustEv                                                   = 0x020bf9d4;
@@ -1944,6 +1954,7 @@ _ZN5Sound7PLAYERSE                                                              
 
 _ZN5Sound8PlayLongEjjjRK7Vector3j                                                 = 0x02012328;
 _ZN5Sound10PlayLong2DEjjjj                                                        = 0x020124c4;
+_ZN5Sound17PlayLongCharVoiceEjjjRK7Vector3j                                       = 0x02012120;
 _ZN5Sound13PlayCharVoiceEjjRK7Vector3                                             = 0x02012154;
 _ZN5Sound4PlayEjjRK7Vector3                                                       = 0x02012590;
 _ZN5Sound6Play2DEjj                                                               = 0x02012840;
