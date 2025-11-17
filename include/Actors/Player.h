@@ -405,8 +405,8 @@ struct Player : Actor
 	u32 unk574;
 	char* unk578;
 	char* unk57c;
-	u32 unk580;
-	u32 unk584;
+	Vector3_16 unk580;
+	u16 unk586;
 	Actor** eggPtrArr;
 	u32 unk58c;
 	u32 unk590;
@@ -421,7 +421,7 @@ struct Player : Actor
 	u32 unk5b4;
 	u32 unk5b8;
 	Matrix4x3 unkMat5bc;
-	Matrix4x3 unkMat5ec;
+	Matrix4x3 eatMatrix;
 	u32 unk61c;
 	u32 uniqueSoundID; // play with unique ID
 	u32 playLongUniqueID;
