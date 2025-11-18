@@ -262,7 +262,7 @@ struct Player : Actor
 	enum Flags2
 	{
 		F2_SLIDE_ON_SURFACE   = 1 << 0,
-
+		F2_PLAYER_IN_MOUTH    = 1 << 1,
 		F2_CAMERA_ZOOM_IN     = 1 << 2,
 		F2_TELEPORT           = 1 << 3,
 
@@ -405,8 +405,8 @@ struct Player : Actor
 	u32 unk574;
 	char* unk578;
 	char* unk57c;
-	u32 unk580;
-	u32 unk584;
+	Vector3_16 unk580;
+	u16 unk586;
 	Actor** eggPtrArr;
 	u32 unk58c;
 	u32 unk590;
@@ -421,7 +421,7 @@ struct Player : Actor
 	u32 unk5b4;
 	u32 unk5b8;
 	Matrix4x3 unkMat5bc;
-	Matrix4x3 unkMat5ec;
+	Matrix4x3 eatMatrix;
 	u32 unk61c;
 	u32 uniqueSoundID; // play with unique ID
 	u32 playLongUniqueID;
@@ -453,14 +453,15 @@ struct Player : Actor
 	Fix12i yVisualOffset;
 	Fix12i unk690;
 	Fix12i unk694;
-	u32 spawnAngY;
+	s16 spawnAngY;
+	s16 unk69a;
 	s16 spinningAngularVelY; // used for at least turning on poles and spinning Bowser
 	s16 unk69e;
 	u16 visibilityCounter; // the player is visible when this is even (except when the player is electrocuted the second bit is checked instead)
 	u16 unk6a2;
 	u16 stateTimer; // sleep, run charge, etc.
 	u16 noControlTimer;
-	u16 unk6a8; // underwater splash bubbles, tree particles, jump related, etc.
+	union { u16 unk6a8; u16 jumpSequenceTimer;}; // underwater splash bubbles, tree particles, jump related, etc.
 	u16 nextPunchKickDelay;
 	u16 walkRunDecelTimer;
 	s16 featherCapTimeRemaining; // 0x6AE
@@ -497,7 +498,7 @@ struct Player : Actor
 	u8 currPunchKickNumber; // 0x6E2: 0 - first, 1 - second, 2 - kick, 3 - sweepkick
 	s8 stateState; // 0x6E3: the current state of the current state. How meta.
 	bool isInSlidingState;
-	union { bool noControl; bool canFlutterJump; u8 runUpAnimCounter; u8 burnCounter; u8 shockCounter; u8 buttSlideCounter;};
+	union { u8 unk6e5; bool noControl; bool canFlutterJump; u8 runUpAnimCounter; u8 burnCounter; u8 shockCounter; u8 buttSlideCounter;};
 	u8 slidingState;
 	u8 unk6e7;
 	u8 unk6e8;
@@ -614,6 +615,8 @@ struct Player : Actor
 	bool CanPause();
 	void Burn();
 	void Shock(u32 damage);
+	bool CheckSpitOutPlayer();
+	bool IsInYoshisMouth();
 	void RegisterEggCoinCount(u32 numCoins, bool includeSilverStar, bool includeBlueCoin);
 	//speed is multiplied by constant at 0x020ff128+charID*2 and divided by 50 (? could be 25, could be 100).
 	void Hurt(const Vector3& source, u32 damage, Fix12i speed, u32 arg4, u32 presetHurt, u32 spawnOuchParticles); // speed is multiplied by constant at 0x020ff128+charID*2 and divided by 50 (? could be 25, could be 100).
@@ -621,6 +624,9 @@ struct Player : Actor
 	s32 GetHealth();
 	void Bounce(Fix12i bounceInitVel);
 	void SpinBounce(Fix12i bounceInitVel);
+	void HandleYoshiFlutterJump();
+	void HandleLuigiFlutterJump();
+	void HandleVariableJumpHeight();
 	bool ChangeState(Player::State& state);
 	bool JumpIntoBooCage(Vector3& cagePos);
 	bool EnterWhirlpool();
@@ -645,14 +651,19 @@ struct Player : Actor
 
 	void Unk_020bf13c();
 	bool UpdateBeingHeld(); // returns whether being held
+	Fix12i ScaleHorzSpeedByMag(Fix12i baseSpeed, Fix12i minSpeed);
+	Fix12i ScaleVertAccelByChar(Fix12i baseAccel);
+	void SetSpeedYByChar(Fix12i baseSpeed);
+	Fix12i ScaleHorzSpeedByChar(Fix12i baseSpeed);
 	void UpdateSwimmingClsn(CylinderClsn& cylClsn);
-	Fix12i ScaleSpeedByFloorTraction(Fix12i baseSpeed);
+	Fix12i ScaleHorzSpeedByFloorTraction(Fix12i baseSpeed);
 	void RunningDust();
 	void SlidingDust();
 	void PlayerLandingDust();
 	u32 GetFloorTractionID();
 	void SetStomachOrButtSlide(u8 slideCondition);
 	bool ShouldSlide();
+	bool CheckGroundNotSteep();
 	bool DecelerateSlide(Fix12i minSlideSpeed);
 	bool TrySnapToGroundFromSlide(); // Responsible for up/downwarps
 	bool CheckShouldSlide();
@@ -689,6 +700,7 @@ struct Player : Actor
 	void UpdateAirWithTurn();
 	void InitDiveHitbox();
 	void UpdateAirWithoutTurn(Fix12i horzAccelInput, Fix12i horzAccelNeutral);
+	bool CheckYoshiMakeEgg();
 	bool CheckYoshiSwallow();
 	void HandleYoshiAttack();
 	bool CheckJumpOnPlayer();
@@ -708,7 +720,7 @@ struct Player : Actor
 	bool SetMidairAction();
 	void UpdateSlowsandJump();
 	bool CheckQuicksandJump();
-	bool CheckSlopeJump();
+	bool CheckShouldSlopeJump();
 	bool ShouldGetStuckInGround();
 	u8 GetLandingType();
 	void UpdatePlayerModel();
@@ -726,6 +738,8 @@ struct Player : Actor
 	bool IsInAnim(u32 animID);
 	bool IsFrontSliding();
 	bool LostGrabbedObject();
+
+	u16 GetBreakFreeBonus();
 
 	s32 CallKuppaScriptInstruction(char* instruction, s16 minFrame, s16 maxFrame);
 
