@@ -1602,6 +1602,7 @@ _ZN6Player14SetFirstPersonEv                                                    
 _ZN6Player13WadingRipplesE5Fix12IiE                                               = 0x020ce8bc;
 _ZN6Player16UpdateCameraZoomEv                                                    = 0x020ca940;
 _ZN6Player16IsOnWaterSurfaceEv                                                    = 0x020ceb54;
+_ZN6Player22HandleSwimHealOrDamageEv                                              = 0x020cec2c;
 _ZN6Player20IsHangingFromCeilingEv                                                = 0x020cf700;
 _ZN6Player12TryLedgeHangE5Fix12IiEb                                               = 0x020d0178;
 _ZN6Player15ShouldLedgeHangEv                                                     = 0x020d0580;
