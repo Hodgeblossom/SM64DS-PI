@@ -1525,6 +1525,8 @@ _ZN6Player22IsBeingShotOutOfCannonEv                                            
 _ZN6Player8CanPauseEv                                                             = 0x020bd828;
 _ZN6Player4BurnEv                                                                 = 0x020d57d8;
 _ZN6Player5ShockEj                                                                = 0x020d5a1c;
+_ZN6Player18CheckSpitOutPlayerEv                                                  = 0x020d5c6c;
+_ZN6Player15IsInYoshisMouthEv                                                     = 0x020d600c;
 _ZN6Player20RegisterEggCoinCountEjbb                                              = 0x020d6708;
 _ZN6Player4HurtERK7Vector3j5Fix12IiEjjj                                           = 0x020d8e70;
 _ZN6Player4HealEi                                                                 = 0x020bf4e4;
@@ -1554,6 +1556,7 @@ _ZN6Player17PlayMammaMiaSoundEv                                                 
 _ZN6Player7TryGrabER5Actor                                                        = 0x020daba0;
 _ZN6Player9DropActorEv                                                            = 0x020da7f4;
 _ZN6Player12FinishedAnimEv                                                        = 0x020bed98;
+_ZN6Player17GetBreakFreeBonusEv                                                   = 0x020beb38;
 _ZN6Player10UpdateAnimEv                                                          = 0x020bedd4;
 _ZN6Player8IsInAnimEj                                                             = 0x020beecc;
 _ZN6Player14InitKoopaShellEv                                                      = 0x020cc16c;
@@ -1580,6 +1583,7 @@ _ZN6Player17PlayerLandingDustEv                                                 
 _ZN6Player18GetFloorTractionIDEv                                                  = 0x020c031c;
 _ZN6Player21SetStomachOrButtSlideEh                                               = 0x020c0364;
 _ZN6Player11ShouldSlideEv                                                         = 0x020c0434;
+_ZN6Player19CheckGroundNotSteepEv                                                 = 0x020c04ac;
 _ZN6Player24TrySnapToGroundFromSlideEv                                            = 0x020c0688;
 _ZN6Player15DecelerateSlideE5Fix12IiE                                             = 0x020c06fc;
 _ZN6Player16CheckShouldSlideEv                                                    = 0x020c0cbc;
@@ -1613,6 +1617,7 @@ _ZN6Player14HandleWaitAnimEv                                                    
 _ZN6Player13CheckTeleportEv                                                       = 0x020d245c;
 _ZN6Player15SetLandingStateEh                                                     = 0x020d36d8;
 _ZN6Player11StopBrakingEv                                                         = 0x020d4540;
+_ZN6Player17CheckYoshiMakeEggEv                                                   = 0x020d674c;
 _ZN6Player17CheckYoshiSwallowEv                                                   = 0x020d6790;
 _ZN6Player17HandleYoshiAttackEv                                                   = 0x020d8158;
 _ZN6Player17CheckJumpOnPlayerEv                                                   = 0x020d869c;
@@ -1636,7 +1641,7 @@ _ZN6Player13PlayJumpVoiceEh                                                     
 _ZN6Player15SetMidairActionEv                                                     = 0x020e2664;
 _ZN6Player18UpdateSlowsandJumpEv                                                  = 0x020e2ad0;
 _ZN6Player18CheckQuicksandJumpEv                                                  = 0x020e2b6c;
-_ZN6Player14CheckSlopeJumpEv                                                      = 0x020e2be4;
+_ZN6Player20CheckShouldSlopeJumpEv                                                = 0x020e2be4;
 _ZN6Player14GetLandingTypeEv                                                      = 0x020e2c84;
 _ZN6Player22ShouldGetStuckInGroundEv                                              = 0x020e2ea0;
 _ZN6Player17UpdatePlayerModelEv                                                   = 0x020e4bb8;
