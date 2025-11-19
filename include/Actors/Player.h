@@ -704,11 +704,7 @@ struct Player : Actor
 	void WadingRipples(Fix12i speedToCompare);
 	void UpdateCameraZoom();
 	bool IsOnWaterSurface();
-<<<<<<< HEAD
 	bool HandleSwimHealthAndCheckDeath();
-=======
-	bool HandleSwimHealOrDamage();
->>>>>>> 70e467cba20aa9b714f0128e864974ebfb14db32
 	bool IsHangingFromCeiling();
 	bool TryLedgeHang(Fix12i maxGrabHeight, bool facingAway);
 	bool ShouldLedgeHang();
