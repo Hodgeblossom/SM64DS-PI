@@ -259,6 +259,20 @@ struct Player : Actor
 		HT_UNK7    =  7,
 	};
 
+	enum DeathStates
+	{
+		DH_UNK0   	   =  0,
+		DH_DEATH_PLANE =  1,
+		DH_BURN 	   =  2,
+		DH_QUICKSAND   =  3,
+		DH_ELECTROCUTE =  4,
+		DH_TOXIC_GAS   =  5,
+		DH_UNK6    	   =  6,
+		DH_DROWN   	   =  7,
+		DH_WATER       =  8,
+		DH_UNK9    	   =  9,
+	};
+
 	enum Flags2
 	{
 		F2_SLIDE_ON_SURFACE   = 1 << 0,
@@ -469,7 +483,7 @@ struct Player : Actor
 	u16 squishedTimer;
 	u16 unk6b4;
 	u16 unk6b6; // climbing related
-	u16 unk6b8;
+	u16 swimHealTimer;
 	u16 unk6ba;
 	u16 unk6bc;
 	u16 powerupTimer;
@@ -478,7 +492,7 @@ struct Player : Actor
 	u16 unk6c4;
 	u16 yoshiSwallowTimer;
 	u16 warpTimer;
-	u16 unk6ca;
+	u16 swimHurtTimer;
 	s16 unk6cc;
 	s16 flags2; // 0x6ce && 0x6cf
 	s16 megaDestroyCounter;
@@ -498,7 +512,7 @@ struct Player : Actor
 	u8 currPunchKickNumber; // 0x6E2: 0 - first, 1 - second, 2 - kick, 3 - sweepkick
 	s8 stateState; // 0x6E3: the current state of the current state. How meta.
 	bool isInSlidingState;
-	union { u8 unk6e5; bool noControl; bool canFlutterJump; u8 runUpAnimCounter; u8 burnCounter; u8 shockCounter; u8 buttSlideCounter;};
+	union { u8 unk6e5; bool noControl; bool canFlutterJump; bool landedUnderwater; u8 runUpAnimCounter; u8 burnCounter; u8 buttSlideCounter;};
 	u8 slidingState;
 	u8 unk6e7;
 	u8 unk6e8;
@@ -601,13 +615,14 @@ struct Player : Actor
 	u32 GetBodyModelID(u32 character, bool checkMetalStateInsteadOfMetalModel) const;
 	void HandleReturnLevelAndEntrance();
 	ModelAnim2* GetBodyModel();
-	void SetAnim(u32 animID, s32 flags, Fix12i animSpeed, u32 startFrame);
+	void SetAnim(u32 animID, s32 flags, Fix12i animSpeed = 1._f, u32 startFrame = 0);
 	void UpdateAnim();
 	bool ShowMessage(ActorBase& speaker, u32 msgIndex, const Vector3* lookAt, u32 arg3, u32 arg4);
 	bool ShowMessage2(ActorBase& speaker, u32 msgIndex, const Vector3* lookAt, u32 arg3, u32 arg4);
 	bool StartTalk(ActorBase& speaker, bool noButtonNeeded); //true iff the talk actually started.
 	s32 GetTalkState();
 	bool HasFinishedTalking();
+	bool HurtNoOverrideCheckDeath(u32 damage, bool dropHeldActor);
 	s32 GetHurtState();
 	bool IsOnShell(); // if not on shell, reset shell ptr
 	bool IsEnteringLevel(); // entering entrance, not entering exit
@@ -630,6 +645,7 @@ struct Player : Actor
 	bool ChangeState(Player::State& state);
 	bool JumpIntoBooCage(Vector3& cagePos);
 	bool EnterWhirlpool();
+	bool SetDeathState(u8 deathState);
 	void BlowAway(s16 dir);
 	bool IsInAirAndAirIsh();
 	bool CanWarp();
@@ -644,6 +660,7 @@ struct Player : Actor
 	bool IsOpeningDoorWithStar();
 	bool TryEnterStarDoor(Vector3& doorPos, s16 doorAng);
 	void PlayMammaMiaSound();
+	bool TryDropHeldActor();
 	bool TryGrab(Actor& actor);
 	bool DropActor();
 	bool FinishedAnim();
@@ -662,6 +679,7 @@ struct Player : Actor
 	void PlayerLandingDust();
 	u32 GetFloorTractionID();
 	void SetStomachOrButtSlide(u8 slideCondition);
+	void ZeroVertAccelYSpeedHorzSpeed();
 	bool ShouldSlide();
 	bool CheckGroundNotSteep();
 	bool DecelerateSlide(Fix12i minSlideSpeed);
@@ -682,6 +700,7 @@ struct Player : Actor
 	void WadingRipples(Fix12i speedToCompare);
 	void UpdateCameraZoom();
 	bool IsOnWaterSurface();
+	bool HandleSwimHealthAndCheckDeath();
 	bool IsHangingFromCeiling();
 	bool TryLedgeHang(Fix12i maxGrabHeight, bool facingAway);
 	bool ShouldLedgeHang();
@@ -734,6 +753,8 @@ struct Player : Actor
 	static bool CheckOnWallOnActor(WithMeshClsn& wmClsn, Actor& actor);
 	Fix12i Unk_020f030c(u32 floorTraction);
 	static bool OnSlopedGround(u32 floorTraction, Fix12i floorNormalY);
+
+	u16 GetBreakFreeBonus();
 	
 	bool IsInAnim(u32 animID);
 	bool IsFrontSliding();
