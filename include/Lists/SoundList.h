@@ -1504,7 +1504,7 @@ namespace Sound
 	}
 	
 	[[gnu::always_inline]]
-	inline void PlayLong(u32& soundID, SoundIDs ids, Vector3 camSpacePos, u32 arg4)
+	inline void PlayLong(u32& soundID, SoundIDs ids, Vector3 camSpacePos, u32 arg4 = 0)
 	{
 		soundID = PlayLong(soundID, ids.seqArcID, ids.seqID, camSpacePos, arg4);
 	}
