@@ -1562,7 +1562,6 @@ _ZN6Player9DropActorEv                                                          
 _ZN6Player12FinishedAnimEv                                                        = 0x020bed98;
 _ZN6Player17GetBreakFreeBonusEv                                                   = 0x020beb38;
 _ZN6Player10UpdateAnimEv                                                          = 0x020bedd4;
-_ZN6Player17GetBreakFreeBonusEv                                                   = 0x020beb38;
 _ZN6Player8IsInAnimEj                                                             = 0x020beecc;
 _ZN6Player14InitKoopaShellEv                                                      = 0x020cc16c;
 _ZN6Player14IsFrontSlidingEv                                                      = 0x020dd2b0;

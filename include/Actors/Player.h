@@ -760,8 +760,6 @@ struct Player : Actor
 	bool IsFrontSliding();
 	bool LostGrabbedObject();
 
-	u16 GetBreakFreeBonus();
-
 	s32 CallKuppaScriptInstruction(char* instruction, s16 minFrame, s16 maxFrame);
 
 	void PlaySubMusic(u32 musicID);

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Math.h"
-#include "MusicIDs.h"
+#include "Lists/MusicList.h"
 
 struct ROM_Info;
 struct Actor;
