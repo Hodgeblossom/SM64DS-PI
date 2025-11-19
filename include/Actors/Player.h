@@ -512,7 +512,11 @@ struct Player : Actor
 	u8 currPunchKickNumber; // 0x6E2: 0 - first, 1 - second, 2 - kick, 3 - sweepkick
 	s8 stateState; // 0x6E3: the current state of the current state. How meta.
 	bool isInSlidingState;
+<<<<<<< HEAD
 	union { u8 unk6e5; bool noControl; bool canFlutterJump; bool landedUnderwater; u8 runUpAnimCounter; u8 burnCounter; u8 buttSlideCounter;};
+=======
+	union { u8 unk6e5; bool noControl; bool canFlutterJump; u8 runUpAnimCounter; u8 burnCounter; u8 shockCounter; u8 buttSlideCounter;};
+>>>>>>> 70e467cba20aa9b714f0128e864974ebfb14db32
 	u8 slidingState;
 	u8 unk6e7;
 	u8 unk6e8;
@@ -700,7 +704,11 @@ struct Player : Actor
 	void WadingRipples(Fix12i speedToCompare);
 	void UpdateCameraZoom();
 	bool IsOnWaterSurface();
+<<<<<<< HEAD
 	bool HandleSwimHealthAndCheckDeath();
+=======
+	bool HandleSwimHealOrDamage();
+>>>>>>> 70e467cba20aa9b714f0128e864974ebfb14db32
 	bool IsHangingFromCeiling();
 	bool TryLedgeHang(Fix12i maxGrabHeight, bool facingAway);
 	bool ShouldLedgeHang();
@@ -759,6 +767,8 @@ struct Player : Actor
 	bool IsInAnim(u32 animID);
 	bool IsFrontSliding();
 	bool LostGrabbedObject();
+
+	u16 GetBreakFreeBonus();
 
 	s32 CallKuppaScriptInstruction(char* instruction, s16 minFrame, s16 maxFrame);
 

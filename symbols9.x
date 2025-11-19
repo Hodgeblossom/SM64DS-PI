@@ -346,7 +346,10 @@ HORZ_SPEED_CHAR_MULTIPLIERS                                                     
 JUMP_SPEED_CHAR_MULTIPLIERS                                                       = 0x020ff140;
 JUMP_SEQUENCE_SPEEDS                                                              = 0x0210a59c;
 JUMP_SEQUENCE_ANIMS                                                               = 0x0210a5a8;
+<<<<<<< HEAD
 CEILING_GRATE_ANIMS                                                               = 0x0210a60c;
+=======
+>>>>>>> 70e467cba20aa9b714f0128e864974ebfb14db32
 
 NEXT_HAT_CHARACTER                                                                = 0x02092114;
 UNK_YOSHI_EGG_RELATED                                                             = 0x0209f254;
@@ -1560,6 +1563,7 @@ _ZN6Player16TryDropHeldActorEv                                                  
 _ZN6Player7TryGrabER5Actor                                                        = 0x020daba0;
 _ZN6Player9DropActorEv                                                            = 0x020da7f4;
 _ZN6Player12FinishedAnimEv                                                        = 0x020bed98;
+_ZN6Player17GetBreakFreeBonusEv                                                   = 0x020beb38;
 _ZN6Player10UpdateAnimEv                                                          = 0x020bedd4;
 _ZN6Player17GetBreakFreeBonusEv                                                   = 0x020beb38;
 _ZN6Player8IsInAnimEj                                                             = 0x020beecc;
@@ -1607,7 +1611,11 @@ _ZN6Player14SetFirstPersonEv                                                    
 _ZN6Player13WadingRipplesE5Fix12IiE                                               = 0x020ce8bc;
 _ZN6Player16UpdateCameraZoomEv                                                    = 0x020ca940;
 _ZN6Player16IsOnWaterSurfaceEv                                                    = 0x020ceb54;
+<<<<<<< HEAD
 _ZN6Player29HandleSwimHealthAndCheckDeathEv                                       = 0x020cec2c;
+=======
+_ZN6Player22HandleSwimHealOrDamageEv                                              = 0x020cec2c;
+>>>>>>> 70e467cba20aa9b714f0128e864974ebfb14db32
 _ZN6Player20IsHangingFromCeilingEv                                                = 0x020cf700;
 _ZN6Player12TryLedgeHangE5Fix12IiEb                                               = 0x020d0178;
 _ZN6Player15ShouldLedgeHangEv                                                     = 0x020d0580;
