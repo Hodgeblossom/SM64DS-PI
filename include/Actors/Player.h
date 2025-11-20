@@ -512,7 +512,7 @@ struct Player : Actor
 	u8 currPunchKickNumber; // 0x6E2: 0 - first, 1 - second, 2 - kick, 3 - sweepkick
 	s8 stateState; // 0x6E3: the current state of the current state. How meta.
 	bool isInSlidingState;
-	union { u8 unk6e5; bool noControl; bool canFlutterJump; bool landedUnderwater; u8 runUpAnimCounter; u8 burnCounter; u8 buttSlideCounter;};
+	union { u8 unk6e5; bool noControl; bool canFlutterJump; bool landedUnderwater; u8 runUpAnimCounter; u8 burnCounter; u8 buttSlideCounter; bool ceilingHangingLeft;};
 	u8 slidingState;
 	u8 unk6e7;
 	u8 unk6e8;
@@ -678,6 +678,11 @@ struct Player : Actor
 	void SlidingDust();
 	void PlayerLandingDust();
 	u32 GetFloorTractionID();
+	Fix12i GetHangableCeilingHeight();
+	void UpdateCeilingHang();
+	bool CheckCanPullUp();
+	bool DetectRaycastActorClsnNoWarpPipe(const Vector3& pos0, const Vector3& pos1);
+	bool CheckForcePullUp();
 	void SetStomachOrButtSlide(u8 slideCondition);
 	void ZeroVertAccelYSpeedHorzSpeed();
 	bool ShouldSlide();
@@ -700,10 +705,11 @@ struct Player : Actor
 	void WadingRipples(Fix12i speedToCompare);
 	void UpdateCameraZoom();
 	bool IsOnWaterSurface();
-	bool HandleSwimHealthAndCheckDeath();
+	bool HandleSwimHealthCheckDeath();
 	bool IsHangingFromCeiling();
 	bool TryLedgeHang(Fix12i maxGrabHeight, bool facingAway);
 	bool ShouldLedgeHang();
+	void AdjustLedgeHangPosAndFall();
 	void SetPunchKickAttack(u8 punchKickNumber);
 	void ClearActorInMouth();
 	bool CheckLedgeHangOrGrab();

@@ -91,8 +91,8 @@ struct Camera : View // internal name: dCamera
 		SLEEP_COLD_ZOOM_IN = 1 << 13,
 		TALK               = 1 << 14,
 		ZOOM_OUT_FROM_TALK = 1 << 15,
-
-
+		CEILING_HANG_ABOVE = 1 << 16,
+		CEILING_HANG_BELOW = 1 << 17,
 
 		ZOOMED_IN          = 1 << 19
 	};
@@ -186,6 +186,7 @@ struct Camera : View // internal name: dCamera
 	void GoBehindPlayer(u32 playerID);
 	s32 CallKuppaScriptInstruction(char* instruction, s16 minFrame, s16 maxFrame);
 	void SetSwimCamera(u32 playerID);
+	void Unk_0200ca14(u32 playerID, u32 clpsCamBehavID);
 
 	// Func_0200D954
 	// Func_0200D8C8
