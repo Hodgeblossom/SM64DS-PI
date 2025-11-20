@@ -1347,6 +1347,7 @@ _ZN6Camera10LookAtExitER5Actor                                                  
 _ZN6Camera14GoBehindPlayerEj                                                      = 0x0200d304;
 _ZN6Camera26CallKuppaScriptInstructionEPcss                                       = 0x02008550;
 _ZN6Camera13SetSwimCameraEj                                                       = 0x0200d768;
+_ZN6Camera17SetCeilingHangCamEjj                                                  = 0x0200ca14;
 
 GLOBAL_CLIPPER                                                                    = 0x0209F43C;
 
@@ -1585,6 +1586,11 @@ _ZN6Player11RunningDustEv                                                       
 _ZN6Player11SlidingDustEv                                                         = 0x020bf90c;
 _ZN6Player17PlayerLandingDustEv                                                   = 0x020bf9d4;
 _ZN6Player18GetFloorTractionIDEv                                                  = 0x020c031c;
+_ZN6Player24GetHangableCeilingHeightEv                                            = 0x020cf20c;
+_ZN6Player17UpdateCeilingHangEv                                                   = 0x020cf2f8;
+_ZN6Player14CheckCanPullUpEv                                                      = 0x020cfaf0;
+_ZN6Player32DetectRaycastActorClsnNoWarpPipeERK7Vector3S1_                        = 0x020cfd84;
+_ZN6Player16CheckForcePullUpEv                                                    = 0x020cfea4;
 _ZN6Player21SetStomachOrButtSlideEh                                               = 0x020c0364;
 _ZN6Player28ZeroVertAccelYSpeedHorzSpeedEv                                        = 0x020cf384;
 _ZN6Player11ShouldSlideEv                                                         = 0x020c0434;
@@ -1607,10 +1613,11 @@ _ZN6Player14SetFirstPersonEv                                                    
 _ZN6Player13WadingRipplesE5Fix12IiE                                               = 0x020ce8bc;
 _ZN6Player16UpdateCameraZoomEv                                                    = 0x020ca940;
 _ZN6Player16IsOnWaterSurfaceEv                                                    = 0x020ceb54;
-_ZN6Player29HandleSwimHealthAndCheckDeathEv                                       = 0x020cec2c;
+_ZN6Player26HandleSwimHealthCheckDeathEv                                          = 0x020cec2c;
 _ZN6Player20IsHangingFromCeilingEv                                                = 0x020cf700;
 _ZN6Player12TryLedgeHangE5Fix12IiEb                                               = 0x020d0178;
 _ZN6Player15ShouldLedgeHangEv                                                     = 0x020d0580;
+_ZN6Player25AdjustLedgeHangPosAndFallEv                                           = 0x020d0948;
 _ZN6Player17HandleRunningDustEv                                                   = 0x020d45c0;
 _ZN6Player17ClearActorInMouthEv                                                   = 0x020d718c;
 _ZN6Player18SetPunchKickAttackEh                                                  = 0x020d8a50;
