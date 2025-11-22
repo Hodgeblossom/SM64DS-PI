@@ -267,10 +267,25 @@ struct Player : Actor
 		DH_QUICKSAND   =  3,
 		DH_ELECTROCUTE =  4,
 		DH_TOXIC_GAS   =  5,
-		DH_UNK6    	   =  6,
+		DH_WHIRLPOOL   =  6,
 		DH_DROWN   	   =  7,
 		DH_WATER       =  8,
 		DH_UNK9    	   =  9,
+	};
+
+	enum OnWallStates
+	{
+		OW_LEFT  = 0,
+		OW_RIGHT = 1,
+		OW_PUSH  = 2,
+	};
+
+	enum ClsnStateFlags
+	{
+		ON_GROUND  		  = 1 << 0,
+		ON_WALL   		  = 1 << 1,
+		ON_CEILING_CORNER = 1 << 2,
+		ON_CEILING 		  = 1 << 3,
 	};
 
 	enum Flags2
@@ -402,7 +417,7 @@ struct Player : Actor
 	Actor* actorInHands;
 	Actor* holdingActor;
 	Actor* actorInMouth;
-	u32 unk364;
+	Actor* unk364;
 	ActorBase* speaker;
 	u32 unk36c;
 	State* currState;
@@ -508,7 +523,7 @@ struct Player : Actor
 	bool isInAir;
 	bool landingSoundPlayed;
 	bool isBraking;
-	u8 currJumpNumber; // 0x6E1: 0 - first, 1 - second, 2 - triple jump
+	u8 currJumpNumber; // 0x6E1: 0 - first, 1 - second, 2 - triple jump   (also used for the Crazed Crate)
 	u8 currPunchKickNumber; // 0x6E2: 0 - first, 1 - second, 2 - kick, 3 - sweepkick
 	s8 stateState; // 0x6E3: the current state of the current state. How meta.
 	bool isInSlidingState;
@@ -599,6 +614,7 @@ struct Player : Actor
 	void SetNewHatCharacter(u32 character, u32 arg1, bool makeSfx);
 	void SetRealCharacter(u32 character);
 	void TurnOffToonShading(u32 character);
+	void InitPlayerCylClsn();
 	
 	bool IsInState(const State& state);
 	bool WasPreviousState(const State& state);
@@ -620,6 +636,7 @@ struct Player : Actor
 	bool ShowMessage(ActorBase& speaker, u32 msgIndex, const Vector3* lookAt, u32 arg3, u32 arg4);
 	bool ShowMessage2(ActorBase& speaker, u32 msgIndex, const Vector3* lookAt, u32 arg3, u32 arg4);
 	bool StartTalk(ActorBase& speaker, bool noButtonNeeded); //true iff the talk actually started.
+	bool Unk_020c5244(); // always returns false
 	s32 GetTalkState();
 	bool HasFinishedTalking();
 	bool HurtNoOverrideCheckDeath(u32 damage, bool dropHeldActor);
@@ -631,6 +648,7 @@ struct Player : Actor
 	void Burn();
 	void Shock(u32 damage);
 	bool CheckSpitOutPlayer();
+	bool TrySpitPlayerFromMouth();
 	bool IsInYoshisMouth();
 	void RegisterEggCoinCount(u32 numCoins, bool includeSilverStar, bool includeBlueCoin);
 	//speed is multiplied by constant at 0x020ff128+charID*2 and divided by 50 (? could be 25, could be 100).
@@ -665,6 +683,7 @@ struct Player : Actor
 	bool DropActor();
 	bool FinishedAnim();
 	void HandleRunningDust();
+	void ApproachHorzSpeedCheckSlope(Fix12i dest, Fix12i step);
 
 	void Unk_020bf13c();
 	bool UpdateBeingHeld(); // returns whether being held
@@ -677,11 +696,12 @@ struct Player : Actor
 	void RunningDust();
 	void SlidingDust();
 	void PlayerLandingDust();
+	bool Unk_020c0108(bool arg0);
 	u32 GetFloorTractionID();
 	Fix12i GetHangableCeilingHeight();
 	void UpdateCeilingHang();
 	bool CheckCanPullUp();
-	bool DetectRaycastActorClsnNoWarpPipe(const Vector3& pos0, const Vector3& pos1);
+	bool RaycastActorClsnNoWarpPipe(const Vector3& pos0, const Vector3& pos1);
 	bool CheckForcePullUp();
 	void SetStomachOrButtSlide(u8 slideCondition);
 	void ZeroVertAccelYSpeedHorzSpeed();
@@ -690,7 +710,7 @@ struct Player : Actor
 	bool DecelerateSlide(Fix12i minSlideSpeed);
 	bool TrySnapToGroundFromSlide(); // Responsible for up/downwarps
 	bool CheckShouldSlide();
-	bool DetectRaycastFromPos(u8 horzOffset, u8 vertOffset);
+	bool RaycastFromPos(u8 horzOffset, u8 vertOffset);
 	bool CheckSideStep(s16 wallAngle);
 	bool SetWallSlideOrBounceBack(s16 wallAngle);
 	s32 ApplySlopeTransform();
@@ -700,6 +720,8 @@ struct Player : Actor
 	void UpdateFloorCollision();
 	void PlayJumpLandSound();
 	void FirstTimeMessage(u8 firstTimeType);
+	void RiseToWaterSurface();
+	Fix12i ScaleRiseToSurfaceSpeedByChar();
 	void MakePlayerInvulnerable();
 	void SetFirstPerson();
 	void WadingRipples(Fix12i speedToCompare);
@@ -735,21 +757,25 @@ struct Player : Actor
 	void InitGroundPoundCylClsn2();
 	void InitPunchKickCylClsn2();
 	void AdjustSlideAngle();
+	void Unk_020de3d0(s16 ang0, s16 ang1);
+	void PlayBalloonBoundSound();
 	bool CheckGroundPoundPlayer(); //Multiplayer only
 	s32 SetDiveOrKick();
 	bool IsFlying();
 	void GetJumpLandingAnim();
 	bool ShouldUseCrazedCrate(Actor* actor);
+	void HandleCrazedCrateBounce(u8 bounceNumber);
 	void PlayBackflipLandVoice();
 	void PlayJumpVoice(u8 jumpNumber);
 	bool SetMidairAction();
-	void UpdateSlowsandJump();
-	bool CheckQuicksandJump();
+	void HandleSlowsandJump();
+	bool ForceQuicksandJumpIfSunk();
+	bool ForceJumpIfMega();
 	bool CheckShouldSlopeJump();
 	bool ShouldGetStuckInGround();
 	u8 GetLandingType();
 	void UpdatePlayerModel();
-	static bool CheckJumpIntoActor(WithMeshClsn& wmClsn, Actor& jumper);
+	static bool CheckCornerCorrectOnActor(WithMeshClsn& wmClsn, Actor& jumper);
 	static bool CheckMegaPlayerCollisionWithActor(WithMeshClsn& wmClsn, Actor& megaPlayer);
 	static bool CheckShotIntoActor(WithMeshClsn& wmClsn, Actor& shooter);
 	static bool CheckPushActor(WithMeshClsn& wmClsn, Actor& pusher);
