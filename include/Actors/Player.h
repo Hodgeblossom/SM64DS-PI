@@ -523,7 +523,7 @@ struct Player : Actor
 	bool isInAir;
 	bool landingSoundPlayed;
 	bool isBraking;
-	union { u8 currJumpNumber; u8 currCrazedCrateBounce;}; // 0x6E1: 0 - first, 1 - second, 2 - triple jump
+	u8 currJumpNumber; // 0x6E1: 0 - first, 1 - second, 2 - triple jump   (also used for the Crazed Crate)
 	u8 currPunchKickNumber; // 0x6E2: 0 - first, 1 - second, 2 - kick, 3 - sweepkick
 	s8 stateState; // 0x6E3: the current state of the current state. How meta.
 	bool isInSlidingState;
