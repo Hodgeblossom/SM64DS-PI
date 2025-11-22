@@ -185,7 +185,8 @@ struct Camera : View // internal name: dCamera
 	void LookAtExit(Actor& exit);
 	void GoBehindPlayer(u32 playerID);
 	s32 CallKuppaScriptInstruction(char* instruction, s16 minFrame, s16 maxFrame);
-	void SetSwimCamera(u32 playerID);
+	void SetSpinTwirlCam(u32 playerID);
+	void SetSwimCam(u32 playerID);
 	void SetCeilingHangCam(u32 playerID, u32 clpsCamBehavID);
 
 	// Func_0200D954

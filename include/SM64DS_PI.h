@@ -237,11 +237,18 @@ extern s16 HEALTH_ARR[4];
 extern s8 NUM_LIVES;
 extern u8 RENDERED_HEALTH;
 
-extern Fix12s HORZ_SPEED_CHAR_MULTIPLIERS[4];
 extern Fix12s JUMP_SPEED_CHAR_MULTIPLIERS[4];
+extern Fix12s SWIM_SPEED_CHAR_MULTIPLIERS[4];
+extern u32 ON_WALL_ANIMS[3];
+extern Fix12s HORZ_SPEED_CHAR_MULTIPLIERS[4];
+extern Fix12i CRAZED_CRATE_VERT_SPEEDS[3];
+extern Fix12i CRAZED_CRATE_HORZ_SPEEDS[3];
+extern Fix12i RISE_TO_SURFACE_SPEED_CHAR_MULTIPLIERS[4];
+extern u32 PUNCH_KICK_SEQUENCE_VOICES[3];
 extern Fix12i JUMP_SEQUENCE_SPEEDS[3];
 extern u32 JUMP_SEQUENCE_ANIMS[3];
 extern u32 CEILING_GRATE_ANIMS[4];
+extern Vector3 PLAYER_CYLCLSN_OFFSET;
 
 extern u8 NEXT_HAT_CHARACTER;
 extern u8 UNK_YOSHI_EGG_RELATED;
@@ -430,7 +437,7 @@ extern "C"
 	void StartExitFaderWipe(s32 wipeID);
 	void FUN_02029934();
 	void FUN_02029980();
-	void FUN_020299f4();
+	void RespawnPlaneFader();
 	void FUN_02029a68();
 	void FUN_02029ab0();
 	void EnterBigBoosHaunt();
