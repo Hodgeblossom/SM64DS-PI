@@ -192,6 +192,7 @@ struct WithMeshClsn
 	void ClearAllGroundFlags();
 	void StartDetectingWater();
 	void StopDetectingWater();
+	void SetActorPosAndPrevPos(Vector3& newPos);
 	void Unk_0203589c();
 	s32  TouchesWater() const;
 	s32 GetResultFlag1() const;
