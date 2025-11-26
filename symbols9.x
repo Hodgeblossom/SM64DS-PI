@@ -342,6 +342,8 @@ HEALTH_ARR                                                                      
 NUM_LIVES                                                                         = 0x0209f2f4;
 RENDERED_HEALTH                                                                   = 0x0211117c;
 
+STUCK_IN_GROUND_LEAVE_FRAMES                                                      = 0x020ff0ec;
+SLIDE_KICK_VOICES                                                                 = 0x020ff130;
 JUMP_SPEED_CHAR_MULTIPLIERS                                                       = 0x020ff140;
 SWIM_SPEED_CHAR_MULTIPLIERS                                                       = 0x020ff158;
 ON_WALL_ANIMS                                                                     = 0x020ff164;
@@ -350,6 +352,9 @@ CRAZED_CRATE_VERT_SPEEDS                                                        
 CRAZED_CRATE_HORZ_SPEEDS                                                          = 0x020ff188;
 PUNCH_KICK_SEQUENCE_VOICES                                                        = 0x020ff194;
 RISE_TO_SURFACE_SPEED_CHAR_MULTIPLIERS                                            = 0x020ff1e0;
+STUCK_IN_GROUND_INIT_ANIMS                                                        = 0x0210a560;
+STUCK_IN_GROUND_WAIT_ANIMS                                                        = 0x0210a578;
+STUCK_IN_GROUND_END_ANIMS                                                         = 0x0210a584;
 JUMP_SEQUENCE_SPEEDS                                                              = 0x0210a59c;
 JUMP_SEQUENCE_ANIMS                                                               = 0x0210a5a8;
 JUMP_LAND_ANIMS                                                                   = 0x0210a5b4;
@@ -1053,6 +1058,7 @@ _ZN12WithMeshClsn22ClearJustHitGroundFlagEv                                     
 _ZN12WithMeshClsn19ClearAllGroundFlagsEv                                          = 0x02035750;
 _ZN12WithMeshClsn19StartDetectingWaterEv                                          = 0x02035840;
 _ZN12WithMeshClsn18StopDetectingWaterEv                                           = 0x02035820;
+_ZN12WithMeshClsn21SetActorPosAndPrevPosER7Vector3                                = 0x02035860;
 _ZN12WithMeshClsn12Unk_0203589cEv                                                 = 0x0203589c;
 _ZNK12WithMeshClsn12TouchesWaterEv                                                = 0x02035610;
 _ZNK12WithMeshClsn14GetResultFlag1Ev                                              = 0x02035620;
@@ -1533,6 +1539,7 @@ _ZN6Player12ShowMessage2ER9ActorBasejPK7Vector3jj                               
 _ZN6Player9StartTalkER9ActorBaseb                                                 = 0x020c4fa0;
 _ZN6Player12Unk_020c5244Ev                                                        = 0x020c5244;
 _ZN6Player12GetTalkStateEv                                                        = 0x020c524c;
+_ZN6Player26PlayStuckInGroundParticlesEv                                          = 0x020c5444;
 _ZN6Player18HasFinishedTalkingEv                                                  = 0x020c4efc;
 _ZN6Player24HurtNoOverrideCheckDeathEjb                                           = 0x020d91e0;
 _ZN6Player12GetHurtStateEv                                                        = 0x020d9c44;
@@ -1658,6 +1665,7 @@ _ZN6Player17CheckJumpOnPlayerEv                                                 
 _ZN6Player20CheckThrowHeldPlayerEv                                                = 0x020dab14;
 _ZN6Player17UpdateAirWithTurnEv                                                   = 0x020dc560;
 _ZN6Player14InitDiveHitboxEv                                                      = 0x020dba0c;
+_ZN6Player19InitSlideKickHitboxEv                                                 = 0x020dbaec;
 _ZN6Player20UpdateAirWithoutTurnE5Fix12IiES1_                                     = 0x020e28d4;
 _ZN6Player13HandleRunLeanEs                                                       = 0x020d413c;
 _ZN6Player15TrySetBrakeAnimEv                                                     = 0x020d454c;

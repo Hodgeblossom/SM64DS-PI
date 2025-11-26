@@ -527,7 +527,7 @@ struct Player : Actor
 	u8 currPunchKickNumber; // 0x6E2: 0 - first, 1 - second, 2 - kick, 3 - sweepkick
 	s8 stateState; // 0x6E3: the current state of the current state. How meta.
 	bool isInSlidingState;
-	union { u8 unk6e5; bool noControl; bool canFlutterJump; bool landedUnderwater; u8 runUpAnimCounter; u8 burnCounter; u8 buttSlideCounter; bool ceilingHangingLeft;};
+	union { u8 unk6e5; bool noControl; bool canFlutterJump; bool landedUnderwater; u8 runUpAnimCounter; u8 burnCounter; u8 buttSlideCounter; bool ceilingHangingLeft; bool slideKickBounced; u8 stuckInGroundState;};
 	u8 slidingState;
 	u8 unk6e7;
 	u8 unk6e8;
@@ -638,6 +638,7 @@ struct Player : Actor
 	bool StartTalk(ActorBase& speaker, bool noButtonNeeded); //true iff the talk actually started.
 	bool Unk_020c5244(); // always returns false
 	s32 GetTalkState();
+	void PlayStuckInGroundParticles();
 	bool HasFinishedTalking();
 	bool HurtNoOverrideCheckDeath(u32 damage, bool dropHeldActor);
 	s32 GetHurtState();
@@ -746,6 +747,7 @@ struct Player : Actor
 	bool CheckThrowHeldPlayer();
 	void UpdateAirWithTurn();
 	void InitDiveHitbox();
+	void InitSlideKickHitbox();
 	void UpdateAirWithoutTurn(Fix12i horzAccelInput, Fix12i horzAccelNeutral);
 	bool CheckYoshiMakeEgg();
 	bool CheckYoshiSwallow();
