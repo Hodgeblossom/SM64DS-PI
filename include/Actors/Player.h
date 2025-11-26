@@ -743,7 +743,7 @@ struct Player : Actor
 	bool CheckTeleport();
 	bool SetLandingState(u8 stateCondition);
 	void Stopbreaking();
-	bool CheckHoldingActor();
+	bool CheckThrowHeldPlayer();
 	void UpdateAirWithTurn();
 	void InitDiveHitbox();
 	void UpdateAirWithoutTurn(Fix12i horzAccelInput, Fix12i horzAccelNeutral);
@@ -753,19 +753,21 @@ struct Player : Actor
 	bool CheckJumpOnPlayer();
 	void HandleRunLean(s16 playerMotionAngY);
 	void TrySetBrakeAnim();
+	void GetThrown(Fix12i horizontalSpeed, Fix12i verticalSpeed, s16 angle);
 	void UpdatePlayerScale();
 	void InitGroundPoundCylClsn2();
 	void InitPunchKickCylClsn2();
 	void AdjustSlideAngle();
 	void Unk_020de3d0(s16 ang0, s16 ang1);
 	void PlayBalloonBoundSound();
-	bool CheckGroundPoundPlayer(); //Multiplayer only
-	s32 SetDiveOrKick();
+	void TryGroundPoundPlayer(); //Multiplayer only
+	bool SetDiveOrKick();
 	bool IsFlying();
-	void GetJumpLandingAnim();
+	void TryRunningDustAfterLand();
+	u32 GetJumpLandAnim();
 	bool ShouldUseCrazedCrate(Actor* actor);
 	void HandleCrazedCrateBounce(u8 bounceNumber);
-	void PlayBackflipLandVoice();
+	void PlayLandSuccessVoice();
 	void PlayJumpVoice(u8 jumpNumber);
 	bool SetMidairAction();
 	void HandleSlowsandJump();
