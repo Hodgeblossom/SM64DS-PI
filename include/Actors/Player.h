@@ -573,7 +573,7 @@ struct Player : Actor
 	bool isIntangibleToMesh;
 	u8 unk717;
 	u16 unkFlags;
-	bool hasNoCap;
+	bool collectingLostCap;
 	bool quickSandJump;
 	u32 unk71c;
 	u32 unk720;
