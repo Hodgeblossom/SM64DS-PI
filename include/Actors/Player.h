@@ -733,6 +733,7 @@ struct Player : Actor
 	void UpdateFloorCollision();
 	void PlayJumpLandSound();
 	void FirstTimeMessage(u8 firstTimeType);
+	bool FaceSpeaker();
 	void RiseToWaterSurface();
 	Fix12i ScaleRiseToSurfaceSpeedByChar();
 	void MakePlayerInvulnerable();

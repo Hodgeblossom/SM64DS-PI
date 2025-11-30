@@ -1633,6 +1633,7 @@ _ZN6Player20CheckBonkOrWallSlideEv                                              
 _ZN6Player20UpdateFloorCollisionEv                                                = 0x020c2db8;
 _ZN6Player17PlayJumpLandSoundEv                                                   = 0x020c2f64;
 _ZN6Player16FirstTimeMessageEh                                                    = 0x020c43c4;
+_ZN6Player11FaceSpeakerEv                                                         = 0x020c47f4;
 _ZN6Player18RiseToWaterSurfaceEv                                                  = 0x020c9718;
 _ZN6Player22MakePlayerInvulnerableEv                                              = 0x020c9e40;
 _ZN6Player14SetFirstPersonEv                                                      = 0x020cabe0;
@@ -1907,6 +1908,10 @@ _ZN6Bowser18CheckSpikeBombClsnEv                                                
 
 /* Actors/SpikeBomb.h */
 _ZN9SpikeBomb7RecoverEv                                                           = 0x021186d8;
+
+/* Actors/Door.h */
+_ZN4Door22StopBowserMessageSoundEv                                                = 0x02144fcc;
+_ZN4Door26ContinueBowserMessageSoundEv                                            = 0x02145014;
 
 /* Particle.h */
 _ZN8Particle12Acceleration4FuncERNS_10EffectDataEPcR7Vector3                      = 0x0204d8b0;
