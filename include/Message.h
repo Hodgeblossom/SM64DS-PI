@@ -60,6 +60,9 @@ struct Message
 	static void DisplayCourseNameForStarSelect(u32 courseID);
 	static void DisplayStarNameForStarSelect(u32 starID);
 
+	static void BeginMessage(u32 msgID);
+	static void UpdateShownMessage(u32 msgID);
+
 	static bool UpdateWindow();
 	static void Update();
 

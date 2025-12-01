@@ -1107,6 +1107,9 @@ _ZN7Message12UpdateWindowEv                                                     
 _ZN7Message6UpdateEv                                                              = 0x0201c0b8;
 _ZN7Message15ResetAllGlobalsEv                                                    = 0x0201fcac;
 
+_ZN7Message18UpdateShownMessageEj                                                 = 0x0201f32c;
+_ZN7Message12BeginMessageEj                                                       = 0x0201fc88;
+
 MSG_LINE_HEIGHT                                                                   = 0x0209d6a8;
 MSG_BOX_CENTER_X                                                                  = 0x0209d6d0;
 MSG_BOX_CENTER_Y                                                                  = 0x0209d6c8;
@@ -1361,10 +1364,13 @@ _ZN6Camera11ChangeStateEPNS_5StateE                                             
 _ZN6Camera10LookAtExitER5Actor                                                    = 0x0200d184;
 _ZN6Camera14GoBehindPlayerEj                                                      = 0x0200d304;
 _ZN6Camera26CallKuppaScriptInstructionEPcss                                       = 0x02008550;
+_ZN6Camera15SetFixedTalkCamEjRK7Vector3                                           = 0x0200d3f8;
 _ZN6Camera15SetHeadstandCamEj                                                     = 0x0200d580;
 _ZN6Camera15SetSpinTwirlCamEj                                                     = 0x0200d678;
 _ZN6Camera10SetSwimCamEj                                                          = 0x0200d768;
+_ZN6Camera10SetTalkCamEj                                                          = 0x0200d7a4;
 _ZN6Camera17SetCeilingHangCamEjj                                                  = 0x0200ca14;
+_ZN6Camera12SetNormalCamEj                                                        = 0x0200d81c;
 _ZN6Camera13CameraShakeAtERK7Vector35Fix12IiE                                     = 0x0200d8c8;
 
 GLOBAL_CLIPPER                                                                    = 0x0209F43C;
@@ -1633,7 +1639,7 @@ _ZN6Player20CheckBonkOrWallSlideEv                                              
 _ZN6Player20UpdateFloorCollisionEv                                                = 0x020c2db8;
 _ZN6Player17PlayJumpLandSoundEv                                                   = 0x020c2f64;
 _ZN6Player16FirstTimeMessageEh                                                    = 0x020c43c4;
-_ZN6Player11FaceSpeakerEv                                                         = 0x020c47f4;
+_ZN6Player13FaceLookAtPosEv                                                       = 0x020c47f4;
 _ZN6Player18RiseToWaterSurfaceEv                                                  = 0x020c9718;
 _ZN6Player22MakePlayerInvulnerableEv                                              = 0x020c9e40;
 _ZN6Player14SetFirstPersonEv                                                      = 0x020cabe0;

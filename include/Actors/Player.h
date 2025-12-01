@@ -588,7 +588,9 @@ struct Player : Actor
 	bool collectingLostCap;
 	bool quickSandJump;
 	u32 unk71c;
-	u32 unk720;
+	u16 unk720;
+	bool unk722;
+	bool unk723;
 	u32 unk724;
 	u32 unk728;
 	u32 unk72c;
@@ -598,7 +600,7 @@ struct Player : Actor
 	s16 toonStateAndFlag; //8 possible states, 0x8000 is the invincible-and-can't-collect-caps flag
 	s16 unk73e;
 	Fix12i toonIntensity;
-	Vector3 unk744;
+	Vector3 lookAtPos;
 	u32 unk750;
 	u32 unk754;
 	u32 unk758;
@@ -733,7 +735,7 @@ struct Player : Actor
 	void UpdateFloorCollision();
 	void PlayJumpLandSound();
 	void FirstTimeMessage(u8 firstTimeType);
-	bool FaceSpeaker();
+	bool FaceLookAtPos();
 	void RiseToWaterSurface();
 	Fix12i ScaleRiseToSurfaceSpeedByChar();
 	void MakePlayerInvulnerable();
