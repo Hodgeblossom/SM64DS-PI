@@ -168,6 +168,7 @@ struct Actor : ActorDerived // internal name: dActor
 
 	s16 GetSubtraction(s16 arg1, s16 arg2); // returns arg2 - arg1 without overflow
 	Fix12i GetWaterHeightWDW(); // if in WDW, returns the height of the water, else it returns pos.y
+	s16 GetGroundTilt(const Vector3& normal, s16 angY);
 
 	void SpawnCoins(const Vector3& coinPos, u32 numCoins, Fix12i prevSpeed, s16 baseAng);
 	Number* SpawnNumber(const Vector3& pos, u32 number, bool isSilver, u16 unk14c, Actor* unkActor = nullptr);

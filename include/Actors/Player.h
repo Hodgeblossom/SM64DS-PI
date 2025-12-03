@@ -280,6 +280,13 @@ struct Player : Actor
 		OW_PUSH  = 2,
 	};
 
+	enum StuckInGroundStates
+	{
+		SG_INIT = 0,
+		SG_MAIN = 1,
+		SG_END  = 2,
+	};
+
 	enum ClsnStateFlags
 	{
 		ON_GROUND  		  = 1 << 0,
@@ -577,7 +584,8 @@ struct Player : Actor
 	bool isLongFalling;
 	u8 onSlopedSurface;
 	u8 unk70f;
-	s16 unk710;
+	bool isWalking;
+	bool unk711;
 	bool isInAirIsh; // 0x712
 	bool isTangible;
 	bool unk714;
@@ -588,7 +596,9 @@ struct Player : Actor
 	bool collectingLostCap;
 	bool quickSandJump;
 	u32 unk71c;
-	u32 unk720;
+	u16 unk720;
+	bool unk722;
+	bool unk723;
 	u32 unk724;
 	u32 unk728;
 	u32 unk72c;
@@ -598,7 +608,7 @@ struct Player : Actor
 	s16 toonStateAndFlag; //8 possible states, 0x8000 is the invincible-and-can't-collect-caps flag
 	s16 unk73e;
 	Fix12i toonIntensity;
-	Vector3 unk744;
+	Vector3 lookAtPos;
 	u32 unk750;
 	u32 unk754;
 	u32 unk758;
@@ -637,6 +647,7 @@ struct Player : Actor
 	void Unk_020c6a10(u32 arg0);
 	bool Unk_020c4f40(u16 newUnk6a6);
 	s32 Unk_020ca8f8();
+	void ResetPlayerClsnAndClimbClsn();
 	bool Unk_020c9e5c(u8 arg0);
 	bool Unk_020ca488(); // calls Unk_020c9e5c(0xb);
 	bool Unk_020ca150(u8 arg0);
@@ -668,6 +679,7 @@ struct Player : Actor
 	void Hurt(const Vector3& source, u32 damage, Fix12i speed, u32 arg4, u32 presetHurt, u32 spawnOuchParticles); // speed is multiplied by constant at 0x020ff128+charID*2 and divided by 50 (? could be 25, could be 100).
 	void Heal(s32 health);
 	s32 GetHealth();
+	void PlayMegaStompEffects();
 	void Bounce(Fix12i bounceInitVel);
 	void SpinBounce(Fix12i bounceInitVel);
 	void HandleYoshiFlutterJump();
@@ -677,6 +689,7 @@ struct Player : Actor
 	bool JumpIntoBooCage(Vector3& cagePos);
 	bool EnterWhirlpool();
 	bool SetDeathState(u8 deathState);
+	void HandleWalkOrRun();
 	void BlowAway(s16 dir);
 	bool IsInAirAndAirIsh();
 	bool CanWarp();
@@ -696,7 +709,8 @@ struct Player : Actor
 	bool DropActor();
 	bool FinishedAnim();
 	void HandleRunningDust();
-	void ApproachHorzSpeedCheckSlope(Fix12i dest, Fix12i step);
+	void HandleFootsteps();
+	bool ApproachHorzSpeedCheckSlope(Fix12i dest, Fix12i step);
 
 	void Unk_020bf13c();
 	bool UpdateBeingHeld(); // returns whether being held
@@ -705,7 +719,7 @@ struct Player : Actor
 	void SetSpeedYByChar(Fix12i baseSpeed);
 	Fix12i ScaleHorzSpeedByChar(Fix12i baseSpeed);
 	void UpdateSwimmingClsn(CylinderClsn& cylClsn);
-	Fix12i ScaleHorzSpeedByFloorTraction(Fix12i baseSpeed);
+	Fix12i ScaleHorzAccelByFloorTraction(Fix12i baseSpeed);
 	void RunningDust();
 	void SlidingDust();
 	void PlayerLandingDust();
@@ -720,9 +734,12 @@ struct Player : Actor
 	void ZeroVertAccelYSpeedHorzSpeed();
 	bool ShouldSlide();
 	bool CheckGroundNotSteep();
+	void ApplySlopeAccel();
 	bool DecelerateSlide(Fix12i minSlideSpeed);
 	bool TrySnapToGroundFromSlide(); // Responsible for up/downwarps
 	bool CheckShouldSlide();
+	s16 GetFloorAngle(s16 offset);
+	void HandleTilt(bool scaleByHorzSpeed);
 	bool RaycastFromPos(u8 horzOffset, u8 vertOffset);
 	bool CheckSideStep(s16 wallAngle);
 	bool SetWallSlideOrBounceBack(s16 wallAngle);
@@ -733,6 +750,7 @@ struct Player : Actor
 	void UpdateFloorCollision();
 	void PlayJumpLandSound();
 	void FirstTimeMessage(u8 firstTimeType);
+	bool FaceLookAtPos();
 	void RiseToWaterSurface();
 	Fix12i ScaleRiseToSurfaceSpeedByChar();
 	void MakePlayerInvulnerable();
@@ -755,7 +773,8 @@ struct Player : Actor
 	bool HandleWaitAnim();
 	bool CheckTeleport();
 	bool SetLandingState(u8 stateCondition);
-	void Stopbreaking();
+	bool HandleWalkAndRunCheckTurnAround();
+	void StopBraking();
 	bool CheckThrowHeldPlayer();
 	void UpdateAirWithTurn();
 	void InitDiveHitbox();
