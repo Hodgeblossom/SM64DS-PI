@@ -710,7 +710,7 @@ struct Player : Actor
 	bool FinishedAnim();
 	void HandleRunningDust();
 	void HandleFootsteps();
-	void ApproachHorzSpeedCheckSlope(Fix12i dest, Fix12i step);
+	bool ApproachHorzSpeedCheckSlope(Fix12i dest, Fix12i step);
 
 	void Unk_020bf13c();
 	bool UpdateBeingHeld(); // returns whether being held
@@ -719,7 +719,7 @@ struct Player : Actor
 	void SetSpeedYByChar(Fix12i baseSpeed);
 	Fix12i ScaleHorzSpeedByChar(Fix12i baseSpeed);
 	void UpdateSwimmingClsn(CylinderClsn& cylClsn);
-	Fix12i ScaleHorzSpeedByFloorTraction(Fix12i baseSpeed);
+	Fix12i ScaleHorzAccelByFloorTraction(Fix12i baseSpeed);
 	void RunningDust();
 	void SlidingDust();
 	void PlayerLandingDust();
@@ -734,9 +734,12 @@ struct Player : Actor
 	void ZeroVertAccelYSpeedHorzSpeed();
 	bool ShouldSlide();
 	bool CheckGroundNotSteep();
+	void ApplySlopeAccel();
 	bool DecelerateSlide(Fix12i minSlideSpeed);
 	bool TrySnapToGroundFromSlide(); // Responsible for up/downwarps
 	bool CheckShouldSlide();
+	s16 GetFloorAngle(s16 offset);
+	void HandleTilt(bool scaleByHorzSpeed);
 	bool RaycastFromPos(u8 horzOffset, u8 vertOffset);
 	bool CheckSideStep(s16 wallAngle);
 	bool SetWallSlideOrBounceBack(s16 wallAngle);
@@ -770,6 +773,7 @@ struct Player : Actor
 	bool HandleWaitAnim();
 	bool CheckTeleport();
 	bool SetLandingState(u8 stateCondition);
+	bool HandleWalkAndRunCheckTurnAround();
 	void StopBraking();
 	bool CheckThrowHeldPlayer();
 	void UpdateAirWithTurn();

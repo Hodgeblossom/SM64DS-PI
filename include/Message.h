@@ -71,6 +71,8 @@ struct Message
 
 struct MESG_File;
 
+struct INF1_Header;
+
 struct MsgIDCharEntry
 {
 	u16 perCharID;
@@ -89,7 +91,7 @@ extern s32 CURR_MSG_ID;
 extern Message* CURR_MSG_PTR;
 extern char* CURR_MSG_TEXT_CHAR;
 extern Message* MSG_ARR_PTR;
-extern MESG_File* MSG_FILE_PTR;
+extern INF1_Header* MSG_FILE_PTR;
 extern MESG_File* VS_MSG_FILE_PTR;
 extern MsgIDCharEntry MSG_ID_CHAR_MAP[0x62];
 extern u16 UTF16_TO_FONT_TABLE[0x100];

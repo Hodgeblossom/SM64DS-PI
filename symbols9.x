@@ -1248,6 +1248,7 @@ _ZN5Actor8TryCarryER12CylinderClsn                                              
 _ZN5Actor9SetRangesE5Fix12IiES1_S1_S1_                                            = 0x02010e08;
 _ZN5Actor14GetSubtractionEss                                                      = 0x020103f4;
 _ZN5Actor17GetWaterHeightWDWEv                                                    = 0x0200fec8;
+_ZN5Actor13GetGroundTiltERK7Vector3Es                                             = 0x02010844;
 _ZN5Actor10SpawnCoinsERK7Vector3j5Fix12IiEs                                       = 0x02010714;
 _ZN5Actor11SpawnNumberERK7Vector3jbtPS_                                           = 0x02010044;
 _ZN5Actor13SpawnFireballERK7Vector3PK10Vector3_165Fix12IiES7_j                    = 0x020102b0;
@@ -1615,7 +1616,7 @@ _ZN6Player20ScaleVertAccelByCharE5Fix12IiE                                      
 _ZN6Player15SetSpeedYByCharE5Fix12IiE                                             = 0x020bf2d8;
 _ZN6Player20ScaleHorzSpeedByCharE5Fix12IiE                                        = 0x020bf30c;
 _ZN6Player18UpdateSwimmingClsnER12CylinderClsn                                    = 0x020bf36c;
-_ZN6Player29ScaleHorzSpeedByFloorTractionE5Fix12IiE                               = 0x020bf56c;
+_ZN6Player29ScaleHorzAccelByFloorTractionE5Fix12IiE                               = 0x020bf56c;
 _ZN6Player11RunningDustEv                                                         = 0x020bf88c;
 _ZN6Player11SlidingDustEv                                                         = 0x020bf90c;
 _ZN6Player17PlayerLandingDustEv                                                   = 0x020bf9d4;
@@ -1630,9 +1631,12 @@ _ZN6Player21SetStomachOrButtSlideEh                                             
 _ZN6Player28ZeroVertAccelYSpeedHorzSpeedEv                                        = 0x020cf384;
 _ZN6Player11ShouldSlideEv                                                         = 0x020c0434;
 _ZN6Player19CheckGroundNotSteepEv                                                 = 0x020c04ac;
+_ZN6Player15ApplySlopeAccelEv                                                     = 0x020c04e0;
 _ZN6Player24TrySnapToGroundFromSlideEv                                            = 0x020c0688;
 _ZN6Player15DecelerateSlideE5Fix12IiE                                             = 0x020c06fc;
 _ZN6Player16CheckShouldSlideEv                                                    = 0x020c0cbc;
+_ZN6Player13GetFloorAngleEs                                                       = 0x020c179c;
+_ZN6Player10HandleTiltEb                                                          = 0x020c18b0;
 _ZN6Player14RaycastFromPosEhh                                                     = 0x020c19d0;
 _ZN6Player13CheckSideStepEs                                                       = 0x020c1ad8;
 _ZN6Player24SetWallSlideOrBounceBackEs                                            = 0x020c1c84;
@@ -1669,6 +1673,7 @@ _ZN6Player19ChangeStateFromWaitE5Fix12IiE                                       
 _ZN6Player14HandleWaitAnimEv                                                      = 0x020d2fdc;
 _ZN6Player13CheckTeleportEv                                                       = 0x020d245c;
 _ZN6Player15SetLandingStateEh                                                     = 0x020d36d8;
+_ZN6Player31HandleWalkAndRunCheckTurnAroundEv                                     = 0x020d3b9c;
 _ZN6Player11StopBrakingEv                                                         = 0x020d4540;
 _ZN6Player17CheckYoshiMakeEggEv                                                   = 0x020d674c;
 _ZN6Player17CheckYoshiSwallowEv                                                   = 0x020d6790;
@@ -2023,6 +2028,7 @@ _ZN5Sound8PlayLongEjjjRK7Vector3j                                               
 _ZN5Sound10PlayLong2DEjjjj                                                        = 0x020124c4;
 _ZN5Sound17PlayLongCharVoiceEjjjRK7Vector3j                                       = 0x02012120;
 _ZN5Sound13PlayCharVoiceEjjRK7Vector3                                             = 0x02012154;
+_ZN5Sound25PlayLongStopIfSpeedTooLowEjjjRK7Vector35Fix12IiEj                      = 0x0201226c;
 _ZN5Sound4PlayEjjRK7Vector3                                                       = 0x02012590;
 _ZN5Sound6Play2DEjj                                                               = 0x02012840;
 _ZN5Sound12PlayArchive0EjRK7Vector3                                               = 0x0201264c;
