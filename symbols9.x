@@ -353,6 +353,8 @@ CRAZED_CRATE_HORZ_SPEEDS                                                        
 PUNCH_KICK_SEQUENCE_VOICES                                                        = 0x020ff194;
 DASH_VOICES                                                                       = 0x020ff1b0;
 RISE_TO_SURFACE_SPEED_CHAR_MULTIPLIERS                                            = 0x020ff1e0;
+PLAYER_SCALE_STEPS                                                                = 0x020ff230;
+PLAYER_SCALE_VALUES                                                               = 0x020ff2c0;
 STUCK_IN_GROUND_INIT_ANIMS                                                        = 0x0210a560;
 STUCK_IN_GROUND_WAIT_ANIMS                                                        = 0x0210a578;
 STUCK_IN_GROUND_END_ANIMS                                                         = 0x0210a584;
@@ -1666,13 +1668,13 @@ _ZN6Player27ApproachHorzSpeedCheckSlopeE5Fix12IiES1_                            
 _ZN6Player17ClearActorInMouthEv                                                   = 0x020d718c;
 _ZN6Player18SetPunchKickAttackEh                                                  = 0x020d8a50;
 _ZN6Player20CheckLedgeHangOrGrabEv                                                = 0x020d0d2c;
-_ZN6Player13NotAboveFloorEv                                                       = 0x020d1164;
+_ZN6Player17CheckCeilingAboveEv                                                   = 0x020d1164;
 _ZN6Player19SetCrouchJumpActionEv                                                 = 0x020d1204;
 _ZN6Player21SetCrouchAttackActionEv                                               = 0x020d12b0;
 _ZN6Player19ChangeStateFromWaitE5Fix12IiE                                         = 0x020d22ec;
 _ZN6Player14HandleWaitAnimEv                                                      = 0x020d2fdc;
 _ZN6Player13CheckTeleportEv                                                       = 0x020d245c;
-_ZN6Player15SetLandingStateEh                                                     = 0x020d36d8;
+_ZN6Player15SetLandingStateEb                                                     = 0x020d36d8;
 _ZN6Player31HandleWalkAndRunCheckTurnAroundEv                                     = 0x020d3b9c;
 _ZN6Player11StopBrakingEv                                                         = 0x020d4540;
 _ZN6Player17CheckYoshiMakeEggEv                                                   = 0x020d674c;
@@ -1691,6 +1693,8 @@ _ZN6Player17UpdatePlayerScaleEv                                                 
 _ZN6Player23InitGroundPoundCylClsn2Ev                                             = 0x020dbc94;
 _ZN6Player21InitPunchKickCylClsn2Ev                                               = 0x020dc020;
 _ZN6Player16AdjustSlideAngleEv                                                    = 0x020dd2f4;
+_ZN6Player9CanBeHurtEv                                                            = 0x020d82f0;
+_ZN6Player12TryMakeDizzyEv                                                        = 0x020dd824;
 _ZN6Player20TryGroundPoundPlayerEv                                                = 0x020dd908;
 _ZN6Player13SetDiveOrKickEv                                                       = 0x020dde74;
 _ZN6Player8IsFlyingEv                                                             = 0x020e0478;

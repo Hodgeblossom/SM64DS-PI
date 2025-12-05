@@ -295,6 +295,14 @@ struct Player : Actor
 		ON_CEILING 		  = 1 << 3,
 	};
 
+	enum ScaleStates
+	{
+		SC_JUMPED_ON   =  0,
+		SC_SQUISHED    =  1,
+		SC_MEGA_GROW   =  2,
+		SC_MEGA_SHRINK =  3,
+	};
+
 	enum Flags2
 	{
 		F2_SLIDE_ON_SURFACE   = 1 << 0,
@@ -506,7 +514,7 @@ struct Player : Actor
 	u16 unk6b4;
 	u16 unk6b6; // climbing related
 	u16 swimHealTimer;
-	u16 unk6ba;
+	u16 waterRunTimer;
 	u16 unk6bc;
 	u16 powerupTimer;
 	u16 balloonTimer;
@@ -551,11 +559,14 @@ struct Player : Actor
 	u8 unk6e7;
 	u8 unk6e8;
 	u8 currClsnState; // 0x06E9: 0 - not colliding, 1 - standing on ground, 2 - colliding with wall in water, 3 - colliding with wall on land
-	s16 unk6ea;
+	bool canRunOnWater;
+	u8 unk6eb;
 	u8 unk6ec;
 	u8 runUpCounter;
 	u16 unk6ee; // related to eating; not sure if 0x6EE and 0x6EF are shared
-	u32 unk6f0;
+	u16 unk6f0;
+	u8 scaleIndex;
+	u8 scaleState; // 0x6f3: 0 - jumped on, 1 - squished, 2 - mega grow, 3 - mega shrink
 	bool hasFireInMouth;
 	u8 opacity;
 	bool powerupTimersFrozen;
@@ -766,13 +777,13 @@ struct Player : Actor
 	void SetPunchKickAttack(u8 punchKickNumber);
 	void ClearActorInMouth();
 	bool CheckLedgeHangOrGrab();
-	bool NotAboveFloor();
+	bool CheckCeilingAbove();
 	bool SetCrouchJumpAction();
 	bool SetCrouchAttackAction();
 	bool ChangeStateFromWait(Fix12i minMagForWalk);
 	bool HandleWaitAnim();
 	bool CheckTeleport();
-	bool SetLandingState(u8 stateCondition);
+	bool SetLandingState(bool disallowCrouchAction);
 	bool HandleWalkAndRunCheckTurnAround();
 	void StopBraking();
 	bool CheckThrowHeldPlayer();
@@ -793,6 +804,8 @@ struct Player : Actor
 	void AdjustSlideAngle();
 	void Unk_020de3d0(s16 ang0, s16 ang1);
 	void PlayBalloonBoundSound();
+	bool CanBeHurt();
+	bool TryMakeDizzy();
 	void TryGroundPoundPlayer(); //Multiplayer only
 	bool SetDiveOrKick();
 	bool IsFlying();
