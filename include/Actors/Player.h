@@ -503,7 +503,7 @@ struct Player : Actor
 	s16 unk69e;
 	u16 visibilityCounter; // the player is visible when this is even (except when the player is electrocuted the second bit is checked instead)
 	u16 unk6a2;
-	u16 stateTimer; // sleep, run charge, etc.
+	s16 stateTimer; // sleep, run charge, etc.
 	u16 noControlTimer;
 	union { u16 unk6a8; u16 jumpSequenceTimer;}; // underwater splash bubbles, tree particles, jump related, etc.
 	u16 nextPunchKickDelay;
