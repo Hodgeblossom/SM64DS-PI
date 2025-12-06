@@ -237,7 +237,7 @@ struct Player : Actor
 		NUM_ANIMS,
 	};
 
-	enum TalkStates
+	enum TalkStates : s8
 	{
 		TK_NOT         = -1,
 		TK_START       =  0,
@@ -246,7 +246,7 @@ struct Player : Actor
 		TK_UNK3        =  3  // +0x6e3 == 5 or 7
 	};
 
-	enum HurtStates
+	enum HurtStates : s8
 	{
 		HT_NOT     = -1,
 		HT_START   =  0,
@@ -259,7 +259,7 @@ struct Player : Actor
 		HT_UNK7    =  7,
 	};
 
-	enum DeathStates
+	enum DeathStates : s8
 	{
 		DH_UNK0   	   =  0,
 		DH_DEATH_PLANE =  1,
@@ -273,14 +273,22 @@ struct Player : Actor
 		DH_UNK9    	   =  9,
 	};
 
-	enum OnWallStates
+	enum ScaleStates : u8
+	{
+		SC_JUMPED_ON   =  0,
+		SC_SQUISHED    =  1,
+		SC_MEGA_GROW   =  2,
+		SC_MEGA_SHRINK =  3,
+	};
+
+	enum OnWallStates : s8
 	{
 		OW_LEFT  = 0,
 		OW_RIGHT = 1,
 		OW_PUSH  = 2,
 	};
 
-	enum StuckInGroundStates
+	enum StuckInGroundStates : u8
 	{
 		SG_INIT = 0,
 		SG_MAIN = 1,
@@ -293,14 +301,6 @@ struct Player : Actor
 		ON_WALL   		  = 1 << 1,
 		ON_CEILING_CORNER = 1 << 2,
 		ON_CEILING 		  = 1 << 3,
-	};
-
-	enum ScaleStates
-	{
-		SC_JUMPED_ON   =  0,
-		SC_SQUISHED    =  1,
-		SC_MEGA_GROW   =  2,
-		SC_MEGA_SHRINK =  3,
 	};
 
 	enum Flags2
@@ -489,9 +489,9 @@ struct Player : Actor
 	u32 floorTexID;
 	u32 floorWindID;
 	u32 unk674;
-	u32 previousMusicID;
-	u32 unk67c;
-	u32 currentMusicID;
+	u32 prevMusicID;
+	u32 nextMusicID;
+	u32 currMusicID;
 	Fix12i jumpPeakHeight; // 0x684
 	union { s32 msgID; Fix12i yPosOnPole; /* zero at the bottom of the pole */ };
 	Fix12i yVisualOffset;
@@ -606,7 +606,10 @@ struct Player : Actor
 	u16 unkFlags;
 	bool collectingLostCap;
 	bool quickSandJump;
-	u32 unk71c;
+	u8 unk71c;
+	u8 unk71d;
+	u8 unk71e;
+	u8 unk71f;
 	u16 unk720;
 	bool unk722;
 	bool unk723;
@@ -651,8 +654,10 @@ struct Player : Actor
 	
 	bool IsInState(const State& state);
 	bool WasPreviousState(const State& state);
+	void WarioLandCamShake();
 	bool IsDiving();
 	bool IsInsideOfCannon();
+	bool ToonStateActive();
 	bool IsCollectingCap();
 	bool HasNoCap();
 	void Unk_020c6a10(u32 arg0);
@@ -760,7 +765,7 @@ struct Player : Actor
 	bool CheckBonkOrWallSlide();
 	void UpdateFloorCollision();
 	void PlayJumpLandSound();
-	void FirstTimeMessage(u8 firstTimeType);
+	void IntroducePowerup(u8 powerupType);
 	bool FaceLookAtPos();
 	void RiseToWaterSurface();
 	Fix12i ScaleRiseToSurfaceSpeedByChar();
@@ -799,6 +804,7 @@ struct Player : Actor
 	void TrySetBrakeAnim();
 	void GetThrown(Fix12i horizontalSpeed, Fix12i verticalSpeed, s16 angle);
 	void UpdatePlayerScale();
+	void ApplyScaleState(u8 newScaleState);
 	void InitGroundPoundCylClsn2();
 	void InitPunchKickCylClsn2();
 	void AdjustSlideAngle();
@@ -845,12 +851,18 @@ struct Player : Actor
 	void PlaySubMusic(u32 musicID);
 	void EndSubMusic(u32 musicID);
 
+	void EndPowerupMusic(u32 musicID);
+	void PlayPowerupMusic(u32 musicID);
+
 	bool InitKoopaShell();
-	void InitWingFeathers(bool setPowerUpFlag);
+	void InitSuperMushroom();
+	void InitWingFeathers(bool shouldIntroduceWings);
 	void InitBalloonMario();
 	void InitVanishLuigi();
 	void InitMetalWario();
 	void InitFireYoshi();
+
+	void ForceSwallowStartFlowerPower(); 
 
 	void CleanupAllPowerups();
 	void CleanupSuperMushroom();
@@ -859,7 +871,7 @@ struct Player : Actor
 	void CleanupKoopaShell();
 	void CleanupFireYoshi();
 	void CleanupBalloonMario();
-	void CleanupFeatherCap();
+	void CleanupWingFeathers();
 
 	bool St_LedgeHang_Init();
 	bool St_LedgeHang_Main();
