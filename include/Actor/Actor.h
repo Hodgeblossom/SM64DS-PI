@@ -109,7 +109,7 @@ struct Actor : ActorDerived // internal name: dActor
 
 	bool IsTooFarAwayFromPlayer(Fix12i tooFar);
 	void MakeVanishLuigiWork(CylinderClsn& cylClsn);
-	void SpawnSoundObj(u32 soundObjParam);
+	Actor* SpawnSoundObj(u32 soundObjParam);
 	void PlayHitSound(u32 hitFlags); //NCS_SE_PT_HIT_S if HIT_BY_PUNCH, NCS_SE_PT_HIT_H if HIT_BY_KICK, HIT_BY_BREAKDANCE or HIT_BY_SLIDE_KICK
 
 	void KillAndTrackInDeathTable();
