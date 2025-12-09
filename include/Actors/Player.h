@@ -246,19 +246,6 @@ struct Player : Actor
 		TK_UNK3        =  3  // +0x6e3 == 5 or 7
 	};
 
-	enum HurtStates : s8
-	{
-		HT_NOT     = -1,
-		HT_START   =  0,
-		HT_TALKING =  1,
-		HT_UNK2    =  2,
-		HT_UNK3    =  3,
-		HT_UNK4    =  4,
-		HT_UNK5    =  5,
-		HT_UNK6    =  6,
-		HT_UNK7    =  7,
-	};
-
 	enum DeathStates : s8
 	{
 		DH_UNK0   	   =  0,
@@ -297,10 +284,10 @@ struct Player : Actor
 
 	enum ClsnStateFlags
 	{
-		ON_GROUND  		  = 1 << 0,
-		ON_WALL   		  = 1 << 1,
-		ON_CEILING_CORNER = 1 << 2,
-		ON_CEILING 		  = 1 << 3,
+		CS_ON_GROUND  		 = 1 << 0,
+		CS_ON_WALL   		 = 1 << 1,
+		CS_ON_CEILING_CORNER = 1 << 2,
+		CS_ON_CEILING 		 = 1 << 3,
 	};
 
 	enum Flags2
@@ -555,7 +542,7 @@ struct Player : Actor
 		bool slideKickBounced;
 		u8 stuckInGroundState;
 	};
-	u8 slidingState;
+	union { u8 unk6e6; u8 slidingState; u8 hurtState;};
 	u8 unk6e7;
 	u8 unk6e8;
 	u8 currClsnState; // 0x06E9: 0 - not colliding, 1 - standing on ground, 2 - colliding with wall in water, 3 - colliding with wall on land
@@ -604,7 +591,7 @@ struct Player : Actor
 	bool isIntangibleToMesh;
 	u8 unk717;
 	u16 unkFlags;
-	bool collectingLostCap;
+	bool justLostCap;
 	bool quickSandJump;
 	u8 unk71c;
 	u8 unk71d;
@@ -613,7 +600,10 @@ struct Player : Actor
 	u16 unk720;
 	bool unk722;
 	bool unk723;
-	u32 unk724;
+	u8 unk724;
+	u8 unk725;
+	u8 unk726;
+	u8 unk727;
 	u32 unk728;
 	u32 unk72c;
 	u32 unk730;
@@ -680,6 +670,9 @@ struct Player : Actor
 	void PlayStuckInGroundParticles();
 	bool HasFinishedTalking();
 	bool HurtNoOverrideCheckDeath(u32 damage, bool dropHeldActor);
+	void SetFallHurtAnimIfMidair();
+	void SetGetUpFlagIfWillHitFrame();
+	void HandleHurtGroundMovement();
 	s32 GetHurtState();
 	bool IsOnShell(); // if not on shell, reset shell ptr
 	bool IsEnteringLevel(); // entering entrance, not entering exit
@@ -691,12 +684,15 @@ struct Player : Actor
 	bool TrySpitPlayerFromMouth();
 	bool IsInYoshisMouth();
 	void RegisterEggCoinCount(u32 numCoins, bool includeSilverStar, bool includeBlueCoin);
+	void SpawnAttackParticles(Vector3& particlePos);
 	//speed is multiplied by constant at 0x020ff128+charID*2 and divided by 50 (? could be 25, could be 100).
 	void Hurt(const Vector3& source, u32 damage, Fix12i speed, u32 arg4, u32 presetHurt, u32 spawnOuchParticles); // speed is multiplied by constant at 0x020ff128+charID*2 and divided by 50 (? could be 25, could be 100).
 	void Heal(s32 health);
 	s32 GetHealth();
 	void PlayMegaStompEffects();
 	void Bounce(Fix12i bounceInitVel);
+	bool LoseCapIfHasCap();
+	bool DropSilverOrVSStarIfHasAny();
 	void SpinBounce(Fix12i bounceInitVel);
 	void HandleYoshiFlutterJump();
 	void HandleLuigiFlutterJump();
@@ -791,6 +787,8 @@ struct Player : Actor
 	bool SetLandingState(bool disallowCrouchAction);
 	bool HandleWalkAndRunCheckTurnAround();
 	void StopBraking();
+	void HandleHitActor();
+	bool SpawnHitPlayerParticles(Player& attacker, Player& victim);
 	bool CheckThrowHeldPlayer();
 	void UpdateAirWithTurn();
 	void InitDiveHitbox();
@@ -799,18 +797,25 @@ struct Player : Actor
 	bool CheckYoshiMakeEgg();
 	bool CheckYoshiSwallow();
 	void HandleYoshiAttack();
+	bool CheckHitPlayer(Player& victim);
 	bool CheckJumpOnPlayer();
 	void HandleRunLean(s16 playerMotionAngY);
 	void TrySetBrakeAnim();
 	void GetThrown(Fix12i horizontalSpeed, Fix12i verticalSpeed, s16 angle);
 	void UpdatePlayerScale();
 	void ApplyScaleState(u8 newScaleState);
-	void InitGroundPoundCylClsn2();
-	void InitPunchKickCylClsn2();
+	void InitSweepKickHitbox();
+	void InitGroundPoundHitbox();
+	void InitKickHitbox();
+	void InitSecondPunchHitbox();
+	void InitFirstPunchHitbox();
+	void InitPunchKickHitbox();
+	void InitHitbox(const Vector3& offset, Fix12i radius, Fix12i height, u32 flags, u32 vulnFlags);
 	void AdjustSlideAngle();
 	void Unk_020de3d0(s16 ang0, s16 ang1);
 	void PlayBalloonBoundSound();
 	bool CanBeHurt();
+	void HandlePunchKickAction();
 	bool TryMakeDizzy();
 	void TryGroundPoundPlayer(); //Multiplayer only
 	bool SetDiveOrKick();

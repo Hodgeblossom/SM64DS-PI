@@ -355,6 +355,9 @@ DASH_VOICES                                                                     
 RISE_TO_SURFACE_SPEED_CHAR_MULTIPLIERS                                            = 0x020ff1e0;
 PLAYER_SCALE_STEPS                                                                = 0x020ff230;
 PLAYER_SCALE_VALUES                                                               = 0x020ff2c0;
+PUNCH_KICK_SEQUENCE_DELAYS                                                        = 0x02109dbc;
+HURT_START_GET_UP_FRAMES                                                          = 0x02109dc4;
+FALL_DURING_HURT_START_FRAMES                                                     = 0x02109dc4;
 STUCK_IN_GROUND_INIT_ANIMS                                                        = 0x0210a560;
 STUCK_IN_GROUND_WAIT_ANIMS                                                        = 0x0210a578;
 STUCK_IN_GROUND_END_ANIMS                                                         = 0x0210a584;
@@ -362,7 +365,11 @@ JUMP_SEQUENCE_SPEEDS                                                            
 JUMP_SEQUENCE_ANIMS                                                               = 0x0210a5a8;
 JUMP_LAND_ANIMS                                                                   = 0x0210a5b4;
 PUNCH_KICK_SEQUENCE_ANIMS                                                         = 0x0210a5c0;
+PUNCH_KICK_HITBOX_FRAMES                                                          = 0x0210a5cc;
+PUNCH_KICK_ACTIVE_FRAMES                                                          = 0x0210a5dc;
 CEILING_GRATE_ANIMS                                                               = 0x0210a60c;
+HURT_ANIMS                                                                        = 0x0210a6d4;
+FALL_DURING_HURT_ANIMS                                                            = 0x0210a6ec;
 PLAYER_CYLCLSN_OFFSET                                                             = 0x0210f92c;
 
 NEXT_HAT_CHARACTER                                                                = 0x02092114;
@@ -501,9 +508,9 @@ UpdateMinimap                                                                   
 StartEntranceFaderWipe                                                            = 0x020298a0;
 StartExitCharacterWipe                                                            = 0x020298d8;
 StartExitFaderWipe                                                                = 0x020298fc;
-FUN_02029934                                                                      = 0x02029934;
-FUN_02029980                                                                      = 0x02029980;
-RespawnPlaneFader                                                                 = 0x020299f4;
+CleanupRespawnWipe                                                                      = 0x02029934;
+RespawnWipe                                                                      = 0x02029980;
+RespawnPlaneWipe                                                                 = 0x020299f4;
 FUN_02029a68                                                                      = 0x02029a68;
 FUN_02029ab0                                                                      = 0x02029ab0;
 EnterBigBoosHaunt                                                                 = 0x02029b04;
@@ -1363,9 +1370,13 @@ _ZN6Camera25SaveCameraStateBeforeTalkEv                                         
 _ZN6Camera9SetFlag_3Ev                                                            = 0x0200d048;
 _ZN6Camera14SetFirstPersonEj                                                      = 0x0200d064;
 _ZN6Camera10TryZoomOutEj                                                          = 0x0200d0ac;
+_ZN6Camera12SetCameraDefEh                                                        = 0x0200cb58;
 _ZN6Camera9SetLookAtERK7Vector3                                                   = 0x0200ccc8;
 _ZN6Camera6SetPosERK7Vector3                                                      = 0x0200ccac;
+_ZN6Camera24SetCamFromNearestViewObjEv                                            = 0x0200cce4;
+_ZN6Camera11SetDefaultsEv                                                         = 0x0200cf40;
 _ZNK6Camera12IsUnderwaterEv                                                       = 0x0200d890;
+_ZN6Camera18SetHurtZShakeAngleEv                                                  = 0x0200d89c;
 _ZN6Camera11ChangeStateEPNS_5StateE                                               = 0x0200cb70;
 _ZN6Camera10LookAtExitER5Actor                                                    = 0x0200d184;
 _ZN6Camera14GoBehindPlayerEj                                                      = 0x0200d304;
@@ -1378,8 +1389,10 @@ _ZN6Camera10SetTalkCamEj                                                        
 _ZN6Camera17SetCeilingHangCamEjj                                                  = 0x0200ca14;
 _ZN6Camera12SetNormalCamEj                                                        = 0x0200d81c;
 _ZN6Camera13CameraShakeAtERK7Vector35Fix12IiE                                     = 0x0200d8c8;
+_ZN6Camera6SetFOVEs                                                               = 0x0200d954;
 
 GLOBAL_CLIPPER                                                                    = 0x0209F43C;
+UNK_0208715C                                                                      = 0x0208715C;
 
 /* Actors/HUD.h */
 _ZTV3HUD                                                                          = 0x0210c2c0;
@@ -1557,6 +1570,9 @@ _ZN6Player12GetTalkStateEv                                                      
 _ZN6Player26PlayStuckInGroundParticlesEv                                          = 0x020c5444;
 _ZN6Player18HasFinishedTalkingEv                                                  = 0x020c4efc;
 _ZN6Player24HurtNoOverrideCheckDeathEjb                                           = 0x020d91e0;
+_ZN6Player23SetFallHurtAnimIfMidairEv                                             = 0x020d99a4;
+_ZN6Player26SetGetUpFlagIfWillHitFrameEv                                          = 0x020d9a4c;
+_ZN6Player24HandleHurtGroundMovementEv                                            = 0x020d9aac;
 _ZN6Player12GetHurtStateEv                                                        = 0x020d9c44;
 _ZN6Player9IsOnShellEv                                                            = 0x020cc140;
 _ZN6Player15IsEnteringLevelEv                                                     = 0x020c7e84;
@@ -1568,11 +1584,14 @@ _ZN6Player18CheckSpitOutPlayerEv                                                
 _ZN6Player22TrySpitPlayerFromMouthEv                                              = 0x020d5cec;
 _ZN6Player15IsInYoshisMouthEv                                                     = 0x020d600c;
 _ZN6Player20RegisterEggCoinCountEjbb                                              = 0x020d6708;
+_ZN6Player20SpawnAttackParticlesER7Vector3                                        = 0x020d8d10;
 _ZN6Player4HurtERK7Vector3j5Fix12IiEjjj                                           = 0x020d8e70;
 _ZN6Player4HealEi                                                                 = 0x020bf4e4;
 _ZN6Player9GetHealthEv                                                            = 0x020bf548;
 _ZN6Player20PlayMegaStompEffectsEv                                                = 0x020bf5e0;
 _ZN6Player6BounceE5Fix12IiE                                                       = 0x020d932c;
+_ZN6Player15LoseCapIfHasCapEv                                                     = 0x020d93ac;
+_ZN6Player26DropSilverOrVSStarIfHasAnyEv                                          = 0x020d94cc;
 _ZN6Player10SpinBounceE5Fix12IiE                                                  = 0x020e1020;
 _ZN6Player22HandleYoshiFlutterJumpEv                                              = 0x020e1c20;
 _ZN6Player22HandleLuigiFlutterJumpEv                                              = 0x020e1e70;
@@ -1688,7 +1707,10 @@ _ZN6Player11StopBrakingEv                                                       
 _ZN6Player17CheckYoshiMakeEggEv                                                   = 0x020d674c;
 _ZN6Player17CheckYoshiSwallowEv                                                   = 0x020d6790;
 _ZN6Player17HandleYoshiAttackEv                                                   = 0x020d8158;
+_ZN6Player14CheckHitPlayerERS_                                                    = 0x020d853c;
 _ZN6Player17CheckJumpOnPlayerEv                                                   = 0x020d869c;
+_ZN6Player14HandleHitActorEv                                                      = 0x020d8854;
+_ZN6Player23SpawnHitPlayerParticlesERS_S_                                         = 0x020d8944;
 _ZN6Player20CheckThrowHeldPlayerEv                                                = 0x020dab14;
 _ZN6Player17UpdateAirWithTurnEv                                                   = 0x020dc560;
 _ZN6Player14InitDiveHitboxEv                                                      = 0x020dba0c;
@@ -1699,10 +1721,16 @@ _ZN6Player15TrySetBrakeAnimEv                                                   
 _ZN6Player9GetThrownE5Fix12IiES1_s                                                = 0x020db54c;
 _ZN6Player17UpdatePlayerScaleEv                                                   = 0x020db704;
 _ZN6Player15ApplyScaleStateEh                                                     = 0x020db8bc;
-_ZN6Player23InitGroundPoundCylClsn2Ev                                             = 0x020dbc94;
-_ZN6Player21InitPunchKickCylClsn2Ev                                               = 0x020dc020;
+_ZN6Player19InitSweepKickHitboxEv                                                 = 0x020dbbc0;
+_ZN6Player21InitGroundPoundHitboxEv                                               = 0x020dbc94;
+_ZN6Player14InitKickHitboxEv                                                      = 0x020dbd94;
+_ZN6Player21InitSecondPunchHitboxEv                                               = 0x020dbe70;
+_ZN6Player20InitFirstPunchHitboxEv                                                = 0x020dbf4c;
+_ZN6Player19InitPunchKickHitboxEv                                                 = 0x020dc020;
+_ZN6Player10InitHitboxERK7Vector35Fix12IiES4_jj                                   = 0x020dc174;
 _ZN6Player16AdjustSlideAngleEv                                                    = 0x020dd2f4;
 _ZN6Player9CanBeHurtEv                                                            = 0x020d82f0;
+_ZN6Player21HandlePunchKickActionEv                                               = 0x020dd5ec;
 _ZN6Player12TryMakeDizzyEv                                                        = 0x020dd824;
 _ZN6Player20TryGroundPoundPlayerEv                                                = 0x020dd908;
 _ZN6Player13SetDiveOrKickEv                                                       = 0x020dde74;
@@ -1927,6 +1955,7 @@ _ZN6Player21St_HeadstandJump_InitEv                                             
 _ZN6Player21St_HeadstandJump_MainEv                                               = 0x020e13c0;
 
 /* Actors/PowerStar.h */
+_ZN9PowerStar16InitBouncingStarEP6Playerbb                                        = 0x020e7218;
 _ZN9PowerStar13AddStarMarkerEv                                                    = 0x020e8ca0;
 
 /* Actors/StarMarker.h */
@@ -2015,7 +2044,7 @@ _ZN8Particle10SysTracker6UpdateEv                                               
 
 _ZNK8Particle10SysTracker8Contents8FindDataEj                                     = 0x02021b58;
 
-_ZN8Particle23BigRunningSlidingDustAtE5Fix12IiES1_S1_                            = 0x02022b04;
+_ZN8Particle23BigRunningSlidingDustAtE5Fix12IiES1_S1_                             = 0x02022b04;
 _ZN8Particle20RunningSlidingDustAtE5Fix12IiES1_S1_                                = 0x02022b58;
 _ZN8Particle19SetSelfDestructFlagEj                                               = 0x020226d4;
 _ZN8Particle9RenderAllEv                                                          = 0x02022ee0;
@@ -2075,6 +2104,7 @@ _ZN5Sound13Func_02048ec4Ev                                                      
 _ZN5Sound13Func_02048ee4Ev                                                        = 0x02048ee4;
 
 /* are these part of the same struct? */
+MUSIC_ID_LSL_12                                                                   = 0x0209b430;
 MUSIC_VOLUME_LSL_12                                                               = 0x0209b490;
 _ZN6Memory24soundHeapAllocatorPtrPtrE                                             = 0x0209b498;
 MESSAGE_SOUND_VOLUME_LSL_12                                                       = 0x0209b49c;
