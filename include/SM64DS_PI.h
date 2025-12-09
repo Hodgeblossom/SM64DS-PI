@@ -249,6 +249,9 @@ extern u32 DASH_VOICES[4];
 extern Fix12i RISE_TO_SURFACE_SPEED_CHAR_MULTIPLIERS[4];
 extern Fix12i PLAYER_SCALE_STEPS[4]; // first two are for being jumped on, last two for being squished
 extern Fix12i PLAYER_SCALE_VALUES[12]; // first six are for being jumped on, last six for being squished
+extern u16 PUNCH_KICK_SEQUENCE_DELAYS[3];
+extern u8 HURT_START_GET_UP_FRAMES[6];
+extern u8 FALL_DURING_HURT_START_FRAMES[2];
 extern u32 STUCK_IN_GROUND_INIT_ANIMS[3];
 extern u32 STUCK_IN_GROUND_WAIT_ANIMS[3];
 extern u32 STUCK_IN_GROUND_END_ANIMS[3];
@@ -257,7 +260,11 @@ extern Fix12i JUMP_SEQUENCE_SPEEDS[3];
 extern u32 JUMP_SEQUENCE_ANIMS[3];
 extern u32 JUMP_LAND_ANIMS[3];
 extern u32 PUNCH_KICK_SEQUENCE_ANIMS[3];
+extern u16 PUNCH_KICK_HITBOX_FRAMES[8];
+extern u16 PUNCH_KICK_ACTIVE_FRAMES[6];
 extern u32 CEILING_GRATE_ANIMS[4];
+extern u32 HURT_ANIMS[6];
+extern u32 FALL_DURING_HURT_ANIMS[2];
 extern Vector3 PLAYER_CYLCLSN_OFFSET;
 
 extern u8 NEXT_HAT_CHARACTER;
@@ -445,9 +452,9 @@ extern "C"
 	void StartEntranceFaderWipe(s32 wipeID);
 	void StartExitCharacterWipe();
 	void StartExitFaderWipe(s32 wipeID);
-	void FUN_02029934();
-	void FUN_02029980();
-	void RespawnPlaneFader();
+	void CleanupRespawnWipe(); // reenables pausing and some ui elements
+	void RespawnWipe();
+	void RespawnPlaneWipe();
 	void FUN_02029a68();
 	void FUN_02029ab0();
 	void EnterBigBoosHaunt();
