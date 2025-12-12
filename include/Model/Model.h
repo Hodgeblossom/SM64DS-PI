@@ -68,7 +68,7 @@ struct ModelAnim2 : ModelAnim // internal: ModelAnm2
 
 	// 2 funcs missing before
 	void Copy(const ModelAnim2& anim, BCA_File& newFile, u32 newUnk64); // copies anim to *this, otherAnim is set to anim's Animation base class
-	void Func_020162C4(u32 newUnk64, s32 animFlags, Fix12i speed, u16 startFrame); // always calls on otherAnim
+	void Func_020162C4(BCA_File& animFile, s32 animFlags, Fix12i speed, u16 startFrame); // always calls on otherAnim
 };
 
 struct ShadowModel : ModelBase // internal: ShadowModel; done
