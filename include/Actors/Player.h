@@ -481,11 +481,11 @@ struct Player : Actor
 	u32 currMusicID;
 	Fix12i jumpPeakHeight; // 0x684
 	union { s32 msgID; Fix12i yPosOnPole; /* zero at the bottom of the pole */ };
-	Fix12i yVisualOffset;
+	Fix12i quicksandDepth;
 	Fix12i unk690;
 	Fix12i unk694;
 	s16 spawnAngY;
-	s16 unk69a;
+	s16 floorNormalYaw;
 	s16 spinningAngularVelY; // used for at least turning on poles and spinning Bowser
 	s16 unk69e;
 	u16 visibilityCounter; // the player is visible when this is even (except when the player is electrocuted the second bit is checked instead)
@@ -574,7 +574,7 @@ struct Player : Actor
 	u8 unk705;
 	bool isUnderwater;
 	bool standingInPuddle;
-	u8 isBeingHurt;
+	bool isBeingHurt;
 	bool isInvulnerable;
 	u8 noControlState; // 0x70a
 	u8 unk70b;
@@ -602,7 +602,7 @@ struct Player : Actor
 	bool unk723;
 	u8 unk724;
 	u8 unk725;
-	u8 unk726;
+	bool pvpHitActive;
 	u8 unk727;
 	u32 unk728;
 	u32 unk72c;
@@ -686,10 +686,11 @@ struct Player : Actor
 	void RegisterEggCoinCount(u32 numCoins, bool includeSilverStar, bool includeBlueCoin);
 	void SpawnAttackParticles(Vector3& particlePos);
 	//speed is multiplied by constant at 0x020ff128+charID*2 and divided by 50 (? could be 25, could be 100).
-	void Hurt(const Vector3& source, u32 damage, Fix12i speed, u32 arg4, u32 presetHurt, u32 spawnOuchParticles); // speed is multiplied by constant at 0x020ff128+charID*2 and divided by 50 (? could be 25, could be 100).
+	bool Hurt(const Vector3& source, u32 damage, Fix12i speed, u32 arg4, u32 presetHurt, u32 spawnOuchParticles); // speed is multiplied by constant at 0x020ff128+charID*2 and divided by 50 (? could be 25, could be 100).
 	void Heal(s32 health);
 	s32 GetHealth();
 	void PlayMegaStompEffects();
+	bool TryBounceOffPlayer();
 	void Bounce(Fix12i bounceInitVel);
 	bool LoseCapIfHasCap();
 	bool DropSilverOrVSStarIfHasAny();
@@ -718,6 +719,7 @@ struct Player : Actor
 	void PlayMammaMiaSound();
 	bool TryDropHeldActor();
 	bool TryGrab(Actor& actor);
+	bool GrabHandling(Actor& actor);
 	bool DropActor();
 	bool FinishedAnim();
 	void HandleRunningDust();
@@ -735,6 +737,7 @@ struct Player : Actor
 	void RunningDust();
 	void SlidingDust();
 	void PlayerLandingDust();
+	bool UpdateQuicksandReturnDeath();
 	bool Unk_020c0108(bool arg0);
 	u32 GetFloorTractionID();
 	Fix12i GetHangableCeilingHeight();
@@ -749,7 +752,8 @@ struct Player : Actor
 	void ApplySlopeAccel();
 	bool DecelerateSlide(Fix12i minSlideSpeed);
 	bool TrySnapToGroundFromSlide(); // Responsible for up/downwarps
-	bool CheckShouldSlide();
+	bool IsSurfaceSlippery();
+	void UpdateFloorSurfaceInfo(ClsnResult& wmClsnResult);
 	s16 GetFloorAngle(s16 offset);
 	void HandleTilt(bool scaleByHorzSpeed);
 	bool RaycastFromPos(u8 horzOffset, u8 vertOffset);
@@ -769,11 +773,13 @@ struct Player : Actor
 	void SetFirstPerson();
 	void WadingRipples(Fix12i speedToCompare);
 	void UpdateCameraZoom();
+	void BeginSwimCarry();
 	bool IsOnWaterSurface();
 	bool HandleSwimHealthCheckDeath();
 	bool IsHangingFromCeiling();
-	bool TryLedgeHang(Fix12i maxGrabHeight, bool facingAway);
+	bool CheckLedgeGrab(Fix12i grabHeight, bool facingAway);
 	bool ShouldLedgeHang();
+	bool ShouldLedgeHangOffLedge();
 	void AdjustLedgeHangPosAndFall();
 	void SetPunchKickAttack(u8 punchKickNumber);
 	void ClearActorInMouth();
@@ -789,7 +795,7 @@ struct Player : Actor
 	void StopBraking();
 	void HandleHitActor();
 	bool SpawnHitPlayerParticles(Player& attacker, Player& victim);
-	bool CheckThrowHeldPlayer();
+	bool ThrowHeldPlayer();
 	void UpdateAirWithTurn();
 	void InitDiveHitbox();
 	void InitSlideKickHitbox();
@@ -798,10 +804,12 @@ struct Player : Actor
 	bool CheckYoshiSwallow();
 	void HandleYoshiAttack();
 	bool CheckHitPlayer(Player& victim);
-	bool CheckJumpOnPlayer();
+	bool HandlePlayerInteraction();
 	void HandleRunLean(s16 playerMotionAngY);
 	void TrySetBrakeAnim();
 	void GetThrown(Fix12i horizontalSpeed, Fix12i verticalSpeed, s16 angle);
+	bool TryGetGrabbedByPlayer(Player& grabber, u32 attackerHitFlags);
+	bool GetGrabbedByPlayer(Actor& actor);
 	void UpdatePlayerScale();
 	void ApplyScaleState(u8 newScaleState);
 	void InitSweepKickHitbox();
@@ -834,6 +842,7 @@ struct Player : Actor
 	bool ShouldGetStuckInGround();
 	u8 GetLandingType();
 	void UpdatePlayerModel();
+	void HandleAttackPlayer(Player& victim, u32 attackerHitFlags);
 	static bool CheckCornerCorrectOnActor(WithMeshClsn& wmClsn, Actor& jumper);
 	static bool CheckMegaPlayerCollisionWithActor(WithMeshClsn& wmClsn, Actor& megaPlayer);
 	static bool CheckShotIntoActor(WithMeshClsn& wmClsn, Actor& shooter);
