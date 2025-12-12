@@ -248,6 +248,7 @@ extern Fix12i CRAZED_CRATE_HORZ_SPEEDS[3];
 extern u32 DASH_VOICES[4];
 extern Fix12i RISE_TO_SURFACE_SPEED_CHAR_MULTIPLIERS[4];
 extern Fix12i PLAYER_SCALE_STEPS[4]; // first two are for being jumped on, last two for being squished
+extern Fix12s PLAYER_KNOCKBACK_SPEEDS[17];
 extern Fix12i PLAYER_SCALE_VALUES[12]; // first six are for being jumped on, last six for being squished
 extern u16 PUNCH_KICK_SEQUENCE_DELAYS[3];
 extern u8 HURT_START_GET_UP_FRAMES[6];
