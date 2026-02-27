@@ -213,12 +213,14 @@ namespace Sound
 
 	u32 PlayLong(u32 uniqueID, u32 archiveID, u32 soundID, const Vector3& camSpacePos, u32 arg4 = 0); // first arg = guess
 	u32 PlayLong2D(u32 uniqueID, u32 archiveID, u32 soundID, u32 arg4 = 0);
+	u32 PlayLongWithPitch(u32 uniqueID, u32 archiveID, u32 soundID, u32 arg3, s32 pitch, const Vector3& camSpacePos, u32 arg6 = 0); // used for player flying and climbing sounds
 	u32 PlayLongStopIfSpeedTooLow(u32 uniqueID, u32 archiveID, u32 soundID, const Vector3& camSpacePos, Fix12i speed, u32 arg5 = 0); // used for player skidding sounds
 	
 	u32 PlayLongCharVoice(u32 uniqueID, u32 charID, u32 soundID, const Vector3& camSpacePos, u32 arg4 = 0);
 	void PlayCharVoice(u32 charID, u32 soundID, const Vector3& camSpacePos);
 
 	void Play(u32 archiveID, u32 soundID, const Vector3& camSpacePos);
+	void PlayFootsteps(u32 archiveID, u32 soundID, const Vector3& camSpacePos, Fix12i speed);
 	u32 Play2D(u32 archiveID, u32 soundID);
 	void PlayArchive0(u32 soundID, const Vector3& camSpacePos); // deprecated, use Sound::Play
 	void PlayArchive3(u32 soundID, const Vector3& camSpacePos); // deprecated, use Sound::Play
@@ -259,5 +261,6 @@ namespace Sound
 extern s32 MUSIC_ID_LSL_12;
 extern s32 MUSIC_VOLUME_LSL_12;
 extern s32 MESSAGE_SOUND_VOLUME_LSL_12;
+extern s32 FOOTSTEP_SOUND_SPECIFICS;
 extern s32 JRB_SOUND_SPECIFICS; // copied to SOUND_SPECIFICS if (JRB_SOUND_SPECIFICS > 0 && JRB_SOUND_SPECIFICS != SOUND_SPECIFICS)
 extern s32 SOUND_SPECIFICS;

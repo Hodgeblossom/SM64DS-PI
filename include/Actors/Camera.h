@@ -188,12 +188,17 @@ struct Camera : View // internal name: dCamera
 	bool IsUnderwater() const;
 	void SetHurtZShakeAngle();
 	s32 ChangeState(State* newState);
+	void SetBowserSpinCam(u32 playerID);
 	void LookAtExit(Actor& exit);
 	void GoBehindPlayer(u32 playerID);
 	s32 CallKuppaScriptInstruction(char* instruction, s16 minFrame, s16 maxFrame);
 	void SetFixedTalkCam(u32 playerID, const Vector3& lookAtPos);
+	void SetSlideCam(u32 playerID);
 	void SetHeadstandCam(u32 playerID);
+	void SetClimbCamNoDef(u32 playerID);
+	void SetClimbCamWithDef(u32 playerID);
 	void SetSpinTwirlCam(u32 playerID);
+	void SetSurfaceSwimCam(u32 playerID);
 	void SetSwimCam(u32 playerID);
 	void SetTalkCam(u32 playerID);
 	void SetCeilingHangCam(u32 playerID, u32 clpsCamBehavID);

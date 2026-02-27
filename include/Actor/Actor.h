@@ -96,7 +96,7 @@ struct Actor : ActorDerived // internal name: dActor
 	virtual u32 OnYoshiTryEat();
 	virtual void OnTurnIntoEgg(Player& player);
 	virtual bool Virtual50();
-	virtual void OnGroundPounded(Actor& groundPounder);
+	virtual void OnHipAttacked(Actor& HipAttacker);
 	virtual void OnAttacked1(Actor& attacker);
 	virtual void OnAttacked2(Actor& attacker);
 	virtual void OnKicked(Actor& kicker);
@@ -122,6 +122,7 @@ struct Actor : ActorDerived // internal name: dActor
 	void LandingDust(bool doRaycast);
 	void LandingDustAt(Vector3& vec, bool doRaycast);
 	void TinyPoofDustAt(Vector3& vec, bool doRaycast);
+	void TinyPoofDust(bool isPowerFlower);
 	void DisappearPoofDustAt(const Vector3& vec);
 	void SmallPoofDust();
 	void PoofDustAt(const Vector3& vec);
